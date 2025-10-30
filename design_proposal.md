@@ -1,5 +1,5 @@
 # WIMU/SIWY - Projekt - Design proposal
-Jakub Proboszcz, Paweł Kochański, Kamil Michalak
+Jakub Proboszcz, Paweł Kochański, Mikołaj Piórczyński
 ## Atrybucja danych audio wykorzystując TRAK dla dyfuzyjnych modeli generatywnych audio
 
 ### Planowany zakres projektu
