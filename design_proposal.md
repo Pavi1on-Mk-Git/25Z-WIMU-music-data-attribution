@@ -4,7 +4,7 @@ Jakub Proboszcz, Paweł Kochański, Mikołaj Piórczyński
 
 ### Planowany zakres projektu
 
-Celem projektu jest uruchomienie i zbadanie metody [TRAK](https://arxiv.org/pdf/2510.08062) dla modeli generujących audio, np. [Stable Audio Open](https://arxiv.org/pdf/2407.14358).
+Celem projektu jest uruchomienie i zbadanie metody [TRAK](https://arxiv.org/pdf/2303.14186) dla modeli generujących audio, np. [Stable Audio Open](https://arxiv.org/pdf/2407.14358).
 W ramach projektu powstanie artykuł gotowy lub bliski gotowości do zgłoszenia na konferencję naukową.
 
 ### Harmonogram projektu
