@@ -4,7 +4,7 @@ Jakub Proboszcz, Paweł Kochański, Mikołaj Piórczyński
 
 ### Planowany zakres projektu
 
-Celem projektu jest uruchomienie i zbadanie metody TRAK [1] dla modeli generujących audio, np. Stable Audio Open [2]. Na potrzeby metody TRAK modele będą wielokrotnie dotrenowywane; jako zbiór danych wstępnie proponujemy zbiór AudioCaps [3].
+Celem projektu jest uruchomienie i zbadanie metody TRAK [1] dla modeli generujących audio, np. Stable Audio Open [2]. Na potrzeby metody TRAK modele będą wielokrotnie dotrenowywane; jako zbiór danych wstępnie proponujemy zbiór MusicCaps [3].
 W ramach projektu powstanie artykuł gotowy lub bliski gotowości do zgłoszenia na konferencję naukową.
 
 ### Harmonogram projektu
@@ -43,11 +43,11 @@ Narzędzia pomocnicze:
 Założenia:
 - model Stable Audio Open [2]
 - karta graficzna NVIDIA A100 [4]
-- zbiór danych AudioCaps [3]
+- zbiór danych MusicCaps [3]
 - `batch_size` równy $4$
 - do treningu używana będzie połowa ww. zbioru
 
-Czas trwania pojedynczej epoki na jednym GPU $\approx 8.86 \space h$
+Czas trwania pojedynczej epoki na jednym GPU wynosiłby około 1,1h. Zakładając 10 epok i 10 treningów modelu (metoda TRAK dopuszcza wykorzystanie różnych checkpointów z uczenia zamiast niezależnie uczonych modeli - wykorzystane zostałoby po 10 checkpointów z każdego treningu, w sumie 100 modeli), wykorzystanie metody TRAK na Stable Audio Open wymagałoby 110 godzin uczenia. Zakładając, że uda się znaleźć kolejny model nadający się do eksperymentów, liczbę tę należałoby podwoić.
 
 ### Prace powiązane z tematem
 
@@ -61,7 +61,7 @@ Czas trwania pojedynczej epoki na jednym GPU $\approx 8.86 \space h$
 
 [2] Zach Evans i in., "Stable Audio Open", arXiv preprint, 2024, https://arxiv.org/pdf/2407.14358.
 
-[3] Chris Dongjoo Kim i in., "AudioCaps: Generating Captions for Audios in The Wild" w Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers), 2019, https://doi.org/10.18653/v1/N19-1011.
+[3] Andrea Agostinelli i in., "MusicLM: Generating Music From Text", arXiv preprint, 2023, https://arxiv.org/pdf/2301.11325.
 
 [4] NVIDIA, "NVIDIA A100 | NVIDIA", 2024, https://www.nvidia.com/en-us/data-center/a100/, ostatni dostęp 03.11.2025.
 
