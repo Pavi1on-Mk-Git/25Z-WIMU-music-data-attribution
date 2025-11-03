@@ -32,10 +32,19 @@ Język Python oraz biblioteki:
 - dotrenowywanie modeli: pytorch, torchaudio, ewentualnie też biblioteki poszczególnych modeli
 
 Narzędzia pomocnicze:
-- autoformatter: black
+- autoformatter: ruff
 - linter: flake8
 - zarządzanie projektem: just
 - środowisko wirtualne i zarządzanie zależnościami: pdm
 - testy: pytest, ew. skrypty shellowe
 
 ### Wymagane zasoby obliczeniowe
+
+Założenia:
+- model [Stable Audio Open](https://arxiv.org/pdf/2407.14358)
+- karta graficzna [NVIDIA A100](https://www.nvidia.com/en-us/data-center/a100)
+- zbiór danych [AudioCaps](https://audiocaps.github.io)
+- `batch_size` równy $4$
+- do treningu używana będzie połowa ww. zbioru
+
+Czas trwania pojedynczej epoki na jednym GPU $\approx 8.86 \space h$
