@@ -49,7 +49,11 @@ Założenia:
 
 Czas trwania pojedynczej epoki na jednym GPU wynosiłby $\approx 0,89 \space h$. Zakładając $10$ epok i $10$ treningów modelu (metoda TRAK dopuszcza wykorzystanie różnych checkpointów z uczenia zamiast niezależnie uczonych modeli - wykorzystane zostałoby po $10$ checkpointów z każdego treningu, w sumie $100$ modeli), wykorzystanie metody TRAK na Stable Audio Open wymagałoby $89$ godzin uczenia.
 
-Zakładając, że uda się znaleźć kolejny model nadający się do eksperymentów, liczbę tę należałoby co najmniej podwoić.
+Zakładając, że uda się znaleźć kolejny model nadający się do eksperymentów, liczbę tę należałoby podwoić.
+
+Wykorzystanie metody TRAK mając już dotrenowane checkpointy modeli wymaga wyliczenia gradientów na całym zbiorze treningowym, na wszystkich checkpointach. Dla każdego checkpointa zajmie to podobny czas co jedna epoka uczenia, zatem dla wszystkich 100 checkpointów prawdopodobnie zajmie to podobny czas co dotrenowywanie.
+
+Sumaryczne oszacowanie potrzebnej mocy obliczeniowej to $356$ godzin GPU.
 
 ### Prace powiązane z tematem
 
