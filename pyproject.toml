@@ -5,7 +5,36 @@ description = "Default template for PDM package"
 authors = [
     {name = "Jakub Proboszcz", email = "jakub.proboszcz.stud@pw.edu.pl"},
 ]
-dependencies = ["audiocraft>=1.3.0"]
+dependencies = [
+    "av==11.0.0",
+    "einops",
+    "flashy>=0.0.1",
+    "hydra-core>=1.1",
+    "hydra-colorlog",
+    "julius",
+    "num2words",
+    "numpy<2.0.0",
+    "sentencepiece",
+    "spacy==3.7.6",
+    "torch==2.2",
+    "torchaudio>=2.0.0",
+    "huggingface-hub",
+    "tqdm",
+    "transformers>=4.31.0",
+    "xformers<0.0.23",
+    "demucs",
+    "librosa",
+    "soundfile",
+    "gradio",
+    "torchmetrics",
+    "encodec",
+    "protobuf",
+    "torchvision",
+    "torchtext",
+    "pesq",
+    "pystoi",
+    "torchdiffeq",
+]
 requires-python = "==3.11.*"
 readme = "README.md"
 license = {text = "MIT"}
@@ -13,3 +42,7 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
