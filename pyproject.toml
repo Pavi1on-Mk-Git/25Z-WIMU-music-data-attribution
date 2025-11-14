@@ -1,0 +1,24 @@
+[project]
+name = "25Z-WIMU-music-data-attribution"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Paweł Kochański", email = "pawilioxion@gmail.com"},
+]
+dependencies = ["stable-audio-tools>=0.0.19", "einops>=0.8.1", "torch>=2.6.0", "torchaudio>=2.6.0", "torchcodec>=0.8.1"]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.overrides]
+numpy = ">=2.0.0"
+
+[[tool.pdm.source]]
+name = "private"
+url = "https://download.pytorch.org/whl/cpu"
+include_packages = ["torch", "torchvision", "torchaudio"]
+exclude_packages = ["*"]
