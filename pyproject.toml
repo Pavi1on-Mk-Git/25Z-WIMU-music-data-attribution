@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "Paweł Kochański", email = "pawilioxion@gmail.com"},
 ]
-dependencies = ["stable-audio-tools>=0.0.19", "einops>=0.8.1", "torch>=2.6.0", "torchaudio>=2.6.0", "torchcodec>=0.8.1"]
+dependencies = ["stable-audio-tools>=0.0.19", "einops>=0.8.1", "torch>=2.6.0", "torchaudio>=2.6.0", "torchcodec>=0.8.1", "audiocraft>=1.2.0"]
 requires-python = "==3.11.*"
 readme = "README.md"
 license = {text = "MIT"}
@@ -14,11 +14,17 @@ license = {text = "MIT"}
 [tool.pdm]
 distribution = false
 
-[tool.pdm.overrides]
+[tool.pdm.resolution.overrides]
 numpy = ">=2.0.0"
+pandas = ">=2.2.0"
+pydantic = ">=2.0.0"
+torch = ">=2.3.0"
+torchvision = ">=0.21.0"
+torchaudio = ">=2.2.0"
+wandb = ">=0.20.0"
 
 [[tool.pdm.source]]
 name = "private"
-url = "https://download.pytorch.org/whl/cpu"
-include_packages = ["torch", "torchvision", "torchaudio"]
+url = "https://download.pytorch.org/whl/cu124"
+include_packages = ["torch", "torchvision", "torchaudio", "xformers"]
 exclude_packages = ["*"]
