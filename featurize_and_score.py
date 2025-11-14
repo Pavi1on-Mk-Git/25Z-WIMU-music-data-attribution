@@ -9,7 +9,7 @@ from trak import TRAKer
 def main(model_id):
     # replace this with your dataset, model, and checkpoints of choice
     # ==================================
-    model = models.resnet18(weights="DEFAULT")
+    model = models.resnet18(weights="DEFAULT").cuda()
     model.eval()
     ds_train = datasets.CIFAR10(
         root="/tmp", download=True, train=True, transform=transforms.ToTensor()
@@ -52,7 +52,7 @@ def main(model_id):
         num_targets=len(loader_val.dataset),
     )
     for batch in tqdm(loader_val, desc="Scoring..."):
-        batch = [x for x in batch]
+        batch = [x.cuda() for x in batch]
         traker.score(batch=batch, num_samples=loader_val.batch_size)
 
 
