@@ -1,17 +1,25 @@
 # 25Z-WIMU-music-data-attribution
 
-## Usage
+## Running TRAK
 
-Compute TRAK features for training data, scores for target examples for each checkpoint in parallel using SLURM:
+Compute TRAK features:
 ```bash
-source .env
-sbatch --account="$ATHENA_GRANT" run.sbatch
+pdm run run_trak.py
 ```
 
-Gather final scores:
+Visualize attribution results using visualize.ipynb notebook.
+
+## Running MusicGen and Stable Audio Open
+
+Run the respective scripts:
 ```bash
-bash slurm_scripts/start_bash.sh
-python gather.py
+pdm run run_musicgen.py
 ```
 
-To visualize attribution results use visualize.ipynb notebook.
+and
+
+```bash
+pdm run run_sao.py
+```
+
+Both produce a file called output.wav, containing the generated audio.
