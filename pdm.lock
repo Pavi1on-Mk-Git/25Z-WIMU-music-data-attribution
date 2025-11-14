@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:6920ce482f0c1e8732df1b184fe4056b9fb3394f270fe0afc1df5dc3a918385f"
+content_hash = "sha256:32a0d9ef3e253dc75c456e1e56a44cae003bbb0be78983fc5b4d38710ee736ae"
 
 [[metadata.targets]]
 requires_python = "==3.11.*"
@@ -836,6 +836,18 @@ groups = ["default"]
 files = [
     {file = "executing-2.2.1-py2.py3-none-any.whl", hash = "sha256:760643d3452b4d777d295bb167ccc74c64a81df23fb5e08eff250c425a4b2017"},
     {file = "executing-2.2.1.tar.gz", hash = "sha256:3632cc370565f6648cc328b32435bd120a1e4ebb20c77e3fdde9a13cd1e533c4"},
+]
+
+[[package]]
+name = "fast-jl"
+version = "0.1.3"
+summary = ""
+groups = ["default"]
+dependencies = [
+    "torch>=2.0.0",
+]
+files = [
+    {file = "fast_jl-0.1.3.tar.gz", hash = "sha256:216100e9778da38b906a3c2a18b7c9e93bc395576e6943c7f920c98cce179775"},
 ]
 
 [[package]]
@@ -3586,6 +3598,34 @@ groups = ["default"]
 files = [
     {file = "traitlets-5.14.3-py3-none-any.whl", hash = "sha256:b74e89e397b1ed28cc831db7aea759ba6640cb3de13090ca145426688ff1ac4f"},
     {file = "traitlets-5.14.3.tar.gz", hash = "sha256:9ed0579d3502c94b4b3732ac120375cda96f923114522847de4b3bb98b96b6b7"},
+]
+
+[[package]]
+name = "traker"
+version = "0.3.2"
+summary = "TRAK: Attributing Model Behavior at Scale"
+groups = ["default"]
+dependencies = [
+    "numpy",
+    "torch>=2.0.0",
+    "tqdm",
+]
+files = [
+    {file = "traker-0.3.2.tar.gz", hash = "sha256:6a3702b7ab749c57c6d8838fad1772f90c12a58bda572f1e8c02628fd7f091ec"},
+]
+
+[[package]]
+name = "traker"
+version = "0.3.2"
+extras = ["fast"]
+summary = "TRAK: Attributing Model Behavior at Scale"
+groups = ["default"]
+dependencies = [
+    "fast-jl",
+    "traker==0.3.2",
+]
+files = [
+    {file = "traker-0.3.2.tar.gz", hash = "sha256:6a3702b7ab749c57c6d8838fad1772f90c12a58bda572f1e8c02628fd7f091ec"},
 ]
 
 [[package]]
