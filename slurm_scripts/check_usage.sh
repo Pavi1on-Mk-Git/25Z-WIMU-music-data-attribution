@@ -1,0 +1,1 @@
+squeue -A $ATHENA_GRANT | awk 'NR>1 {users[$4]++} END {for (user in users) print user, users[user]}'

@@ -1,0 +1,1 @@
+srun -A $ATHENA_GRANT -p plgrid-gpu-a100 -t 3:00:00 --gres gpu:1 --cpus-per-task=16 --mem-per-cpu=16GB --pty /bin/bash
