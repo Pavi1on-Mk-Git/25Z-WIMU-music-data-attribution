@@ -1,5 +1,11 @@
 # 25Z-WIMU-music-data-attribution
 
+## Install dependencies:
+```bash
+sudo apt install libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libavfilter-dev libswscale-dev libswresample-dev
+pdm install
+```
+
 ## Running TRAK
 
 Compute TRAK features:
