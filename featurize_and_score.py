@@ -55,6 +55,8 @@ def main(model_id):
         batch = [x.cuda() for x in batch]
         traker.score(batch=batch, num_samples=loader_val.batch_size)
 
+    scores = traker.finalize_scores(exp_name='slurm_example', model_ids=[model_id])
+
 
 if __name__ == "__main__":
     parser = ArgumentParser()

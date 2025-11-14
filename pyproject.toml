@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "Paweł Kochański", email = "pawilioxion@gmail.com"},
 ]
-dependencies = ["stable-audio-tools>=0.0.19", "einops>=0.8.1", "torch>=2.6.0", "torchaudio>=2.6.0", "torchcodec>=0.8.1", "audiocraft>=1.2.0", "traker[fast]>=0.3.2"]
+dependencies = ["stable-audio-tools>=0.0.19", "einops>=0.8.1", "torch>=2.6.0", "torchaudio>=2.6.0", "torchcodec>=0.8.1", "audiocraft>=1.2.0", "traker[fast]>=0.3.2", "ipykernel>=7.1.0"]
 requires-python = "==3.11.*"
 readme = "README.md"
 license = {text = "MIT"}
