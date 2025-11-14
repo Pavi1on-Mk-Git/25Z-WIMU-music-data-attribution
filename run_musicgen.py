@@ -1,6 +1,3 @@
-import sys
-sys.path.append("/home/jproboszcz/sem9/wimu/audiocraft")
-
 from audiocraft.models import MusicGen
 from audiocraft.data.audio import audio_write
 

@@ -14,10 +14,7 @@ sample_size = model_config["sample_size"]
 model = model.to(device)
 
 # Set up text and timing conditioning
-conditioning = [{
-    "prompt": "128 BPM tech house drum loop",
-    "seconds_total": 11
-}]
+conditioning = [{"prompt": "128 BPM tech house drum loop", "seconds_total": 11}]
 
 # Generate stereo audio
 output = generate_diffusion_cond(
@@ -27,12 +24,19 @@ output = generate_diffusion_cond(
     conditioning=conditioning,
     sample_size=sample_size,
     sampler_type="pingpong",
-    device=device
+    device=device,
 )
 
 # Rearrange audio batch to a single sequence
 output = rearrange(output, "b d n -> d (b n)")
 
 # Peak normalize, clip, convert to int16, and save to file
-output = output.to(torch.float32).div(torch.max(torch.abs(output))).clamp(-1, 1).mul(32767).to(torch.int16).cpu()
+output = (
+    output.to(torch.float32)
+    .div(torch.max(torch.abs(output)))
+    .clamp(-1, 1)
+    .mul(32767)
+    .to(torch.int16)
+    .cpu()
+)
 torchaudio.save("output.wav", output, sample_rate)
