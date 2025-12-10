@@ -6,4 +6,5 @@ __pycache__/
 .pdm-python
 *.wav
 data/
-
+sao/model.ckpt
+sao/checkpoints/*
