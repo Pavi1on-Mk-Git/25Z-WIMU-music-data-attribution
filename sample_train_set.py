@@ -1,5 +1,6 @@
 import argparse
 import pandas as pd
+from pathlib import Path
 
 
 if __name__ == "__main__":
@@ -10,6 +11,6 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, help="Randomness seed.")
     args = parser.parse_args()
 
-    input_data = pd.read_json(args.input, lines=True)
+    input_data = pd.read_json(Path(args.input), lines=True)
     output_data = input_data.sample(frac=args.fraction, random_state=args.seed)
     output_data.to_json(args.output, orient="records", lines=True)
