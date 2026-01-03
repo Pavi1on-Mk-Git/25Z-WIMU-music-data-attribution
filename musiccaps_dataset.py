@@ -10,7 +10,9 @@ import torch
 
 
 class MusicCapsDataset(Dataset):
-    def __init__(self, audio_dir: os.PathLike, labels_csv_path: os.PathLike, sample_rate: int, channels: int):
+    def __init__(
+        self, audio_dir: os.PathLike, labels_csv_path: os.PathLike, sample_rate: int = 32000, channels: int = 1
+    ):
         self.sample_rate = sample_rate
         self.channels = channels
 
@@ -51,8 +53,6 @@ if __name__ == "__main__":
     dataset = MusicCapsDataset(
         audio_dir="data/musiccaps/music_data_train",
         labels_csv_path="data/musiccaps/musiccaps-public.csv",
-        sample_rate=32000,
-        channels=2,
     )
     dataloader = get_musiccaps_dataloader(dataset, 1, 4)
 

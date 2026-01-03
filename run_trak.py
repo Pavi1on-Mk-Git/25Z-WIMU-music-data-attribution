@@ -11,14 +11,10 @@ def main(model_id):
     # ==================================
     model = models.resnet18(weights="DEFAULT").cuda()
     model.eval()
-    ds_train = datasets.CIFAR10(
-        root="/tmp", download=True, train=True, transform=transforms.ToTensor()
-    )
+    ds_train = datasets.CIFAR10(root="/tmp", download=True, train=True, transform=transforms.ToTensor())
     loader_train = DataLoader(ds_train, batch_size=100, shuffle=False)
 
-    ds_val = datasets.CIFAR10(
-        root="/tmp", download=True, train=False, transform=transforms.ToTensor()
-    )
+    ds_val = datasets.CIFAR10(root="/tmp", download=True, train=False, transform=transforms.ToTensor())
     loader_val = DataLoader(ds_val, batch_size=100, shuffle=False)
 
     # use model_id here to load the proper checkpoint
