@@ -1,5 +1,6 @@
 from trak.modelout_functions import AbstractModelOutput
 from trak.gradient_computers import IterativeGradientComputer
+from trak.projectors import CudaProjector
 from torch import Tensor
 from torch.nn import Module
 from audiocraft.modules.conditioners import ConditioningAttributes, ClassifierFreeGuidanceDropout
@@ -20,7 +21,7 @@ class MusicGenModelOutput(AbstractModelOutput):
         lm_model: Module,
         weights: Iterable[Tensor] | None,
         buffers: Iterable[Tensor] | None,
-        tokens: Tensor,
+        audios: Tensor,
         descriptions: list[str],
     ) -> Tensor:
         """
@@ -34,39 +35,49 @@ class MusicGenModelOutput(AbstractModelOutput):
 
         The "correct" tokens are the ones actually generated.
         """
+        tokens = self._tokenize(audios)
+
         logits, mask = self._compute_cfg_logits(lm_model, tokens, descriptions)
         B, K, T, card = logits.shape
         assert mask.shape == (B, K, T)
-        print(f"{mask=}")
 
-        logits_correct = logits[:, :, :, tokens]
-        logits_correct[mask == 0] = 0
+        tokens = tokens.unsqueeze(-1)
+        logits_correct = torch.gather(logits, -1, tokens).squeeze(-1)
+        logits_correct[~mask] = 0
 
         # this is passed to torch.logsumexp, so -inf after exp becomes 0
         logits_incorrect = logits.clone()
-        logits_incorrect[:, :, :, tokens] = -torch.inf
-        logits_incorrect[mask == 0] = -torch.inf
-        logits_incorrect = logits_incorrect.reshape(B, K * T)
+        logits_incorrect = logits_incorrect.scatter(-1, tokens, torch.full_like(logits_correct, -torch.inf).unsqueeze(-1))
+        logits_incorrect[~mask] = -torch.inf
 
         margins = logits_correct - torch.logsumexp(logits_incorrect, dim=-1)
-        return margins.sum()
+        output = margins.sum(dim=-1).sum(dim=-1)
+        print(margins.shape)
+        print(output.shape)
+        return output
 
     def get_out_to_loss_grad(
         self,
         lm_model: LMModel,
         weights: Iterable[Tensor] | None,
         buffers: Iterable[Tensor] | None,
-        tokens: Tensor,
+        audios: Tensor,
         descriptions: list[str],
     ) -> Tensor:
+        tokens = self._tokenize(audios)
+
         logits, mask = self._compute_cfg_logits(lm_model, tokens, descriptions)
         B, K, T, card = logits.shape
 
         ps = torch.softmax(logits / self.temperature, dim=-1)[:, :, :, tokens]  # B, K, T
-        ps[mask == 0] = 0
-        ps = ps.reshape(B, K * T)
+        ps[~mask] = 0
+        ps = ps.reshape(B, K * T).sum(dim=-1)
 
         return (1 - ps).clone().detach()
+
+    def _tokenize(self, audios: Tensor) -> Tensor:
+        tokens, _ = self.musicgen.compression_model.encode(audios)
+        return tokens
 
     def _compute_cfg_logits(self, lm_model: LMModel, tokens: Tensor, descriptions: list[str]) -> tuple[Tensor, Tensor]:
         conditions = [ConditioningAttributes(text={"description": description}) for description in descriptions]
@@ -77,10 +88,14 @@ class MusicGenModelOutput(AbstractModelOutput):
         condition_tensors = self.musicgen.lm.condition_provider(tokenized_attributes)
 
         with self.musicgen.autocast:
-            all_logits, mask = lm_model.compute_predictions(torch.cat([tokens, tokens], dim=0), [], condition_tensors)
+            out = lm_model.compute_predictions(torch.cat([tokens, tokens], dim=0), [], condition_tensors)
+            all_logits, mask = out.logits, out.mask
 
-        logits_cond, logits_uncond = torch.split(all_logits, 1, dim=0)
+        batch_size = all_logits.shape[0] // 2
+        logits_cond, logits_uncond = torch.split(all_logits, batch_size, dim=0)
         logits = logits_uncond + (logits_cond - logits_uncond) * self.musicgen.lm.cfg_coef
+
+        mask = mask[:batch_size, :, :]
 
         return logits, mask
 
@@ -94,8 +109,8 @@ if __name__ == "__main__":
     torch.manual_seed(201)
 
     dataset = MusicCapsDataset(
-        audio_dir="data/musiccaps/music_data_train",
-        labels_csv_path="data/musiccaps/musiccaps-public.csv",
+        audio_dir="/home/jproboszcz/musiccaps/music_data_train",
+        labels_csv_path="/home/jproboszcz/musiccaps/musiccaps-public.csv",
         sample_rate=32000,
         channels=1,
     )
@@ -120,15 +135,16 @@ if __name__ == "__main__":
         train_set_size=len(dataset),
         device="cuda",
         gradient_computer=IterativeGradientComputer,
+#        projector=CudaProjector,
     )
 
     print("created traker")
 
-    checkpoint = load_checkpoint("checkpoint_1.th")
+    checkpoint = load_checkpoint("/data/jproboszcz/musicgen/xps/21a44b8e/checkpoint_15.th")
     traker.load_checkpoint(checkpoint["model"], model_id=0)
 
     print("loaded checkpoint with traker")
 
     for audios, descriptions in tqdm(dataloader, desc="Computing TRAK embeddings..."):
-        traker.featurize(batch=(audios, descriptions), num_samples=dataloader.batch_size)
+        traker.featurize(batch=(audios.cuda(), descriptions), num_samples=dataloader.batch_size)
     traker.finalize_features(model_ids=[0])
