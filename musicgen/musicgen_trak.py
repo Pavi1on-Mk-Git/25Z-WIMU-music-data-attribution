@@ -69,8 +69,9 @@ class MusicGenModelOutput(AbstractModelOutput):
         logits, mask = self._compute_cfg_logits(lm_model, tokens, descriptions)
         B, K, T, card = logits.shape
 
-        ps = torch.softmax(logits / self.temperature, dim=-1)[:, :, :, tokens]  # B, K, T
+        ps = torch.softmax(logits / self.temperature, dim=-1)  # B, K, T, card
         ps[~mask] = 0
+        ps = torch.gather(ps, -1, tokens.unsqueeze(-1)).squeeze(-1)
         ps = ps.reshape(B, K * T).sum(dim=-1)
 
         return (1 - ps).clone().detach()
@@ -114,7 +115,7 @@ if __name__ == "__main__":
         sample_rate=32000,
         channels=1,
     )
-    dataloader = get_musiccaps_dataloader(dataset, 1, 1)
+    dataloader = get_musiccaps_dataloader(dataset, 1, 2)
 
     print("created dataloader")
 
