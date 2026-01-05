@@ -1,6 +1,5 @@
 from trak.modelout_functions import AbstractModelOutput
 from trak.gradient_computers import IterativeGradientComputer
-from trak.projectors import CudaProjector
 from torch import Tensor
 from torch.nn import Module
 from audiocraft.modules.conditioners import ConditioningAttributes, ClassifierFreeGuidanceDropout
@@ -47,7 +46,9 @@ class MusicGenModelOutput(AbstractModelOutput):
 
         # this is passed to torch.logsumexp, so -inf after exp becomes 0
         logits_incorrect = logits.clone()
-        logits_incorrect = logits_incorrect.scatter(-1, tokens, torch.full_like(logits_correct, -torch.inf).unsqueeze(-1))
+        logits_incorrect = logits_incorrect.scatter(
+            -1, tokens, torch.full_like(logits_correct, -torch.inf).unsqueeze(-1)
+        )
         logits_incorrect[~mask] = -torch.inf
 
         margins = logits_correct - torch.logsumexp(logits_incorrect, dim=-1)
@@ -136,7 +137,6 @@ if __name__ == "__main__":
         train_set_size=len(dataset),
         device="cuda",
         gradient_computer=IterativeGradientComputer,
-#        projector=CudaProjector,
     )
 
     print("created traker")
