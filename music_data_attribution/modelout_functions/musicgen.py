@@ -89,7 +89,7 @@ class MusicGenModelOutput(AbstractModelOutput):
         logits_incorrect = logits_incorrect.scatter(
             -1, tokens, torch.full_like(logits_correct, -torch.inf).unsqueeze(-1)
         )
-        logits_incorrect = torch.masked_fill(logits_incorrect, ~mask, -torch.inf)
+        logits_incorrect = torch.masked_fill(logits_incorrect, ~mask.unsqueeze(-1), -torch.inf)
 
         margins = logits_correct - torch.logsumexp(logits_incorrect, dim=-1)
         margins = torch.masked_fill(margins, ~mask, 0)
