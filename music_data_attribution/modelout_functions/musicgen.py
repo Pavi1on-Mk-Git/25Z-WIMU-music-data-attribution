@@ -71,7 +71,7 @@ class MusicGenModelOutput(AbstractModelOutput):
 
         return torch.sum(base_grads * margins, dim=-1) / torch.sum(margins, dim=-1)
 
-    def _get_margins_from_logits(tokens: Tensor, logits: Tensor, mask: Tensor) -> Tensor:
+    def _get_margins_from_logits(self, tokens: Tensor, logits: Tensor, mask: Tensor) -> Tensor:
         tokens = tokens.unsqueeze(-1)
         logits_correct = torch.gather(logits, -1, tokens).squeeze(-1)
         logits_correct[~mask] = 0
