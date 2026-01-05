@@ -69,7 +69,7 @@ class MusicGenModelOutput(AbstractModelOutput):
         margins = self._get_margins_from_logits(tokens, logits, mask)
         assert margins.shape == (B, K * T)
 
-        return torch.sum(base_grads * margins, dim=-1) / torch.sum(margins, dim=-1)
+        return (torch.sum(base_grads * margins, dim=-1) / torch.sum(margins, dim=-1)).unsqueeze(-1)
 
     def _get_margins_from_logits(self, tokens: Tensor, logits: Tensor, mask: Tensor) -> Tensor:
         tokens = tokens.unsqueeze(-1)
