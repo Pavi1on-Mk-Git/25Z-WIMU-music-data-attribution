@@ -64,8 +64,9 @@ class MusicGenModelOutput(AbstractModelOutput):
         assert mask.shape == (B, K, T)
 
         ps = torch.softmax(logits / self.temperature, dim=-1)
-        ps[~mask] = 0
         ps = torch.gather(ps, -1, tokens.unsqueeze(-1)).squeeze(-1)
+        ps[~mask] = 0
+        assert not ps.isnan().any()
         ps = ps.reshape(B, K * T)
 
         base_grads = 1 - ps
