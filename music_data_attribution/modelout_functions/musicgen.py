@@ -45,6 +45,7 @@ class MusicGenModelOutput(AbstractModelOutput):
 
         output = torch.sum(margins, dim=-1)
         assert not output.isnan().any()
+        assert not output.isinf().any()
 
         return output
 
@@ -66,7 +67,6 @@ class MusicGenModelOutput(AbstractModelOutput):
         ps = torch.softmax(logits / self.temperature, dim=-1)
         ps = torch.gather(ps, -1, tokens.unsqueeze(-1)).squeeze(-1)
         ps[~mask] = 0
-        assert not ps.isnan().any()
         ps = ps.reshape(B, K * T)
 
         base_grads = 1 - ps
@@ -75,6 +75,7 @@ class MusicGenModelOutput(AbstractModelOutput):
 
         out_to_loss_grad = (torch.sum(base_grads * margins, dim=-1) / torch.sum(margins, dim=-1)).unsqueeze(-1)
         assert not out_to_loss_grad.isnan().any()
+        assert not out_to_loss_grad.isinf().any()
 
         return out_to_loss_grad
 
@@ -91,6 +92,7 @@ class MusicGenModelOutput(AbstractModelOutput):
         logits_incorrect[~mask] = -torch.inf
 
         margins = logits_correct - torch.logsumexp(logits_incorrect, dim=-1)
+        margins[~mask] = 0
         return margins.reshape(tokens.shape[0], -1)
 
     def _tokenize(self, audios: Tensor) -> Tensor:
