@@ -65,6 +65,8 @@ if __name__ == "__main__":
         device="cuda",
         gradient_computer=IterativeGradientComputer,
         proj_dim=4096,
+        proj_max_batch_size=8,
+        use_half_precision=False,
     )
 
     logger.debug("created traker")
