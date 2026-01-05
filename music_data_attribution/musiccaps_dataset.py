@@ -50,7 +50,7 @@ class MusicCapsDataset(Dataset):
             descriptions.append(description)
 
         # all audios should have the same length, so no need for padding collated audios
-        return indices, torch.stack(audios), descriptions
+        return torch.tensor(indices), torch.stack(audios), descriptions
 
 
 if __name__ == "__main__":
