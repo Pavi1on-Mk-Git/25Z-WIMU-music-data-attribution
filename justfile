@@ -6,16 +6,17 @@ split_musiccaps:
 
 AUDIOCRAFT_REPO_DIR := "/home/jproboszcz/audiocraft"
 
-finetune_musicgen:
+prepare_musiccaps_for_musicgen:
     pdm run ./music_data_attribution/finetuning_scripts/musicgen/prepare_musicgen_data_json.py \
-        data/processed/musiccaps/music_data_train \
+        "{{`pwd`}}/data/processed/musiccaps/music_data_train" \
         data/raw/musiccaps/musiccaps-public.csv \
         --output-dir {{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/train
     pdm run ./music_data_attribution/finetuning_scripts/musicgen/prepare_musicgen_data_json.py \
-        data/processed/musiccaps/music_data_test \
+        "{{`pwd`}}/data/processed/musiccaps/music_data_test" \
         data/raw/musiccaps/musiccaps-public.csv \
         --output-dir {{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/test
 
+finetune_musicgen:
     AUDIOCRAFT_DORA_DIR=/data/jproboszcz/musicgen \
     bash ./music_data_attribution/finetuning_scripts/musicgen/train_musicgen.sh {{AUDIOCRAFT_REPO_DIR}}
 
