@@ -64,7 +64,7 @@ if __name__ == "__main__":
         train_set_size=len(dataset),
         device=f"cuda:{args.gpu_index}",
         gradient_computer=IterativeGradientComputer,
-        proj_dim=4000,
+        proj_dim=4096,
     )
 
     logger.debug("created traker")
