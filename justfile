@@ -17,7 +17,7 @@ finetune_musicgen:
         --output-dir {{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/test
 
     AUDIOCRAFT_DORA_DIR=/data/jproboszcz/musicgen \
-    bash ./music_data_attribution/finetuning_scripts/train_musicgen.sh {{AUDIOCRAFT_REPO_DIR}}
+    bash ./music_data_attribution/finetuning_scripts/musicgen/train_musicgen.sh {{AUDIOCRAFT_REPO_DIR}}
 
 format:
     pdm run python3 -m ruff format .

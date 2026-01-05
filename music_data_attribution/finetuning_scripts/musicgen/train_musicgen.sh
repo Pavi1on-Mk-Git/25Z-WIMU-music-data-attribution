@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 1 ]; then
     echo "Usage: $0 audiocraft_repo_dir" >&2
     echo "Error: Expected 1 argument, got $#." >&2
     exit 1
