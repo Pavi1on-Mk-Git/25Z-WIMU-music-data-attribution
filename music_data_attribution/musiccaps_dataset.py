@@ -2,6 +2,7 @@ from torch.utils.data import Dataset, DataLoader
 from audiocraft.data.audio import audio_read
 from audiocraft.data.audio_utils import convert_audio
 from torch import Tensor
+from typing import Iterable
 
 import os
 import os.path
@@ -26,27 +27,30 @@ class MusicCapsDataset(Dataset):
     def __len__(self) -> int:
         return len(self.filenames)
 
-    def __getitem__(self, idx: int) -> tuple[Tensor, str]:
+    def __getitem__(self, idx: int) -> tuple[int, Tensor, str]:
         filename = self.filenames[idx]
         caption_idx = int(filename[:-4].split("/")[-1])
         caption = self.descriptions[caption_idx]
 
-        return self._read_audio(filename), caption
+        return idx, self._read_audio(filename), caption
 
     def _read_audio(self, filename: os.PathLike) -> Tensor:
         audio, sample_rate = audio_read(filename)
         return convert_audio(audio, sample_rate, self.sample_rate, self.channels)
 
+    @staticmethod
+    def collate(batch: Iterable[tuple[int, Tensor, str]]) -> tuple[list[int], Tensor, list[str]]:
+        indices = []
+        audios = []
+        descriptions = []
 
-def get_musiccaps_dataloader(dataset: Dataset, num_workers: int, batch_size: int) -> DataLoader:
-    return DataLoader(
-        dataset,
-        num_workers=num_workers,
-        batch_size=batch_size,
-        shuffle=False,
+        for index, audio, description in batch:
+            indices.append(index)
+            audios.append(audio)
+            descriptions.append(description)
+
         # all audios should have the same length, so no need for padding collated audios
-        collate_fn=lambda batch: (torch.stack([x[0] for x in batch]), [x[1] for x in batch]),
-    )
+        return indices, torch.stack(audios), descriptions
 
 
 if __name__ == "__main__":
@@ -54,7 +58,7 @@ if __name__ == "__main__":
         audio_dir="data/musiccaps/music_data_train",
         labels_csv_path="data/musiccaps/musiccaps-public.csv",
     )
-    dataloader = get_musiccaps_dataloader(dataset, 1, 4)
+    dataloader = DataLoader(dataset, batch_size=2, collate_fn=dataset.collate)
 
     from tqdm import tqdm
 

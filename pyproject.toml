@@ -1,5 +1,5 @@
 [project]
-name = "25Z-WIMU-music-data-attribution"
+name = "music-data-attribution"
 version = "0.1.0"
 description = "Default template for PDM package"
 authors = [
