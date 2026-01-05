@@ -43,7 +43,10 @@ class MusicGenModelOutput(AbstractModelOutput):
         margins = self._get_margins_from_logits(tokens, logits, mask)
         assert margins.shape == (B, K * T)
 
-        return torch.sum(margins, dim=-1)
+        output = torch.sum(margins, dim=-1)
+        assert not output.isnan().any()
+
+        return output
 
     def get_out_to_loss_grad(
         self,
@@ -69,7 +72,10 @@ class MusicGenModelOutput(AbstractModelOutput):
         margins = self._get_margins_from_logits(tokens, logits, mask)
         assert margins.shape == (B, K * T)
 
-        return (torch.sum(base_grads * margins, dim=-1) / torch.sum(margins, dim=-1)).unsqueeze(-1)
+        out_to_loss_grad = (torch.sum(base_grads * margins, dim=-1) / torch.sum(margins, dim=-1)).unsqueeze(-1)
+        assert not out_to_loss_grad.isnan().any()
+
+        return out_to_loss_grad
 
     def _get_margins_from_logits(self, tokens: Tensor, logits: Tensor, mask: Tensor) -> Tensor:
         tokens = tokens.unsqueeze(-1)
