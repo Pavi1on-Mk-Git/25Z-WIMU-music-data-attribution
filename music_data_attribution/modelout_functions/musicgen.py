@@ -34,11 +34,44 @@ class MusicGenModelOutput(AbstractModelOutput):
         The "correct" tokens are the ones actually generated.
         """
         tokens = self._tokenize(audios)
+        B, K, T = tokens.shape
 
         logits, mask = self._compute_cfg_logits(lm_model, tokens, descriptions)
-        B, K, T, card = logits.shape
+        assert logits.shape == (B, K, T, self.musicgen.lm.card)
         assert mask.shape == (B, K, T)
 
+        margins = self._get_margins_from_logits(tokens, logits, mask)
+        assert margins.shape == (B, K * T)
+
+        return torch.sum(margins, dim=-1)
+
+    def get_out_to_loss_grad(
+        self,
+        lm_model: LMModel,
+        weights: Iterable[Tensor] | None,
+        buffers: Iterable[Tensor] | None,
+        audios: Tensor,
+        descriptions: list[str],
+    ) -> Tensor:
+        tokens = self._tokenize(audios)
+        B, K, T = tokens.shape
+
+        logits, mask = self._compute_cfg_logits(lm_model, tokens, descriptions)
+        assert logits.shape == (B, K, T, self.musicgen.lm.card)
+        assert mask.shape == (B, K, T)
+
+        ps = torch.softmax(logits / self.temperature, dim=-1)
+        ps[~mask] = 0
+        ps = torch.gather(ps, -1, tokens.unsqueeze(-1)).squeeze(-1)
+        ps = ps.reshape(B, K * T)
+
+        base_grads = 1 - ps
+        margins = self._get_margins_from_logits(tokens, logits, mask)
+        assert margins.shape == (B, K * T)
+
+        return torch.sum(base_grads * margins, dim=-1) / torch.sum(margins, dim=-1)
+
+    def _get_margins_from_logits(tokens: Tensor, logits: Tensor, mask: Tensor) -> Tensor:
         tokens = tokens.unsqueeze(-1)
         logits_correct = torch.gather(logits, -1, tokens).squeeze(-1)
         logits_correct[~mask] = 0
@@ -51,30 +84,7 @@ class MusicGenModelOutput(AbstractModelOutput):
         logits_incorrect[~mask] = -torch.inf
 
         margins = logits_correct - torch.logsumexp(logits_incorrect, dim=-1)
-        output = margins.sum(dim=-1).sum(dim=-1)
-        print(margins.shape)
-        print(output.shape)
-        return output
-
-    def get_out_to_loss_grad(
-        self,
-        lm_model: LMModel,
-        weights: Iterable[Tensor] | None,
-        buffers: Iterable[Tensor] | None,
-        audios: Tensor,
-        descriptions: list[str],
-    ) -> Tensor:
-        tokens = self._tokenize(audios)
-
-        logits, mask = self._compute_cfg_logits(lm_model, tokens, descriptions)
-        B, K, T, card = logits.shape
-
-        ps = torch.softmax(logits / self.temperature, dim=-1)  # B, K, T, card
-        ps[~mask] = 0
-        ps = torch.gather(ps, -1, tokens.unsqueeze(-1)).squeeze(-1)
-        ps = ps.reshape(B, K * T).sum(dim=-1)
-
-        return (1 - ps).clone().detach()
+        return margins.reshape(tokens.shape[0], -1)
 
     def _tokenize(self, audios: Tensor) -> Tensor:
         tokens, _ = self.musicgen.compression_model.encode(audios)

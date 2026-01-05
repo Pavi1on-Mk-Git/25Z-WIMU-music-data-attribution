@@ -47,7 +47,7 @@ datasource:
 for seed in {1..10}; do
     TRAIN_SET_DIR="egs/musiccaps/train_$seed"
     mkdir -p "$TRAIN_SET_DIR"
-    
+
     python3 "$MAIN_REPO_DIR"/music_data_attribution/finetuning_scripts/musicgen/sample_train_set.py \
         "$FULL_TRAIN_SET_FILE" \
         --output "$TRAIN_SET_DIR/data.jsonl" \
