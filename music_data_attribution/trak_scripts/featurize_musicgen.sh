@@ -1,13 +1,14 @@
 #!/bin/bash
 set -e
 
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 dora_experiments_dir" >&2
-    echo "Error: Expected 1 argument, got $#." >&2
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 dora_experiments_dir trak_dir" >&2
+    echo "Error: Expected 2 arguments, got $#." >&2
     exit 1
 fi
 
 DORA_EXPERIMENTS_DIR="$1"
+TRAK_DIR="$2"
 
 for dir in "$DORA_EXPERIMENTS_DIR"/*; do
     if [ ! -d "$dir" ] || [ ! -f "$dir"/checkpoint_15.th ]; then
@@ -23,6 +24,7 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
             --checkpoint-id $checkpoint_id \
             --music-data-path data/processed/musiccaps/music_data_train \
             --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
+            --trak-dir "$TRAK_DIR" \
             --batch-size 2 \
             --gpu-index 0
     done
