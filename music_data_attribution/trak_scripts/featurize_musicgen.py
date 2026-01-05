@@ -75,8 +75,8 @@ if __name__ == "__main__":
 
     logger.debug("loaded checkpoint with traker")
 
-    for audios, descriptions in tqdm(dataloader, desc="Computing TRAK embeddings..."):
-        traker.featurize(batch=(audios.cuda(), descriptions), num_samples=dataloader.batch_size)
+    for indices, audios, descriptions in tqdm(dataloader, desc="Computing TRAK embeddings..."):
+        traker.featurize(batch=(audios.cuda(), descriptions), inds=indices)
     traker.finalize_features(model_ids=[model_id])
 
     logger.info("finished")
