@@ -25,7 +25,6 @@ if __name__ == "__main__":
     parser.add_argument("--descriptions-path", type=str, help="Path to the MusicCaps captions csv file.")
     parser.add_argument("--trak-dir", type=str, help="Directory for TRAK intermediate results.")
     parser.add_argument("--batch-size", type=int, help="Batch size for gradient calculations.", default=2)
-    parser.add_argument("--gpu-index", type=int, help="Number of GPU to use.", default=0)
     args = parser.parse_args()
 
     np.random.seed(SEED)
@@ -63,7 +62,7 @@ if __name__ == "__main__":
         save_dir=args.trak_dir,
         load_from_save_dir=True,
         train_set_size=len(dataset),
-        device=f"cuda:{args.gpu_index}",
+        device="cuda",
         gradient_computer=IterativeGradientComputer,
         proj_dim=4096,
     )

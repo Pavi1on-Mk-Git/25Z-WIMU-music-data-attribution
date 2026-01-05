@@ -25,7 +25,6 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
             --music-data-path data/processed/musiccaps/music_data_train \
             --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
             --trak-dir "$TRAK_DIR" \
-            --batch-size 2 \
-            --gpu-index 0
+            --batch-size 2
     done
 done
