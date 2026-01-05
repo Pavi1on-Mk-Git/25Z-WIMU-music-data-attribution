@@ -66,7 +66,7 @@ class MusicGenModelOutput(AbstractModelOutput):
 
         ps = torch.softmax(logits / self.temperature, dim=-1)
         ps = torch.gather(ps, -1, tokens.unsqueeze(-1)).squeeze(-1)
-        ps[~mask] = 0
+        ps = torch.masked_fill(ps, ~mask, 0)
         ps = ps.reshape(B, K * T)
 
         base_grads = 1 - ps
@@ -89,10 +89,11 @@ class MusicGenModelOutput(AbstractModelOutput):
         logits_incorrect = logits_incorrect.scatter(
             -1, tokens, torch.full_like(logits_correct, -torch.inf).unsqueeze(-1)
         )
-        logits_incorrect[~mask] = -torch.inf
+        logits_incorrect = torch.masked_fill(logits_incorrect, ~mask, -torch.inf)
 
         margins = logits_correct - torch.logsumexp(logits_incorrect, dim=-1)
-        margins[~mask] = 0
+        margins = torch.masked_fill(margins, ~mask, 0)
+
         return margins.reshape(tokens.shape[0], -1)
 
     def _tokenize(self, audios: Tensor) -> Tensor:
