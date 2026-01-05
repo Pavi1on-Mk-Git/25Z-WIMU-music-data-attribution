@@ -22,6 +22,7 @@ finetune_musicgen:
     bash ./music_data_attribution/finetuning_scripts/musicgen/train_musicgen.sh {{AUDIOCRAFT_REPO_DIR}}
 
 featurize_musicgen:
+    PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
     bash ./music_data_attribution/trak_scripts/featurize_musicgen.sh "{{AUDIOCRAFT_DORA_DIR}}/xps"
 
 format:
