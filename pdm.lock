@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:a25ba23431e9a3966fbbfb3cc63a10f0c4d3195d4221fe9ed6cc2a82a01761cd"
+content_hash = "sha256:86fd58f483d2027eb19e2ceae9c5e6b3057a66c3f93f0c0ae1164534d46c84d3"
 
 [[metadata.targets]]
 requires_python = "==3.11.*"
@@ -15,7 +15,7 @@ name = "absl-py"
 version = "2.3.1"
 requires_python = ">=3.8"
 summary = "Abseil Python Common Libraries, see https://github.com/abseil/abseil-py."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "absl_py-2.3.1-py3-none-any.whl", hash = "sha256:eeecf07f0c2a93ace0772c92e596ace6d3d3996c042b2128459aaae2a76de11d"},
     {file = "absl_py-2.3.1.tar.gz", hash = "sha256:a97820526f7fbfd2ec1bce83f3f25e3a14840dac0d8e02a0b71cd75db3f77fc9"},
@@ -26,7 +26,7 @@ name = "accelerate"
 version = "1.11.0"
 requires_python = ">=3.10.0"
 summary = "Accelerate"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "huggingface-hub>=0.21.0",
     "numpy>=1.17",
@@ -46,7 +46,7 @@ name = "aiofiles"
 version = "24.1.0"
 requires_python = ">=3.8"
 summary = "File support for asyncio."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "aiofiles-24.1.0-py3-none-any.whl", hash = "sha256:b4ec55f4195e3eb5d7abd1bf7e061763e864dd4954231fb8539a0ef8bb8260e5"},
     {file = "aiofiles-24.1.0.tar.gz", hash = "sha256:22a075c9e5a3810f0c2e48f3008c94d68c65d763b9b03857924c99e57355166c"},
@@ -57,7 +57,7 @@ name = "aiohappyeyeballs"
 version = "2.6.1"
 requires_python = ">=3.9"
 summary = "Happy Eyeballs for asyncio"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "aiohappyeyeballs-2.6.1-py3-none-any.whl", hash = "sha256:f349ba8f4b75cb25c99c5c2d84e997e485204d2902a9597802b0371f09331fb8"},
     {file = "aiohappyeyeballs-2.6.1.tar.gz", hash = "sha256:c3f9d0113123803ccadfdf3f0faa505bc78e6a72d1cc4806cbd719826e943558"},
@@ -68,7 +68,7 @@ name = "aiohttp"
 version = "3.13.2"
 requires_python = ">=3.9"
 summary = "Async http client/server framework (asyncio)"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "aiohappyeyeballs>=2.5.0",
     "aiosignal>=1.4.0",
@@ -105,7 +105,7 @@ name = "aiosignal"
 version = "1.4.0"
 requires_python = ">=3.9"
 summary = "aiosignal: a list of registered asynchronous callbacks"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "frozenlist>=1.1.0",
     "typing-extensions>=4.2; python_version < \"3.13\"",
@@ -120,7 +120,7 @@ name = "alias-free-torch"
 version = "0.0.6"
 requires_python = ">=3"
 summary = "alias free torch"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "alias_free_torch-0.0.6-py3-none-any.whl", hash = "sha256:3a77e81147caf00f0b05483498e672ad3623b05800b82ace163d7adecac8b033"},
 ]
@@ -130,7 +130,7 @@ name = "annotated-doc"
 version = "0.0.4"
 requires_python = ">=3.8"
 summary = "Document parameters, class attributes, return types, and variables inline, with Annotated."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "annotated_doc-0.0.4-py3-none-any.whl", hash = "sha256:571ac1dc6991c450b25a9c2d84a3705e2ae7a53467b5d111c24fa8baabbed320"},
     {file = "annotated_doc-0.0.4.tar.gz", hash = "sha256:fbcda96e87e9c92ad167c2e53839e57503ecfda18804ea28102353485033faa4"},
@@ -141,7 +141,7 @@ name = "annotated-types"
 version = "0.7.0"
 requires_python = ">=3.8"
 summary = "Reusable constraint types to use with typing.Annotated"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "typing-extensions>=4.0.0; python_version < \"3.9\"",
 ]
@@ -154,7 +154,7 @@ files = [
 name = "antlr4-python3-runtime"
 version = "4.9.3"
 summary = "ANTLR 4.9.3 runtime for Python 3.7"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "typing; python_version < \"3.5\"",
 ]
@@ -167,7 +167,7 @@ name = "anyio"
 version = "4.11.0"
 requires_python = ">=3.9"
 summary = "High-level concurrency and networking framework on top of asyncio or Trio"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "exceptiongroup>=1.0.2; python_version < \"3.11\"",
     "idna>=2.8",
@@ -184,7 +184,7 @@ name = "appnope"
 version = "0.1.4"
 requires_python = ">=3.6"
 summary = "Disable App Nap on macOS >= 10.9"
-groups = ["default"]
+groups = ["default", "dev"]
 marker = "platform_system == \"Darwin\""
 files = [
     {file = "appnope-0.1.4-py2.py3-none-any.whl", hash = "sha256:502575ee11cd7a28c0205f379b525beefebab9d161b7c964670864014ed7213c"},
@@ -196,7 +196,7 @@ name = "argbind"
 version = "0.3.9"
 requires_python = "<4,>=3.5"
 summary = "Simple way to bind function arguments to the command line."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "docstring-parser",
     "pyyaml",
@@ -209,7 +209,7 @@ files = [
 name = "argparse"
 version = "1.4.0"
 summary = "Python command-line parsing library"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "argparse-1.4.0-py2.py3-none-any.whl", hash = "sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314"},
     {file = "argparse-1.4.0.tar.gz", hash = "sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4"},
@@ -220,7 +220,7 @@ name = "asttokens"
 version = "3.0.0"
 requires_python = ">=3.8"
 summary = "Annotate AST trees with source code positions"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "asttokens-3.0.0-py3-none-any.whl", hash = "sha256:e3078351a059199dd5138cb1c706e6430c05eff2ff136af5eb4790f9d28932e2"},
     {file = "asttokens-3.0.0.tar.gz", hash = "sha256:0dcd8baa8d62b0c1d118b399b2ddba3c4aff271d0d7a9e0d4c1681c79035bbc7"},
@@ -231,7 +231,7 @@ name = "attrs"
 version = "25.4.0"
 requires_python = ">=3.9"
 summary = "Classes Without Boilerplate"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "attrs-25.4.0-py3-none-any.whl", hash = "sha256:adcf7e2a1fb3b36ac48d97835bb6d8ade15b8dcce26aba8bf1d14847b57a3373"},
     {file = "attrs-25.4.0.tar.gz", hash = "sha256:16d5969b87f0859ef33a48b35d55ac1be6e42ae49d5e853b597db70c35c57e11"},
@@ -242,7 +242,7 @@ name = "audiocraft"
 version = "1.2.0"
 requires_python = ">=3.8.0"
 summary = "Audio generation research library for PyTorch"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "av",
     "demucs",
@@ -276,7 +276,7 @@ name = "audioread"
 version = "3.1.0"
 requires_python = ">=3.9"
 summary = "Multi-library, cross-platform audio decoding."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "standard-aifc; python_version >= \"3.13\"",
     "standard-sunau; python_version >= \"3.13\"",
@@ -291,7 +291,7 @@ name = "auraloss"
 version = "0.4.0"
 requires_python = ">=3.6.0"
 summary = "Collection of audio-focused loss functions in PyTorch."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy",
     "torch",
@@ -306,7 +306,7 @@ name = "av"
 version = "16.0.1"
 requires_python = ">=3.10"
 summary = "Pythonic bindings for FFmpeg's libraries."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "av-16.0.1-cp311-cp311-macosx_11_0_x86_64.whl", hash = "sha256:e310d1fb42879df9bad2152a8db6d2ff8bf332c8c36349a09d62cc122f5070fb"},
     {file = "av-16.0.1-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:2f4b357e5615457a84e6b6290916b22864b76b43d5079e1a73bc27581a5b9bac"},
@@ -323,7 +323,7 @@ name = "blis"
 version = "1.3.2"
 requires_python = "<3.15,>=3.9"
 summary = "The Blis BLAS-like linear algebra library, as a self-contained C-extension."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy<3.0.0,>=1.15.0; python_version < \"3.9\"",
     "numpy<3.0.0,>=1.19.0; python_version >= \"3.9\"",
@@ -343,7 +343,7 @@ files = [
 name = "braceexpand"
 version = "0.1.7"
 summary = "Bash-style brace expansion for Python"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "braceexpand-0.1.7-py2.py3-none-any.whl", hash = "sha256:91332d53de7828103dcae5773fb43bc34950b0c8160e35e0f44c4427a3b85014"},
     {file = "braceexpand-0.1.7.tar.gz", hash = "sha256:e6e539bd20eaea53547472ff94f4fb5c3d3bf9d0a89388c4b56663aba765f705"},
@@ -353,7 +353,7 @@ files = [
 name = "brotli"
 version = "1.2.0"
 summary = "Python bindings for the Brotli compression library"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "brotli-1.2.0-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:15b33fe93cedc4caaff8a0bd1eb7e3dab1c61bb22a0bf5bdfdfd97cd7da79744"},
     {file = "brotli-1.2.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:898be2be399c221d2671d29eed26b6b2713a02c2119168ed914e7d00ceadb56f"},
@@ -373,7 +373,7 @@ name = "catalogue"
 version = "2.0.10"
 requires_python = ">=3.6"
 summary = "Super lightweight function registries for your library"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "typing-extensions>=3.6.4; python_version < \"3.8\"",
     "zipp>=0.5; python_version < \"3.8\"",
@@ -388,7 +388,7 @@ name = "certifi"
 version = "2025.11.12"
 requires_python = ">=3.7"
 summary = "Python package for providing Mozilla's CA Bundle."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "certifi-2025.11.12-py3-none-any.whl", hash = "sha256:97de8790030bbd5c2d96b7ec782fc2f7820ef8dba6db909ccf95449f2d062d4b"},
     {file = "certifi-2025.11.12.tar.gz", hash = "sha256:d8ab5478f2ecd78af242878415affce761ca6bc54a22a27e026d7c25357c3316"},
@@ -399,7 +399,7 @@ name = "cffi"
 version = "2.0.0"
 requires_python = ">=3.9"
 summary = "Foreign Function Interface for Python calling C code."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "pycparser; implementation_name != \"PyPy\"",
 ]
@@ -425,7 +425,7 @@ name = "charset-normalizer"
 version = "3.4.4"
 requires_python = ">=3.7"
 summary = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "charset_normalizer-3.4.4-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:6e1fcf0720908f200cd21aa4e6750a48ff6ce4afe7ff5a79a90d5ed8a08296f8"},
     {file = "charset_normalizer-3.4.4-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:5f819d5fe9234f9f82d75bdfa9aef3a3d72c4d24a6e57aeaebba32a704553aa0"},
@@ -451,7 +451,7 @@ files = [
 name = "clean-fid"
 version = "0.1.35"
 summary = "FID calculation in PyTorch with proper image resizing and quantization steps"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy>=1.14.3",
     "pillow>=8.1",
@@ -470,7 +470,7 @@ name = "click"
 version = "8.3.0"
 requires_python = ">=3.10"
 summary = "Composable command line interface toolkit"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "colorama; platform_system == \"Windows\"",
 ]
@@ -483,7 +483,7 @@ files = [
 name = "clip-anytorch"
 version = "2.6.0"
 summary = "# CLIP"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "ftfy",
     "regex",
@@ -501,7 +501,7 @@ name = "cloudpathlib"
 version = "0.23.0"
 requires_python = ">=3.9"
 summary = "pathlib-style classes for cloud storage services."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "typing-extensions>4; python_version < \"3.11\"",
 ]
@@ -515,7 +515,7 @@ name = "cloudpickle"
 version = "3.1.2"
 requires_python = ">=3.8"
 summary = "Pickler class to extend the standard pickle.Pickler functionality"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "cloudpickle-3.1.2-py3-none-any.whl", hash = "sha256:9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a"},
     {file = "cloudpickle-3.1.2.tar.gz", hash = "sha256:7fda9eb655c9c230dab534f1983763de5835249750e85fbcef43aaa30a9a2414"},
@@ -538,7 +538,7 @@ name = "colorlog"
 version = "6.10.1"
 requires_python = ">=3.6"
 summary = "Add colours to the output of Python's logging module."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "colorama; sys_platform == \"win32\"",
 ]
@@ -552,7 +552,7 @@ name = "comm"
 version = "0.2.3"
 requires_python = ">=3.8"
 summary = "Jupyter Python Comm implementation, for usage in ipykernel, xeus-python etc."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "comm-0.2.3-py3-none-any.whl", hash = "sha256:c615d91d75f7f04f095b30d1c1711babd43bdc6419c1be9886a85f2f4e489417"},
     {file = "comm-0.2.3.tar.gz", hash = "sha256:2dc8048c10962d55d7ad693be1e7045d891b7ce8d999c97963a5e3e99c055971"},
@@ -563,7 +563,7 @@ name = "confection"
 version = "0.1.5"
 requires_python = ">=3.6"
 summary = "The sweetest config system for Python"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "pydantic!=1.8,!=1.8.1,<3.0.0,>=1.7.4",
     "srsly<3.0.0,>=2.4.0",
@@ -579,7 +579,7 @@ name = "configparser"
 version = "7.2.0"
 requires_python = ">=3.9"
 summary = "Updated configparser from stdlib for earlier Pythons."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "configparser-7.2.0-py3-none-any.whl", hash = "sha256:fee5e1f3db4156dcd0ed95bc4edfa3580475537711f67a819c966b389d09ce62"},
     {file = "configparser-7.2.0.tar.gz", hash = "sha256:b629cc8ae916e3afbd36d1b3d093f34193d851e11998920fdcfc4552218b7b70"},
@@ -590,7 +590,7 @@ name = "contourpy"
 version = "1.3.3"
 requires_python = ">=3.11"
 summary = "Python library for calculating contours of 2D quadrilateral grids"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy>=1.25",
 ]
@@ -619,7 +619,7 @@ name = "cycler"
 version = "0.12.1"
 requires_python = ">=3.8"
 summary = "Composable style cycles"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "cycler-0.12.1-py3-none-any.whl", hash = "sha256:85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30"},
     {file = "cycler-0.12.1.tar.gz", hash = "sha256:88bb128f02ba341da8ef447245a9e138fae777f6a23943da4540077d3601eb1c"},
@@ -630,7 +630,7 @@ name = "cymem"
 version = "2.0.13"
 requires_python = "<3.15,>=3.9"
 summary = "Manage calls to calloc/free through Cython"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "cymem-2.0.13-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:673183466b0ff2e060d97ec5116711d44200b8f7be524323e080d215ee2d44a5"},
     {file = "cymem-2.0.13-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:bee2791b3f6fc034ce41268851462bf662ff87e8947e35fb6dd0115b4644a61f"},
@@ -648,7 +648,7 @@ name = "dctorch"
 version = "0.1.2"
 requires_python = ">=3.8,<4.0"
 summary = "fast discrete cosine transforms for pytorch"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy<2.0.0,>=1.22.3",
     "scipy<2.0.0,>=1.8.0",
@@ -664,7 +664,7 @@ name = "debugpy"
 version = "1.8.17"
 requires_python = ">=3.8"
 summary = "An implementation of the Debug Adapter Protocol for Python"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "debugpy-1.8.17-cp311-cp311-macosx_15_0_universal2.whl", hash = "sha256:d3fce3f0e3de262a3b67e69916d001f3e767661c6e1ee42553009d445d1cd840"},
     {file = "debugpy-1.8.17-cp311-cp311-manylinux_2_34_x86_64.whl", hash = "sha256:c6bdf134457ae0cac6fb68205776be635d31174eeac9541e1d0c062165c6461f"},
@@ -679,7 +679,7 @@ name = "decorator"
 version = "5.2.1"
 requires_python = ">=3.8"
 summary = "Decorators for Humans"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "decorator-5.2.1-py3-none-any.whl", hash = "sha256:d316bb415a2d9e2d2b3abcc4084c6502fc09240e292cd76a76afc106a1c8e04a"},
     {file = "decorator-5.2.1.tar.gz", hash = "sha256:65f266143752f734b0a7cc83c46f4618af75b8c5911b00ccb61d0ac9b6da0360"},
@@ -690,7 +690,7 @@ name = "demucs"
 version = "4.0.1"
 requires_python = ">=3.8.0"
 summary = "Music source separation in the waveform domain."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "dora-search",
     "einops",
@@ -710,7 +710,7 @@ files = [
 name = "descript-audio-codec"
 version = "1.0.0"
 summary = "A high-quality general neural audio codec."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "argbind>=0.3.7",
     "descript-audiotools>=0.7.2",
@@ -729,7 +729,7 @@ files = [
 name = "descript-audiotools"
 version = "0.7.2"
 summary = "Utilities for handling audio."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "argbind",
     "ffmpy",
@@ -763,7 +763,7 @@ files = [
 name = "docopt"
 version = "0.6.2"
 summary = "Pythonic argument parser, that will make you smile"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "docopt-0.6.2.tar.gz", hash = "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"},
 ]
@@ -773,7 +773,7 @@ name = "docstring-parser"
 version = "0.17.0"
 requires_python = ">=3.8"
 summary = "Parse Python docstrings in reST, Google and Numpydoc format"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "docstring_parser-0.17.0-py3-none-any.whl", hash = "sha256:cf2569abd23dce8099b300f9b4fa8191e9582dda731fd533daf54c4551658708"},
     {file = "docstring_parser-0.17.0.tar.gz", hash = "sha256:583de4a309722b3315439bb31d64ba3eebada841f2e2cee23b99df001434c912"},
@@ -784,7 +784,7 @@ name = "dora-search"
 version = "0.1.12"
 requires_python = ">=3.7.0"
 summary = "Easy grid searches for ML."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "omegaconf",
     "retrying",
@@ -801,7 +801,7 @@ name = "einops"
 version = "0.8.1"
 requires_python = ">=3.8"
 summary = "A new flavour of deep learning operations"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "einops-0.8.1-py3-none-any.whl", hash = "sha256:919387eb55330f5757c6bea9165c5ff5cfe63a642682ea788a6d472576d81737"},
     {file = "einops-0.8.1.tar.gz", hash = "sha256:de5d960a7a761225532e0f1959e5315ebeafc0cd43394732f103ca44b9837e84"},
@@ -811,7 +811,7 @@ files = [
 name = "einops-exts"
 version = "0.0.4"
 summary = "Einops Extensions"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "einops>=0.4",
 ]
@@ -825,7 +825,7 @@ name = "einx"
 version = "0.3.0"
 requires_python = ">=3.8"
 summary = "Universal Tensor Operations in Einstein-Inspired Notation for Python"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "frozendict",
     "numpy",
@@ -840,7 +840,7 @@ files = [
 name = "ema-pytorch"
 version = "0.2.3"
 summary = "Easy way to keep track of exponential moving average version of your pytorch module"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "torch>=1.6",
 ]
@@ -854,7 +854,7 @@ name = "encodec"
 version = "0.1.1"
 requires_python = ">=3.8.0"
 summary = "High fidelity neural audio codec"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "einops",
     "numpy",
@@ -870,7 +870,7 @@ name = "executing"
 version = "2.2.1"
 requires_python = ">=3.8"
 summary = "Get the currently executing AST node of a frame, and other information"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "executing-2.2.1-py2.py3-none-any.whl", hash = "sha256:760643d3452b4d777d295bb167ccc74c64a81df23fb5e08eff250c425a4b2017"},
     {file = "executing-2.2.1.tar.gz", hash = "sha256:3632cc370565f6648cc328b32435bd120a1e4ebb20c77e3fdde9a13cd1e533c4"},
@@ -881,7 +881,7 @@ name = "fastapi"
 version = "0.121.2"
 requires_python = ">=3.8"
 summary = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "annotated-doc>=0.0.2",
     "pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4",
@@ -898,7 +898,7 @@ name = "ffmpy"
 version = "1.0.0"
 requires_python = ">=3.9"
 summary = "A simple Python wrapper for FFmpeg"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "ffmpy-1.0.0-py3-none-any.whl", hash = "sha256:5640e5f0fd03fb6236d0e119b16ccf6522db1c826fdf35dcb87087b60fd7504f"},
     {file = "ffmpy-1.0.0.tar.gz", hash = "sha256:b12932e95435c8820f1cd041024402765f821971e4bae753b327fc02a6e12f8b"},
@@ -920,7 +920,7 @@ name = "fire"
 version = "0.7.1"
 requires_python = ">=3.7"
 summary = "A library for automatically generating command line interfaces."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "termcolor",
 ]
@@ -934,7 +934,7 @@ name = "flashy"
 version = "0.0.2"
 requires_python = ">=3.8.0"
 summary = "Minimal solver for deep learning"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "colorlog",
     "dora-search",
@@ -950,7 +950,7 @@ name = "flatten-dict"
 version = "0.4.2"
 requires_python = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 summary = "A flexible utility for flattening and unflattening dict-like objects in Python."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "importlib-metadata; python_version < \"3.8\"",
     "pathlib2<3.0,>=2.3; python_version < \"3.4\"",
@@ -966,7 +966,7 @@ name = "fonttools"
 version = "4.60.1"
 requires_python = ">=3.9"
 summary = "Tools to manipulate font files"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "fonttools-4.60.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:7b4c32e232a71f63a5d00259ca3d88345ce2a43295bb049d21061f338124246f"},
     {file = "fonttools-4.60.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:3630e86c484263eaac71d117085d509cbcf7b18f677906824e4bace598fb70d2"},
@@ -985,7 +985,7 @@ name = "frozendict"
 version = "2.4.7"
 requires_python = ">=3.6"
 summary = "A simple immutable dictionary"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "frozendict-2.4.7-py3-none-any.whl", hash = "sha256:972af65924ea25cf5b4d9326d549e69a9a4918d8a76a9d3a7cd174d98b237550"},
     {file = "frozendict-2.4.7.tar.gz", hash = "sha256:e478fb2a1391a56c8a6e10cc97c4a9002b410ecd1ac28c18d780661762e271bd"},
@@ -996,7 +996,7 @@ name = "frozenlist"
 version = "1.8.0"
 requires_python = ">=3.9"
 summary = "A list-like structure which implements collections.abc.MutableSequence"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "frozenlist-1.8.0-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:09474e9831bc2b2199fad6da3c14c7b0fbdd377cce9d3d77131be28906cb7d84"},
     {file = "frozenlist-1.8.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:17c883ab0ab67200b5f964d2b9ed6b00971917d5d8a92df149dc2c9779208ee9"},
@@ -1035,7 +1035,7 @@ version = "2025.10.0"
 extras = ["http"]
 requires_python = ">=3.9"
 summary = "File-system specification"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "aiohttp!=4.0.0a0,!=4.0.0a1",
     "fsspec==2025.10.0",
@@ -1050,7 +1050,7 @@ name = "ftfy"
 version = "6.3.1"
 requires_python = ">=3.9"
 summary = "Fixes mojibake and other problems with Unicode, after the fact"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "wcwidth",
 ]
@@ -1064,7 +1064,7 @@ name = "future"
 version = "1.0.0"
 requires_python = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 summary = "Clean single-source support for Python 3 and 2"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "future-1.0.0-py3-none-any.whl", hash = "sha256:929292d34f5872e70396626ef385ec22355a1fae8ad29e1a734c3e43f9fbc216"},
     {file = "future-1.0.0.tar.gz", hash = "sha256:bd2968309307861edae1458a4f8a4f3598c03be43b97521076aebf5d94c07b05"},
@@ -1074,7 +1074,7 @@ files = [
 name = "gin-config"
 version = "0.5.0"
 summary = "Gin-Config: A lightweight configuration library for Python"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "gin-config-0.5.0.tar.gz", hash = "sha256:0c6ea5026ded927c8c93c990b01c695257c1df446e45e549a158cfbc79e19ed6"},
     {file = "gin_config-0.5.0-py3-none-any.whl", hash = "sha256:bddb7ca221ea2b46cdb59321e79fecf02d6e3b728906047fcd4076c297609fd6"},
@@ -1085,7 +1085,7 @@ name = "gitdb"
 version = "4.0.12"
 requires_python = ">=3.7"
 summary = "Git Object Database"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "smmap<6,>=3.0.1",
 ]
@@ -1099,7 +1099,7 @@ name = "gitpython"
 version = "3.1.45"
 requires_python = ">=3.7"
 summary = "GitPython is a Python library used to interact with Git repositories"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "gitdb<5,>=4.0.1",
     "typing-extensions>=3.10.0.2; python_version < \"3.10\"",
@@ -1114,7 +1114,7 @@ name = "gradio"
 version = "5.49.1"
 requires_python = ">=3.10"
 summary = "Python library for easily interacting with trained machine learning models"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "aiofiles<25.0,>=22.0",
     "anyio<5.0,>=3.0",
@@ -1156,7 +1156,7 @@ name = "gradio-client"
 version = "1.13.3"
 requires_python = ">=3.10"
 summary = "Python library for easily interacting with trained machine learning models"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "fsspec",
     "httpx>=0.24.1",
@@ -1175,7 +1175,7 @@ name = "groovy"
 version = "0.1.2"
 requires_python = ">3.9"
 summary = "A small Python library created to help developers protect their applications from Server Side Request Forgery (SSRF) attacks."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "groovy-0.1.2-py3-none-any.whl", hash = "sha256:7f7975bab18c729a257a8b1ae9dcd70b7cafb1720481beae47719af57c35fa64"},
     {file = "groovy-0.1.2.tar.gz", hash = "sha256:25c1dc09b3f9d7e292458aa762c6beb96ea037071bf5e917fc81fb78d2231083"},
@@ -1186,7 +1186,7 @@ name = "grpcio"
 version = "1.76.0"
 requires_python = ">=3.9"
 summary = "HTTP/2-based RPC framework"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "typing-extensions~=4.12",
 ]
@@ -1209,7 +1209,7 @@ name = "h11"
 version = "0.16.0"
 requires_python = ">=3.8"
 summary = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "h11-0.16.0-py3-none-any.whl", hash = "sha256:63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"},
     {file = "h11-0.16.0.tar.gz", hash = "sha256:4e35b956cf45792e4caa5885e69fba00bdbc6ffafbfa020300e549b208ee5ff1"},
@@ -1220,7 +1220,7 @@ name = "h5py"
 version = "3.15.1"
 requires_python = ">=3.10"
 summary = "Read and write HDF5 files from Python"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy>=1.21.2",
 ]
@@ -1241,7 +1241,7 @@ name = "hf-xet"
 version = "1.2.0"
 requires_python = ">=3.8"
 summary = "Fast transfer of large files with the Hugging Face Hub."
-groups = ["default"]
+groups = ["default", "dev"]
 marker = "platform_machine == \"x86_64\" or platform_machine == \"amd64\" or platform_machine == \"arm64\" or platform_machine == \"aarch64\""
 files = [
     {file = "hf_xet-1.2.0-cp37-abi3-macosx_10_12_x86_64.whl", hash = "sha256:46740d4ac024a7ca9b22bebf77460ff43332868b661186a8e46c227fdae01848"},
@@ -1259,7 +1259,7 @@ name = "httpcore"
 version = "1.0.9"
 requires_python = ">=3.8"
 summary = "A minimal low-level HTTP client."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "certifi",
     "h11>=0.16",
@@ -1274,7 +1274,7 @@ name = "httpx"
 version = "0.28.1"
 requires_python = ">=3.8"
 summary = "The next generation HTTP client."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "anyio",
     "certifi",
@@ -1291,7 +1291,7 @@ name = "huggingface-hub"
 version = "0.36.0"
 requires_python = ">=3.8.0"
 summary = "Client library to download and publish models, datasets and other repos on the huggingface.co hub"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "filelock",
     "fsspec>=2023.5.0",
@@ -1311,7 +1311,7 @@ files = [
 name = "hydra-colorlog"
 version = "1.2.0"
 summary = "Enables colorlog for Hydra apps"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "colorlog",
     "hydra-core>=1.0.0",
@@ -1325,7 +1325,7 @@ files = [
 name = "hydra-core"
 version = "1.3.2"
 summary = "A framework for elegantly configuring complex applications"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "antlr4-python3-runtime==4.9.*",
     "importlib-resources; python_version < \"3.9\"",
@@ -1342,7 +1342,7 @@ name = "idna"
 version = "3.11"
 requires_python = ">=3.8"
 summary = "Internationalized Domain Names in Applications (IDNA)"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "idna-3.11-py3-none-any.whl", hash = "sha256:771a87f49d9defaf64091e6e6fe9c18d4833f140bd19464795bc32d966ca37ea"},
     {file = "idna-3.11.tar.gz", hash = "sha256:795dafcc9c04ed0c1fb032c2aa73654d8e8c5023a7df64a53f39190ada629902"},
@@ -1353,7 +1353,7 @@ name = "imageio"
 version = "2.37.2"
 requires_python = ">=3.9"
 summary = "Read and write images and video across all major formats. Supports scientific and volumetric data."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy",
     "pillow>=8.3.2",
@@ -1368,7 +1368,7 @@ name = "importlib-resources"
 version = "5.12.0"
 requires_python = ">=3.7"
 summary = "Read resources from Python packages"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "zipp>=3.1.0; python_version < \"3.10\"",
 ]
@@ -1382,7 +1382,7 @@ name = "ipykernel"
 version = "7.1.0"
 requires_python = ">=3.10"
 summary = "IPython Kernel for Jupyter"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "appnope>=0.1.2; platform_system == \"Darwin\"",
     "comm>=0.1.1",
@@ -1408,7 +1408,7 @@ name = "ipython"
 version = "9.7.0"
 requires_python = ">=3.11"
 summary = "IPython: Productive Interactive Computing"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "colorama>=0.4.4; sys_platform == \"win32\"",
     "decorator>=4.3.2",
@@ -1432,7 +1432,7 @@ name = "ipython-pygments-lexers"
 version = "1.1.1"
 requires_python = ">=3.8"
 summary = "Defines a variety of Pygments lexers for highlighting IPython code."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "pygments",
 ]
@@ -1446,7 +1446,7 @@ name = "jedi"
 version = "0.19.2"
 requires_python = ">=3.6"
 summary = "An autocompletion tool for Python that can be used for text editors."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "parso<0.9.0,>=0.8.4",
 ]
@@ -1474,7 +1474,7 @@ name = "joblib"
 version = "1.5.2"
 requires_python = ">=3.9"
 summary = "Lightweight pipelining with Python functions"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "joblib-1.5.2-py3-none-any.whl", hash = "sha256:4e1f0bdbb987e6d843c70cf43714cb276623def372df3c22fe5266b2670bc241"},
     {file = "joblib-1.5.2.tar.gz", hash = "sha256:3faa5c39054b2f03ca547da9b2f52fde67c06240c31853f306aea97f13647b55"},
@@ -1484,7 +1484,7 @@ files = [
 name = "jsonmerge"
 version = "1.9.2"
 summary = "Merge a series of JSON documents."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "jsonschema>2.4.0",
 ]
@@ -1498,7 +1498,7 @@ name = "jsonschema"
 version = "4.25.1"
 requires_python = ">=3.9"
 summary = "An implementation of JSON Schema validation for Python"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "attrs>=22.2.0",
     "jsonschema-specifications>=2023.03.6",
@@ -1515,7 +1515,7 @@ name = "jsonschema-specifications"
 version = "2025.9.1"
 requires_python = ">=3.9"
 summary = "The JSON Schema meta-schemas and vocabularies, exposed as a Registry"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "referencing>=0.31.0",
 ]
@@ -1529,7 +1529,7 @@ name = "julius"
 version = "0.2.7"
 requires_python = ">=3.6.0"
 summary = "Nice DSP sweets: resampling, FFT Convolutions. All with PyTorch, differentiable and with CUDA support."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "torch>=1.7.0",
 ]
@@ -1542,7 +1542,7 @@ name = "jupyter-client"
 version = "8.6.3"
 requires_python = ">=3.8"
 summary = "Jupyter protocol implementation and client libraries"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "importlib-metadata>=4.8.3; python_version < \"3.10\"",
     "jupyter-core!=5.0.*,>=4.12",
@@ -1561,7 +1561,7 @@ name = "jupyter-core"
 version = "5.9.1"
 requires_python = ">=3.10"
 summary = "Jupyter core package. A base package on which Jupyter projects rely."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "platformdirs>=2.5",
     "traitlets>=5.3",
@@ -1575,7 +1575,7 @@ files = [
 name = "k-diffusion"
 version = "0.1.1"
 summary = "Karras et al. (2022) diffusion models for PyTorch"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "Pillow",
     "accelerate",
@@ -1605,7 +1605,7 @@ name = "kiwisolver"
 version = "1.4.9"
 requires_python = ">=3.10"
 summary = "A fast implementation of the Cassowary constraint solver"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "kiwisolver-1.4.9-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:eb14a5da6dc7642b0f3a18f13654847cd8b7a2550e2645a5bda677862b03ba16"},
     {file = "kiwisolver-1.4.9-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:39a219e1c81ae3b103643d2aedb90f1ef22650deb266ff12a19e7773f3e5f089"},
@@ -1633,7 +1633,7 @@ name = "kornia"
 version = "0.8.2"
 requires_python = ">=3.9"
 summary = "Open Source Differentiable Computer Vision Library for PyTorch"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "kornia-rs>=0.1.9",
     "packaging",
@@ -1649,7 +1649,7 @@ name = "kornia-rs"
 version = "0.1.10"
 requires_python = ">=3.8"
 summary = "Low level implementations for computer vision in Rust"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "kornia_rs-0.1.10-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:6757940733f13c52c4f142b9b11e3e9bd12ef9d209e333300602e86e21f5ae2f"},
     {file = "kornia_rs-0.1.10-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:68e90101a34ba2bbce920332b25fd4d25c8c546d9a241b2606a6d886df2dd1ed"},
@@ -1664,7 +1664,7 @@ name = "laion-clap"
 version = "1.1.4"
 requires_python = ">=3.7"
 summary = "Contrastive Language-Audio Pretraining Model from LAION"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "braceexpand",
     "ftfy",
@@ -1694,7 +1694,7 @@ files = [
 name = "lameenc"
 version = "1.8.1"
 summary = "LAME encoding bindings"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "lameenc-1.8.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:40973c2195b8ff8d20c0bed0f491e39e491661849d003c918d19eea2234f7af7"},
     {file = "lameenc-1.8.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:83e8d1195074e36647082ae5b062b40a7433a7d840a543d70e2fd7c62e877d65"},
@@ -1712,7 +1712,7 @@ name = "lazy-loader"
 version = "0.4"
 requires_python = ">=3.7"
 summary = "Makes it easy to load subpackages and functions on demand."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "importlib-metadata; python_version < \"3.8\"",
     "packaging",
@@ -1727,7 +1727,7 @@ name = "librosa"
 version = "0.11.0"
 requires_python = ">=3.8"
 summary = "Python module for audio and music processing"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "audioread>=2.1.9",
     "decorator>=4.3.0",
@@ -1755,7 +1755,7 @@ name = "lightning-utilities"
 version = "0.15.2"
 requires_python = ">=3.9"
 summary = "Lightning toolbox for across the our ecosystem."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "importlib-metadata>=4.0.0; python_version < \"3.8\"",
     "packaging>=17.1",
@@ -1772,7 +1772,7 @@ name = "llvmlite"
 version = "0.45.1"
 requires_python = ">=3.10"
 summary = "lightweight wrapper around basic LLVM functionality"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "llvmlite-0.45.1-cp311-cp311-macosx_10_15_x86_64.whl", hash = "sha256:60f92868d5d3af30b4239b50e1717cb4e4e54f6ac1c361a27903b318d0f07f42"},
     {file = "llvmlite-0.45.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:98baab513e19beb210f1ef39066288784839a44cd504e24fff5d17f1b3cf0860"},
@@ -1786,7 +1786,7 @@ files = [
 name = "local-attention"
 version = "1.8.6"
 summary = "Local attention, window with lookback, for language modeling"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "einops>=0.6.0",
     "torch",
@@ -1801,7 +1801,7 @@ name = "markdown"
 version = "3.10"
 requires_python = ">=3.10"
 summary = "Python implementation of John Gruber's Markdown."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "markdown-3.10-py3-none-any.whl", hash = "sha256:b5b99d6951e2e4948d939255596523444c0e677c669700b1d17aa4a8a464cb7c"},
     {file = "markdown-3.10.tar.gz", hash = "sha256:37062d4f2aa4b2b6b32aefb80faa300f82cc790cb949a35b8caede34f2b68c0e"},
@@ -1812,7 +1812,7 @@ name = "markdown-it-py"
 version = "4.0.0"
 requires_python = ">=3.10"
 summary = "Python port of markdown-it. Markdown parsing, done right!"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "mdurl~=0.1",
 ]
@@ -1826,7 +1826,7 @@ name = "markdown2"
 version = "2.5.4"
 requires_python = "<4,>=3.9"
 summary = "A fast and complete Python implementation of Markdown"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "markdown2-2.5.4-py3-none-any.whl", hash = "sha256:3c4b2934e677be7fec0e6f2de4410e116681f4ad50ec8e5ba7557be506d3f439"},
     {file = "markdown2-2.5.4.tar.gz", hash = "sha256:a09873f0b3c23dbfae589b0080587df52ad75bb09a5fa6559147554736676889"},
@@ -1858,7 +1858,7 @@ name = "matplotlib"
 version = "3.10.7"
 requires_python = ">=3.10"
 summary = "Python plotting package"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "contourpy>=1.0.1",
     "cycler>=0.10",
@@ -1889,7 +1889,7 @@ name = "matplotlib-inline"
 version = "0.2.1"
 requires_python = ">=3.9"
 summary = "Inline Matplotlib backend for Jupyter"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "traitlets",
 ]
@@ -1903,7 +1903,7 @@ name = "mdurl"
 version = "0.1.2"
 requires_python = ">=3.7"
 summary = "Markdown URL utilities"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"},
     {file = "mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"},
@@ -1924,7 +1924,7 @@ name = "msgpack"
 version = "1.1.2"
 requires_python = ">=3.9"
 summary = "MessagePack serializer"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "msgpack-1.1.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:2e86a607e558d22985d856948c12a3fa7b42efad264dca8a3ebbcfa2735d786c"},
     {file = "msgpack-1.1.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:283ae72fc89da59aa004ba147e8fc2f766647b1251500182fac0350d8af299c0"},
@@ -1943,7 +1943,7 @@ name = "multidict"
 version = "6.7.0"
 requires_python = ">=3.9"
 summary = "multidict implementation"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "typing-extensions>=4.1.0; python_version < \"3.11\"",
 ]
@@ -1975,7 +1975,7 @@ name = "murmurhash"
 version = "1.0.15"
 requires_python = "<3.15,>=3.6"
 summary = "Cython bindings for MurmurHash"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "murmurhash-1.0.15-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:f32307fb9347680bb4fe1cbef6362fb39bd994f1b59abd8c09ca174e44199081"},
     {file = "murmurhash-1.0.15-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:539d8405885d1d19c005f3a2313b47e8e54b0ee89915eb8dfbb430b194328e6c"},
@@ -1989,11 +1989,29 @@ files = [
 ]
 
 [[package]]
+name = "music-data-attribution"
+version = "0.1.0"
+requires_python = "==3.11.*"
+editable = true
+path = "."
+summary = "Default template for PDM package"
+groups = ["dev"]
+dependencies = [
+    "audiocraft>=1.2.0",
+    "einops>=0.8.1",
+    "ipykernel>=7.1.0",
+    "stable-audio-tools>=0.0.19",
+    "torch>=2.6.0",
+    "torchaudio>=2.6.0",
+    "torchcodec>=0.8.1",
+]
+
+[[package]]
 name = "nest-asyncio"
 version = "1.6.0"
 requires_python = ">=3.5"
 summary = "Patch asyncio to allow nested event loops"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "nest_asyncio-1.6.0-py3-none-any.whl", hash = "sha256:87af6efd6b5e897c81050477ef65c62e2b2f35d51703cae01aff2905b1852e1c"},
     {file = "nest_asyncio-1.6.0.tar.gz", hash = "sha256:6f172d5449aca15afd6c646851f4e31e02c598d553a667e38cafa997cfec55fe"},
@@ -2014,7 +2032,7 @@ files = [
 name = "num2words"
 version = "0.5.14"
 summary = "Modules to convert numbers to words. Easily extensible."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "docopt>=0.6.2",
 ]
@@ -2028,7 +2046,7 @@ name = "numba"
 version = "0.62.1"
 requires_python = ">=3.10"
 summary = "compiling Python code using LLVM"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "llvmlite<0.46,>=0.45.0dev0",
     "numpy<2.4,>=1.22",
@@ -2254,7 +2272,7 @@ name = "omegaconf"
 version = "2.3.0"
 requires_python = ">=3.6"
 summary = "A flexible configuration library"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "PyYAML>=5.1.0",
     "antlr4-python3-runtime==4.9.*",
@@ -2270,7 +2288,7 @@ name = "openunmix"
 version = "1.3.0"
 requires_python = ">=3.9"
 summary = "PyTorch-based music source separation toolkit"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy",
     "torch>=1.9.0",
@@ -2287,7 +2305,7 @@ name = "orjson"
 version = "3.11.4"
 requires_python = ">=3.9"
 summary = "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "orjson-3.11.4-cp311-cp311-macosx_10_15_x86_64.macosx_11_0_arm64.macosx_10_15_universal2.whl", hash = "sha256:5e59d23cd93ada23ec59a96f215139753fbfe3a4d989549bcb390f8c00370b39"},
     {file = "orjson-3.11.4-cp311-cp311-macosx_15_0_arm64.whl", hash = "sha256:5c3aedecfc1beb988c27c79d52ebefab93b6c3921dbec361167e6559aba2d36d"},
@@ -2312,7 +2330,7 @@ name = "packaging"
 version = "25.0"
 requires_python = ">=3.8"
 summary = "Core utilities for Python packages"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "packaging-25.0-py3-none-any.whl", hash = "sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484"},
     {file = "packaging-25.0.tar.gz", hash = "sha256:d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"},
@@ -2323,7 +2341,7 @@ name = "pandas"
 version = "2.3.3"
 requires_python = ">=3.9"
 summary = "Powerful data structures for data analysis, time series, and statistics"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy>=1.22.4; python_version < \"3.11\"",
     "numpy>=1.23.2; python_version == \"3.11\"",
@@ -2348,7 +2366,7 @@ name = "parso"
 version = "0.8.5"
 requires_python = ">=3.6"
 summary = "A Python Parser"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "parso-0.8.5-py2.py3-none-any.whl", hash = "sha256:646204b5ee239c396d040b90f9e272e9a8017c630092bf59980beb62fd033887"},
     {file = "parso-0.8.5.tar.gz", hash = "sha256:034d7354a9a018bdce352f48b2a8a450f05e9d6ee85db84764e9b6bd96dafe5a"},
@@ -2358,7 +2376,7 @@ files = [
 name = "pexpect"
 version = "4.9.0"
 summary = "Pexpect allows easy control of interactive console applications."
-groups = ["default"]
+groups = ["default", "dev"]
 marker = "sys_platform != \"win32\" and sys_platform != \"emscripten\""
 dependencies = [
     "ptyprocess>=0.5",
@@ -2373,7 +2391,7 @@ name = "pillow"
 version = "11.3.0"
 requires_python = ">=3.9"
 summary = "Python Imaging Library (Fork)"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "pillow-11.3.0-cp311-cp311-macosx_10_10_x86_64.whl", hash = "sha256:1cd110edf822773368b396281a2293aeb91c90a2db00d78ea43e7e861631b722"},
     {file = "pillow-11.3.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:9c412fddd1b77a75aa904615ebaa6001f169b26fd467b4be93aded278266b288"},
@@ -2401,7 +2419,7 @@ name = "platformdirs"
 version = "4.5.0"
 requires_python = ">=3.10"
 summary = "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "platformdirs-4.5.0-py3-none-any.whl", hash = "sha256:e578a81bb873cbb89a41fcc904c7ef523cc18284b7e3b3ccf06aca1403b7ebd3"},
     {file = "platformdirs-4.5.0.tar.gz", hash = "sha256:70ddccdd7c99fc5942e9fc25636a8b34d04c24b335100223152c2803e4063312"},
@@ -2412,7 +2430,7 @@ name = "pooch"
 version = "1.8.2"
 requires_python = ">=3.7"
 summary = "A friend to fetch your data files"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "packaging>=20.0",
     "platformdirs>=2.5.0",
@@ -2427,7 +2445,7 @@ files = [
 name = "prefigure"
 version = "0.0.9"
 summary = "Run configuration management utils: combines configparser, argparse, and wandb.API"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "argparse",
     "configparser",
@@ -2445,7 +2463,7 @@ name = "preshed"
 version = "3.0.11"
 requires_python = "<3.15,>=3.6"
 summary = "Cython hash table that trusts the keys are pre-hashed"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "cymem<2.1.0,>=2.0.2",
     "murmurhash<1.1.0,>=0.28.0",
@@ -2465,7 +2483,7 @@ files = [
 name = "progressbar"
 version = "2.5"
 summary = "Text progress bar library for Python."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "progressbar-2.5.tar.gz", hash = "sha256:5d81cb529da2e223b53962afd6c8ca0f05c6670e40309a7219eacc36af9b6c63"},
 ]
@@ -2475,7 +2493,7 @@ name = "prompt-toolkit"
 version = "3.0.52"
 requires_python = ">=3.8"
 summary = "Library for building powerful interactive command lines in Python"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "wcwidth",
 ]
@@ -2489,7 +2507,7 @@ name = "propcache"
 version = "0.4.1"
 requires_python = ">=3.9"
 summary = "Accelerated property cache"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "propcache-0.4.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:60a8fda9644b7dfd5dece8c61d8a85e271cb958075bfc4e01083c148b61a7caf"},
     {file = "propcache-0.4.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:c30b53e7e6bda1d547cabb47c825f3843a0a1a42b0496087bb58d8fedf9f41b5"},
@@ -2515,7 +2533,7 @@ name = "protobuf"
 version = "3.19.6"
 requires_python = ">=3.5"
 summary = "Protocol Buffers"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "protobuf-3.19.6-py2.py3-none-any.whl", hash = "sha256:14082457dc02be946f60b15aad35e9f5c69e738f80ebbc0900a19bc83734a5a4"},
     {file = "protobuf-3.19.6.tar.gz", hash = "sha256:5f5540d57a43042389e87661c6eaa50f47c19c6176e8cf1c4f287aeefeccb5c4"},
@@ -2526,7 +2544,7 @@ name = "psutil"
 version = "7.1.3"
 requires_python = ">=3.6"
 summary = "Cross-platform lib for process and system monitoring."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "psutil-7.1.3-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:2bdbcd0e58ca14996a42adf3621a6244f1bb2e2e528886959c72cf1e326677ab"},
     {file = "psutil-7.1.3-cp36-abi3-macosx_11_0_arm64.whl", hash = "sha256:bc31fa00f1fbc3c3802141eede66f3a2d51d89716a194bf2cd6fc68310a19880"},
@@ -2541,7 +2559,7 @@ files = [
 name = "ptyprocess"
 version = "0.7.0"
 summary = "Run a subprocess in a pseudo terminal"
-groups = ["default"]
+groups = ["default", "dev"]
 marker = "sys_platform != \"win32\" and sys_platform != \"emscripten\""
 files = [
     {file = "ptyprocess-0.7.0-py2.py3-none-any.whl", hash = "sha256:4b41f3967fce3af57cc7e94b888626c18bf37a083e3651ca8feeb66d492fef35"},
@@ -2552,7 +2570,7 @@ files = [
 name = "pure-eval"
 version = "0.2.3"
 summary = "Safely evaluate AST nodes without side effects"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "pure_eval-0.2.3-py3-none-any.whl", hash = "sha256:1db8e35b67b3d218d818ae653e27f06c3aa420901fa7b081ca98cbedc874e0d0"},
     {file = "pure_eval-0.2.3.tar.gz", hash = "sha256:5f4e983f40564c576c7c8635ae88db5956bb2229d7e9237d03b3c0b0190eaf42"},
@@ -2563,7 +2581,7 @@ name = "pycparser"
 version = "2.23"
 requires_python = ">=3.8"
 summary = "C parser in Python"
-groups = ["default"]
+groups = ["default", "dev"]
 marker = "implementation_name != \"PyPy\""
 files = [
     {file = "pycparser-2.23-py3-none-any.whl", hash = "sha256:e5c6e8d3fbad53479cab09ac03729e0a9faf2bee3db8208a550daf5af81a5934"},
@@ -2575,7 +2593,7 @@ name = "pydantic"
 version = "2.12.4"
 requires_python = ">=3.9"
 summary = "Data validation using Python type hints"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "annotated-types>=0.6.0",
     "pydantic-core==2.41.5",
@@ -2592,7 +2610,7 @@ name = "pydantic-core"
 version = "2.41.5"
 requires_python = ">=3.9"
 summary = "Core functionality for Pydantic validation and serialization"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "typing-extensions>=4.14.1",
 ]
@@ -2626,7 +2644,7 @@ files = [
 name = "pydub"
 version = "0.25.1"
 summary = "Manipulate audio with an simple and easy high level interface"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "pydub-0.25.1-py2.py3-none-any.whl", hash = "sha256:65617e33033874b59d87db603aa1ed450633288aefead953b30bded59cb599a6"},
     {file = "pydub-0.25.1.tar.gz", hash = "sha256:980a33ce9949cab2a569606b65674d748ecbca4f0796887fd6f46173a7b0d30f"},
@@ -2637,7 +2655,7 @@ name = "pygments"
 version = "2.19.2"
 requires_python = ">=3.8"
 summary = "Pygments is a syntax highlighting package written in Python."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "pygments-2.19.2-py3-none-any.whl", hash = "sha256:86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b"},
     {file = "pygments-2.19.2.tar.gz", hash = "sha256:636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887"},
@@ -2648,7 +2666,7 @@ name = "pyloudnorm"
 version = "0.1.1"
 requires_python = ">=3.0"
 summary = "Implementation of ITU-R BS.1770-4 loudness algorithm in Python."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "future>=0.16.0",
     "numpy>=1.14.2",
@@ -2664,7 +2682,7 @@ name = "pyparsing"
 version = "3.2.5"
 requires_python = ">=3.9"
 summary = "pyparsing - Classes and methods to define and execute parsing grammars"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "pyparsing-3.2.5-py3-none-any.whl", hash = "sha256:e38a4f02064cf41fe6593d328d0512495ad1f3d8a91c4f73fc401b3079a59a5e"},
     {file = "pyparsing-3.2.5.tar.gz", hash = "sha256:2df8d5b7b2802ef88e8d016a2eb9c7aeaa923529cd251ed0fe4608275d4105b6"},
@@ -2674,7 +2692,7 @@ files = [
 name = "pystoi"
 version = "0.4.1"
 summary = "Computes Short Term Objective Intelligibility measure"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy",
     "scipy",
@@ -2689,7 +2707,7 @@ name = "python-dateutil"
 version = "2.9.0.post0"
 requires_python = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 summary = "Extensions to the standard Python datetime module"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "six>=1.5",
 ]
@@ -2703,7 +2721,7 @@ name = "python-multipart"
 version = "0.0.20"
 requires_python = ">=3.8"
 summary = "A streaming multipart parser for Python"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "python_multipart-0.0.20-py3-none-any.whl", hash = "sha256:8a62d3a8335e06589fe01f2a3e178cdcc632f3fbe0d492ad9ee0ec35aab1f104"},
     {file = "python_multipart-0.0.20.tar.gz", hash = "sha256:8dd0cab45b8e23064ae09147625994d090fa46f5b0d1e13af944c331a7fa9d13"},
@@ -2714,7 +2732,7 @@ name = "pytorch-lightning"
 version = "2.1.0"
 requires_python = ">=3.8"
 summary = "PyTorch Lightning is the lightweight PyTorch wrapper for ML researchers. Scale your models. Write less boilerplate."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "PyYAML>=5.4",
     "fsspec[http]>2021.06.0",
@@ -2735,7 +2753,7 @@ files = [
 name = "pytz"
 version = "2025.2"
 summary = "World timezone definitions, modern and historical"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "pytz-2025.2-py2.py3-none-any.whl", hash = "sha256:5ddf76296dd8c44c26eb8f4b6f35488f3ccbf6fbbd7adee0b7262d43f0ec2f00"},
     {file = "pytz-2025.2.tar.gz", hash = "sha256:360b9e3dbb49a209c21ad61809c7fb453643e048b38924c765813546746e81c3"},
@@ -2746,7 +2764,7 @@ name = "pywavelets"
 version = "1.4.1"
 requires_python = ">=3.8"
 summary = "PyWavelets, wavelet transform module"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy>=1.17.3",
 ]
@@ -2765,7 +2783,7 @@ name = "pyyaml"
 version = "6.0.3"
 requires_python = ">=3.8"
 summary = "YAML parser and emitter for Python"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "pyyaml-6.0.3-cp311-cp311-macosx_10_13_x86_64.whl", hash = "sha256:44edc647873928551a01e7a563d7452ccdebee747728c1080d881d68af7b997e"},
     {file = "pyyaml-6.0.3-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:652cb6edd41e718550aad172851962662ff2681490a8a711af6a4d288dd96824"},
@@ -2784,7 +2802,7 @@ name = "pyzmq"
 version = "27.1.0"
 requires_python = ">=3.8"
 summary = "Python bindings for 0MQ"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "cffi; implementation_name == \"pypy\"",
 ]
@@ -2811,7 +2829,7 @@ files = [
 name = "randomname"
 version = "0.2.1"
 summary = "Generate random adj-noun names like docker and github."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "fire",
 ]
@@ -2824,7 +2842,7 @@ name = "referencing"
 version = "0.37.0"
 requires_python = ">=3.10"
 summary = "JSON Referencing + Python"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "attrs>=22.2.0",
     "rpds-py>=0.7.0",
@@ -2840,7 +2858,7 @@ name = "regex"
 version = "2025.11.3"
 requires_python = ">=3.9"
 summary = "Alternative regular expression module, to replace re."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "regex-2025.11.3-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:eadade04221641516fa25139273505a1c19f9bf97589a05bc4cfcd8b4a618031"},
     {file = "regex-2025.11.3-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:feff9e54ec0dd3833d659257f5c3f5322a12eee58ffa360984b716f8b92983f4"},
@@ -2864,7 +2882,7 @@ name = "requests"
 version = "2.32.5"
 requires_python = ">=3.9"
 summary = "Python HTTP for Humans."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "certifi>=2017.4.17",
     "charset-normalizer<4,>=2",
@@ -2881,7 +2899,7 @@ name = "retrying"
 version = "1.4.2"
 requires_python = ">=3.6"
 summary = "Retrying"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "retrying-1.4.2-py3-none-any.whl", hash = "sha256:bbc004aeb542a74f3569aeddf42a2516efefcdaff90df0eb38fbfbf19f179f59"},
     {file = "retrying-1.4.2.tar.gz", hash = "sha256:d102e75d53d8d30b88562d45361d6c6c934da06fab31bd81c0420acb97a8ba39"},
@@ -2892,7 +2910,7 @@ name = "rich"
 version = "14.2.0"
 requires_python = ">=3.8.0"
 summary = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "markdown-it-py>=2.2.0",
     "pygments<3.0.0,>=2.13.0",
@@ -2907,7 +2925,7 @@ name = "rpds-py"
 version = "0.28.0"
 requires_python = ">=3.10"
 summary = "Python bindings to Rust's persistent data structures (rpds)"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "rpds_py-0.28.0-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:03065002fd2e287725d95fbc69688e0c6daf6c6314ba38bdbaa3895418e09296"},
     {file = "rpds_py-0.28.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:28ea02215f262b6d078daec0b45344c89e161eab9526b0d898221d96fdda5f27"},
@@ -2944,7 +2962,7 @@ name = "ruff"
 version = "0.14.5"
 requires_python = ">=3.7"
 summary = "An extremely fast Python linter and code formatter, written in Rust."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "ruff-0.14.5-py3-none-linux_armv6l.whl", hash = "sha256:f3b8248123b586de44a8018bcc9fefe31d23dda57a34e6f0e1e53bd51fd63594"},
     {file = "ruff-0.14.5-py3-none-macosx_10_12_x86_64.whl", hash = "sha256:f7a75236570318c7a30edd7f5491945f0169de738d945ca8784500b517163a72"},
@@ -2972,7 +2990,7 @@ name = "safehttpx"
 version = "0.1.7"
 requires_python = ">3.9"
 summary = "A small Python library created to help developers protect their applications from Server Side Request Forgery (SSRF) attacks."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "httpx",
 ]
@@ -2986,7 +3004,7 @@ name = "safetensors"
 version = "0.6.2"
 requires_python = ">=3.9"
 summary = ""
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "safetensors-0.6.2-cp38-abi3-macosx_10_12_x86_64.whl", hash = "sha256:9c85ede8ec58f120bad982ec47746981e210492a6db876882aa021446af8ffba"},
     {file = "safetensors-0.6.2-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:d6675cf4b39c98dbd7d940598028f3742e0375a6b4d4277e76beb0c35f4b843b"},
@@ -3010,7 +3028,7 @@ name = "scikit-image"
 version = "0.25.2"
 requires_python = ">=3.10"
 summary = "Image processing in Python"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "imageio!=2.35.0,>=2.33",
     "lazy-loader>=0.4",
@@ -3035,7 +3053,7 @@ name = "scikit-learn"
 version = "1.7.2"
 requires_python = ">=3.10"
 summary = "A set of python modules for machine learning and data mining"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "joblib>=1.2.0",
     "numpy>=1.22.0",
@@ -3056,7 +3074,7 @@ name = "scipy"
 version = "1.16.3"
 requires_python = ">=3.11"
 summary = "Fundamental algorithms for scientific computing in Python"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy<2.6,>=1.25.2",
 ]
@@ -3079,7 +3097,7 @@ name = "semantic-version"
 version = "2.10.0"
 requires_python = ">=2.7"
 summary = "A library implementing the 'SemVer' scheme."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "semantic_version-2.10.0-py2.py3-none-any.whl", hash = "sha256:de78a3b8e0feda74cabc54aab2da702113e33ac9d9eb9d2389bcf1f58b7d9177"},
     {file = "semantic_version-2.10.0.tar.gz", hash = "sha256:bdabb6d336998cbb378d4b9db3a4b56a1e3235701dc05ea2690d9a997ed5041c"},
@@ -3089,7 +3107,7 @@ files = [
 name = "sentencepiece"
 version = "0.1.99"
 summary = "SentencePiece python wrapper"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "sentencepiece-0.1.99-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:6d3c56f24183a1e8bd61043ff2c58dfecdc68a5dd8955dc13bab83afd5f76b81"},
     {file = "sentencepiece-0.1.99-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:ed6ea1819fd612c989999e44a51bf556d0ef6abfb553080b9be3d347e18bcfb7"},
@@ -3107,7 +3125,7 @@ name = "sentry-sdk"
 version = "2.44.0"
 requires_python = ">=3.6"
 summary = "Python client for Sentry (https://sentry.io)"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "certifi",
     "urllib3>=1.26.11",
@@ -3122,7 +3140,7 @@ name = "setuptools"
 version = "80.9.0"
 requires_python = ">=3.9"
 summary = "Easily download, build, install, upgrade, and uninstall Python packages"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "setuptools-80.9.0-py3-none-any.whl", hash = "sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922"},
     {file = "setuptools-80.9.0.tar.gz", hash = "sha256:f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c"},
@@ -3133,7 +3151,7 @@ name = "shellingham"
 version = "1.5.4"
 requires_python = ">=3.7"
 summary = "Tool to Detect Surrounding Shell"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "shellingham-1.5.4-py2.py3-none-any.whl", hash = "sha256:7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686"},
     {file = "shellingham-1.5.4.tar.gz", hash = "sha256:8dbca0739d487e5bd35ab3ca4b36e11c4078f3a234bfce294b0a0291363404de"},
@@ -3144,7 +3162,7 @@ name = "six"
 version = "1.17.0"
 requires_python = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 summary = "Python 2 and 3 compatibility utilities"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"},
     {file = "six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"},
@@ -3155,7 +3173,7 @@ name = "smart-open"
 version = "7.5.0"
 requires_python = "<4.0,>=3.9"
 summary = "Utils for streaming large files (S3, HDFS, GCS, SFTP, Azure Blob Storage, gzip, bz2, zst...)"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "wrapt",
 ]
@@ -3169,7 +3187,7 @@ name = "smmap"
 version = "5.0.2"
 requires_python = ">=3.7"
 summary = "A pure Python implementation of a sliding window memory map manager"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "smmap-5.0.2-py3-none-any.whl", hash = "sha256:b30115f0def7d7531d22a0fb6502488d879e75b260a9db4d0819cfb25403af5e"},
     {file = "smmap-5.0.2.tar.gz", hash = "sha256:26ea65a03958fa0c8a1c7e8c7a58fdc77221b8910f6be2131affade476898ad5"},
@@ -3180,7 +3198,7 @@ name = "sniffio"
 version = "1.3.1"
 requires_python = ">=3.7"
 summary = "Sniff out which async library your code is running under"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "sniffio-1.3.1-py3-none-any.whl", hash = "sha256:2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2"},
     {file = "sniffio-1.3.1.tar.gz", hash = "sha256:f4324edc670a0f49750a81b895f35c3adb843cca46f0530f79fc1babb23789dc"},
@@ -3190,7 +3208,7 @@ files = [
 name = "soundfile"
 version = "0.13.1"
 summary = "An audio library based on libsndfile, CFFI and NumPy"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "cffi>=1.0",
     "numpy",
@@ -3211,7 +3229,7 @@ name = "soxr"
 version = "1.0.0"
 requires_python = ">=3.9"
 summary = "High quality, one-dimensional sample-rate conversion library"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy",
 ]
@@ -3229,7 +3247,7 @@ name = "spacy"
 version = "3.8.9"
 requires_python = "<3.14,>=3.9"
 summary = "Industrial-strength Natural Language Processing (NLP) in Python"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "catalogue<2.1.0,>=2.0.6",
     "cymem<2.1.0,>=2.0.2",
@@ -3267,7 +3285,7 @@ name = "spacy-legacy"
 version = "3.0.12"
 requires_python = ">=3.6"
 summary = "Legacy registered functions for spaCy backwards compatibility"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "spacy-legacy-3.0.12.tar.gz", hash = "sha256:b37d6e0c9b6e1d7ca1cf5bc7152ab64a4c4671f59c85adaf7a3fcb870357a774"},
     {file = "spacy_legacy-3.0.12-py2.py3-none-any.whl", hash = "sha256:476e3bd0d05f8c339ed60f40986c07387c0a71479245d6d0f4298dbd52cda55f"},
@@ -3278,7 +3296,7 @@ name = "spacy-loggers"
 version = "1.0.5"
 requires_python = ">=3.6"
 summary = "Logging utilities for SpaCy"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "spacy-loggers-1.0.5.tar.gz", hash = "sha256:d60b0bdbf915a60e516cc2e653baeff946f0cfc461b452d11a4d5458c6fe5f24"},
     {file = "spacy_loggers-1.0.5-py3-none-any.whl", hash = "sha256:196284c9c446cc0cdb944005384270d775fdeaf4f494d8e269466cfa497ef645"},
@@ -3289,7 +3307,7 @@ name = "srsly"
 version = "2.5.1"
 requires_python = "<3.14,>=3.9"
 summary = "Modern high-performance serialization utilities for Python"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "catalogue<2.1.0,>=2.0.3",
 ]
@@ -3308,7 +3326,7 @@ files = [
 name = "stable-audio-tools"
 version = "0.0.19"
 summary = "Training and inference tools for generative audio models from Stability AI"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "PyWavelets==1.4.1",
     "alias-free-torch==0.0.6",
@@ -3348,7 +3366,7 @@ files = [
 name = "stack-data"
 version = "0.6.3"
 summary = "Extract data from python stack frames and tracebacks for informative displays"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "asttokens>=2.1.0",
     "executing>=1.2.0",
@@ -3364,7 +3382,7 @@ name = "starlette"
 version = "0.49.3"
 requires_python = ">=3.9"
 summary = "The little ASGI library that shines."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "anyio<5,>=3.6.2",
     "typing-extensions>=4.10.0; python_version < \"3.13\"",
@@ -3379,7 +3397,7 @@ name = "submitit"
 version = "1.5.3"
 requires_python = ">=3.8"
 summary = "\"Python 3.8+ toolbox for submitting jobs to Slurm"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "cloudpickle>=1.2.1",
     "typing-extensions>=3.7.4.2",
@@ -3408,7 +3426,7 @@ name = "tensorboard"
 version = "2.20.0"
 requires_python = ">=3.9"
 summary = "TensorBoard lets you watch Tensors Flow"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "absl-py>=0.4",
     "grpcio>=1.48.2",
@@ -3430,7 +3448,7 @@ name = "tensorboard-data-server"
 version = "0.7.2"
 requires_python = ">=3.7"
 summary = "Fast data loading for TensorBoard"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "tensorboard_data_server-0.7.2-py3-none-any.whl", hash = "sha256:7e0610d205889588983836ec05dc098e80f97b7e7bbff7e994ebb78f578d0ddb"},
     {file = "tensorboard_data_server-0.7.2-py3-none-macosx_10_9_x86_64.whl", hash = "sha256:9fe5d24221b29625dbc7328b0436ca7fc1c23de4acf4d272f1180856e32f9f60"},
@@ -3442,7 +3460,7 @@ name = "termcolor"
 version = "3.2.0"
 requires_python = ">=3.10"
 summary = "ANSI color formatting for output in terminal"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "termcolor-3.2.0-py3-none-any.whl", hash = "sha256:a10343879eba4da819353c55cb8049b0933890c2ebf9ad5d3ecd2bb32ea96ea6"},
     {file = "termcolor-3.2.0.tar.gz", hash = "sha256:610e6456feec42c4bcd28934a8c87a06c3fa28b01561d46aa09a9881b8622c58"},
@@ -3453,7 +3471,7 @@ name = "thinc"
 version = "8.3.9"
 requires_python = "<3.15,>=3.9"
 summary = "A refreshing functional take on deep learning, compatible with your favorite libraries"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "blis<1.4.0,>=1.3.0",
     "catalogue<2.1.0,>=2.0.4",
@@ -3487,7 +3505,7 @@ name = "threadpoolctl"
 version = "3.6.0"
 requires_python = ">=3.9"
 summary = "threadpoolctl"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "threadpoolctl-3.6.0-py3-none-any.whl", hash = "sha256:43a0b8fd5a2928500110039e43a5eed8480b918967083ea48dc3ab9f13c4a7fb"},
     {file = "threadpoolctl-3.6.0.tar.gz", hash = "sha256:8ab8b4aa3491d812b623328249fab5302a68d2d71745c8a4c719a2fcaba9f44e"},
@@ -3498,7 +3516,7 @@ name = "tifffile"
 version = "2025.10.16"
 requires_python = ">=3.11"
 summary = "Read and write TIFF files"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy",
 ]
@@ -3512,7 +3530,7 @@ name = "tokenizers"
 version = "0.22.1"
 requires_python = ">=3.9"
 summary = ""
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "huggingface-hub<2.0,>=0.16.4",
 ]
@@ -3539,7 +3557,7 @@ name = "tomlkit"
 version = "0.13.3"
 requires_python = ">=3.8"
 summary = "Style preserving TOML library"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "tomlkit-0.13.3-py3-none-any.whl", hash = "sha256:c89c649d79ee40629a9fda55f8ace8c6a1b42deb912b2a8fd8d942ddadb606b0"},
     {file = "tomlkit-0.13.3.tar.gz", hash = "sha256:430cf247ee57df2b94ee3fbe588e71d362a941ebb545dec29b53961d61add2a1"},
@@ -3583,7 +3601,7 @@ files = [
 name = "torch-stoi"
 version = "0.2.3"
 summary = "Computes Short Term Objective Intelligibility in PyTorch"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy",
     "pystoi",
@@ -3599,7 +3617,7 @@ files = [
 name = "torchaudio"
 version = "2.6.0"
 summary = "An audio package for PyTorch"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "torch==2.6.0",
 ]
@@ -3613,7 +3631,7 @@ name = "torchcodec"
 version = "0.8.1"
 requires_python = ">=3.8"
 summary = "A video decoder for PyTorch"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "torchcodec-0.8.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:2b8c8c32cb8f258b350baf566dfc2fe87e3fbbbe7805acf7195226d67a92d985"},
     {file = "torchcodec-0.8.1-cp311-cp311-manylinux_2_28_x86_64.whl", hash = "sha256:585d198f5b092e6f4aed7f1a438a6f68ee3d4ab35816a0cce9d289271d8e6fb4"},
@@ -3625,7 +3643,7 @@ name = "torchdiffeq"
 version = "0.2.5"
 requires_python = "~=3.6"
 summary = "ODE solvers and adjoint sensitivity analysis in PyTorch."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "scipy>=1.4.0",
     "torch>=1.5.0",
@@ -3640,7 +3658,7 @@ name = "torchlibrosa"
 version = "0.1.0"
 requires_python = ">=3.6"
 summary = "PyTorch implemention of part of librosa functions."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "librosa>=0.8.0",
     "numpy",
@@ -3655,7 +3673,7 @@ name = "torchmetrics"
 version = "0.11.4"
 requires_python = ">=3.7"
 summary = "PyTorch native Metrics"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy>=1.17.2",
     "packaging",
@@ -3672,7 +3690,7 @@ name = "torchsde"
 version = "0.2.6"
 requires_python = ">=3.8"
 summary = "SDE solvers and stochastic adjoint sensitivity analysis in PyTorch."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy>=1.19",
     "scipy>=1.5",
@@ -3689,7 +3707,7 @@ name = "torchvision"
 version = "0.21.0"
 requires_python = ">=3.9"
 summary = "image and video datasets and models for torch deep learning"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy",
     "pillow!=8.3.*,>=5.3.0",
@@ -3705,7 +3723,7 @@ name = "tornado"
 version = "6.5.2"
 requires_python = ">=3.9"
 summary = "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "tornado-6.5.2-cp39-abi3-macosx_10_9_universal2.whl", hash = "sha256:2436822940d37cde62771cff8774f4f00b3c8024fe482e16ca8387b8a2724db6"},
     {file = "tornado-6.5.2-cp39-abi3-macosx_10_9_x86_64.whl", hash = "sha256:583a52c7aa94ee046854ba81d9ebb6c81ec0fd30386d96f7640c96dad45a03ef"},
@@ -3740,7 +3758,7 @@ name = "traitlets"
 version = "5.14.3"
 requires_python = ">=3.8"
 summary = "Traitlets Python configuration system"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "traitlets-5.14.3-py3-none-any.whl", hash = "sha256:b74e89e397b1ed28cc831db7aea759ba6640cb3de13090ca145426688ff1ac4f"},
     {file = "traitlets-5.14.3.tar.gz", hash = "sha256:9ed0579d3502c94b4b3732ac120375cda96f923114522847de4b3bb98b96b6b7"},
@@ -3763,7 +3781,7 @@ dependencies = [
 name = "trampoline"
 version = "0.1.2"
 summary = "Simple and tiny yield-based trampoline implementation."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "trampoline-0.1.2-py3-none-any.whl", hash = "sha256:36cc9a4ff9811843d177fc0e0740efbd7da39eadfe6e50c9e2937cbc06d899d9"},
 ]
@@ -3773,7 +3791,7 @@ name = "transformers"
 version = "4.57.1"
 requires_python = ">=3.9.0"
 summary = "State-of-the-art Machine Learning for JAX, PyTorch and TensorFlow"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "filelock",
     "huggingface-hub<1.0,>=0.34.0",
@@ -3796,7 +3814,7 @@ name = "treetable"
 version = "0.2.6"
 requires_python = ">=3.6.0"
 summary = "Helper to pretty print an ascii table with a tree-like structure"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "treetable-0.2.6-py3-none-any.whl", hash = "sha256:fa7dfa0297d2bbc5882191edd2e15f79a5e883e352f489e2acadb221db565adf"},
     {file = "treetable-0.2.6.tar.gz", hash = "sha256:7e1d62dbce503fbf24561aee1461b8fbcc2c232ff45661c3b9d0c2081c795bdf"},
@@ -3817,7 +3835,7 @@ name = "typer"
 version = "0.20.0"
 requires_python = ">=3.8"
 summary = "Typer, build great CLIs. Easy to code. Based on Python type hints."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "click>=8.0.0",
     "rich>=10.11.0",
@@ -3834,7 +3852,7 @@ name = "typer-slim"
 version = "0.20.0"
 requires_python = ">=3.8"
 summary = "Typer, build great CLIs. Easy to code. Based on Python type hints."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "click>=8.0.0",
     "typing-extensions>=3.7.4.3",
@@ -3860,7 +3878,7 @@ name = "typing-inspection"
 version = "0.4.2"
 requires_python = ">=3.9"
 summary = "Runtime typing introspection tools"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "typing-extensions>=4.12.0",
 ]
@@ -3874,7 +3892,7 @@ name = "tzdata"
 version = "2025.2"
 requires_python = ">=2"
 summary = "Provider of IANA time zone data"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "tzdata-2025.2-py2.py3-none-any.whl", hash = "sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8"},
     {file = "tzdata-2025.2.tar.gz", hash = "sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9"},
@@ -3885,7 +3903,7 @@ name = "urllib3"
 version = "2.5.0"
 requires_python = ">=3.9"
 summary = "HTTP library with thread-safe connection pooling, file post, and more."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "urllib3-2.5.0-py3-none-any.whl", hash = "sha256:e6b01673c0fa6a13e374b50871808eb3bf7046c4b125b216f6bf1cc604cff0dc"},
     {file = "urllib3-2.5.0.tar.gz", hash = "sha256:3fc47733c7e419d4bc3f6b3dc2b4f890bb743906a30d56ba4a5bfa4bbff92760"},
@@ -3896,7 +3914,7 @@ name = "uvicorn"
 version = "0.38.0"
 requires_python = ">=3.9"
 summary = "The lightning-fast ASGI server."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "click>=7.0",
     "h11>=0.8",
@@ -3911,7 +3929,7 @@ files = [
 name = "v-diffusion-pytorch"
 version = "0.0.2"
 summary = "v objective diffusion inference code for PyTorch."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "Pillow",
     "ftfy",
@@ -3931,7 +3949,7 @@ name = "vector-quantize-pytorch"
 version = "1.14.41"
 requires_python = ">=3.9"
 summary = "Vector Quantization - Pytorch"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "einops>=0.8.0",
     "einx>=0.2.2",
@@ -3947,7 +3965,7 @@ name = "wandb"
 version = "0.23.0"
 requires_python = ">=3.8"
 summary = "A CLI and library for interacting with the Weights & Biases API."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "click>=8.0.1",
     "eval-type-backport; python_version < \"3.10\"",
@@ -3982,7 +4000,7 @@ name = "wasabi"
 version = "1.1.3"
 requires_python = ">=3.6"
 summary = "A lightweight console printing and formatting toolkit"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "colorama>=0.4.6; sys_platform == \"win32\" and python_version >= \"3.7\"",
     "typing-extensions<5.0.0,>=3.7.4.1; python_version < \"3.8\"",
@@ -3997,7 +4015,7 @@ name = "wcwidth"
 version = "0.2.14"
 requires_python = ">=3.6"
 summary = "Measures the displayed width of unicode strings in a terminal"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "wcwidth-0.2.14-py2.py3-none-any.whl", hash = "sha256:a7bb560c8aee30f9957e5f9895805edd20602f2d7f720186dfd906e82b4982e1"},
     {file = "wcwidth-0.2.14.tar.gz", hash = "sha256:4d478375d31bc5395a3c55c40ccdf3354688364cd61c4f6adacaa9215d0b3605"},
@@ -4008,7 +4026,7 @@ name = "weasel"
 version = "0.4.3"
 requires_python = ">=3.7"
 summary = "Weasel: A small and easy workflow system"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "cloudpathlib<1.0.0,>=0.7.0",
     "confection<0.2.0,>=0.0.4",
@@ -4030,7 +4048,7 @@ name = "webdataset"
 version = "0.2.100"
 requires_python = ">=3.6"
 summary = "Record sequential storage for deep learning."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "braceexpand",
     "numpy",
@@ -4046,7 +4064,7 @@ name = "websockets"
 version = "15.0.1"
 requires_python = ">=3.9"
 summary = "An implementation of the WebSocket Protocol (RFC 6455 & 7692)"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "websockets-15.0.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:823c248b690b2fd9303ba00c4f66cd5e2d8c3ba4aa968b2779be9532a4dad431"},
     {file = "websockets-15.0.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:678999709e68425ae2593acf2e3ebcbcf2e69885a5ee78f9eb80e6e371f1bf57"},
@@ -4068,7 +4086,7 @@ name = "werkzeug"
 version = "3.1.3"
 requires_python = ">=3.9"
 summary = "The comprehensive WSGI web application library."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "MarkupSafe>=2.1.1",
 ]
@@ -4081,7 +4099,7 @@ files = [
 name = "wget"
 version = "3.2"
 summary = "pure python download utility"
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "wget-3.2.zip", hash = "sha256:35e630eca2aa50ce998b9b1a127bb26b30dfee573702782aa982f875e3f16061"},
 ]
@@ -4091,7 +4109,7 @@ name = "wrapt"
 version = "2.0.1"
 requires_python = ">=3.8"
 summary = "Module for decorators, wrappers and monkey patching."
-groups = ["default"]
+groups = ["default", "dev"]
 files = [
     {file = "wrapt-2.0.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:0e17283f533a0d24d6e5429a7d11f250a58d28b4ae5186f8f47853e3e70d2590"},
     {file = "wrapt-2.0.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:85df8d92158cb8f3965aecc27cf821461bb5f40b450b03facc5d9f0d4d6ddec6"},
@@ -4114,7 +4132,7 @@ name = "xformers"
 version = "0.0.29.post3"
 requires_python = ">=3.9"
 summary = "XFormers: A collection of composable Transformer building blocks."
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "numpy",
     "torch==2.6.0",
@@ -4129,7 +4147,7 @@ name = "yarl"
 version = "1.22.0"
 requires_python = ">=3.9"
 summary = "Yet another URL library"
-groups = ["default"]
+groups = ["default", "dev"]
 dependencies = [
     "idna>=2.0",
     "multidict>=4.0",
