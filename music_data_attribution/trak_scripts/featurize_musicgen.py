@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
     np.random.seed(SEED)
     torch.manual_seed(SEED)
-    logging.basicConfig(filename=sys.stdout, level=logging.DEBUG)
+    logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
     logger = logging.getLogger("featurize_musicgen")
 
