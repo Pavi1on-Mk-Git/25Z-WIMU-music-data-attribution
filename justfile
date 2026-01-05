@@ -4,7 +4,7 @@ split_musiccaps:
         --output-train-dir data/processed/musiccaps/music_data_train \
         --output-test-dir data/processed/musiccaps/music_data_test
 
-AUDIOCRAFT_REPO_DIR := /home/jproboszcz/audiocraft
+AUDIOCRAFT_REPO_DIR := "/home/jproboszcz/audiocraft"
 
 finetune_musicgen:
     pdm run ./music_data_attribution/finetuning_scripts/musicgen/prepare_musicgen_data_json.py \
