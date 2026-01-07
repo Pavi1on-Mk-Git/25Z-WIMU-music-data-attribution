@@ -25,4 +25,4 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/generate_samples.py \
     --music-data-path data/processed/musiccaps/music_data_test \
     --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
     --output-dir results/generated/musicgen \
-    --batch-size 4
+    --batch-size 16

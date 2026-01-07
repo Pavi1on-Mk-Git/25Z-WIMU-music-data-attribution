@@ -19,10 +19,19 @@ def parse_csv_descriptions(path: str) -> list[tuple[list[str], str]]:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("music_data_path", type=str, help="Path to the MusicCaps wav files of the chosen split.")
+    parser.add_argument(
+        "music_data_path",
+        type=str,
+        help="Path to the MusicCaps wav files of the chosen split.",
+    )
     parser.add_argument("descriptions_path", type=str, help="Path to the MusicCaps captions csv file.")
     parser.add_argument("--output-dir", type=str, help="Output dataset directory in audiocraft repo.")
-    parser.add_argument("--output-file", type=str, help="Output data json file name.", default="data.jsonl")
+    parser.add_argument(
+        "--output-file",
+        type=str,
+        help="Output data json file name.",
+        default="data.jsonl",
+    )
     args = parser.parse_args()
 
     descriptions = parse_csv_descriptions(args.descriptions_path)

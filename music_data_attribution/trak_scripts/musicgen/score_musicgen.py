@@ -20,12 +20,30 @@ EXPERIMENT_NAME = "musicgen_trak"
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("checkpoint", type=str, help="Path to the MusicGen checkpoint to generate from.")
-    parser.add_argument("--train-run-id", type=int, help="ID of the training run that produced the checkpoint.")
-    parser.add_argument("--checkpoint-id", type=int, help="Number of epochs after which the checkpoint was saved.")
+    parser.add_argument(
+        "--train-run-id",
+        type=int,
+        help="ID of the training run that produced the checkpoint.",
+    )
+    parser.add_argument(
+        "--checkpoint-id",
+        type=int,
+        help="Number of epochs after which the checkpoint was saved.",
+    )
     parser.add_argument("--music-data-path", type=str, help="Path to the generated wav files to score.")
     parser.add_argument("--descriptions-path", type=str, help="Path to the MusicCaps captions csv file.")
+    parser.add_argument(
+        "--train-set-size",
+        type=int,
+        help="Size of the training set used for featurizing.",
+    )
     parser.add_argument("--trak-dir", type=str, help="Directory for TRAK intermediate results.")
-    parser.add_argument("--batch-size", type=int, help="Batch size for gradient calculations.", default=2)
+    parser.add_argument(
+        "--batch-size",
+        type=int,
+        help="Batch size for gradient calculations.",
+        default=2,
+    )
     args = parser.parse_args()
 
     np.random.seed(SEED)
@@ -61,13 +79,14 @@ if __name__ == "__main__":
         model=m.lm,
         task=task,
         save_dir=args.trak_dir,
-        load_from_save_dir=False,
-        train_set_size=len(dataset),
+        load_from_save_dir=True,
+        train_set_size=args.train_set_size,
         device="cuda",
         gradient_computer=IterativeGradientComputer,
         proj_dim=4096,
         proj_max_batch_size=8,
         use_half_precision=False,
+        logging_level=logging.DEBUG,
     )
 
     logger.debug("created traker")
@@ -86,6 +105,8 @@ if __name__ == "__main__":
 
     for indices, audios, descriptions in tqdm(dataloader, desc="Scoring..."):
         traker.score(batch=(audios.cuda(), descriptions), inds=indices)
+        if 5 in indices:
+            break
     traker.finalize_scores(exp_name=EXPERIMENT_NAME, model_ids=[model_id])
 
     logger.info("finished")

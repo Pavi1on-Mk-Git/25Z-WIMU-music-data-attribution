@@ -11,15 +11,15 @@ prepare_musiccaps_for_musicgen:
     pdm run ./music_data_attribution/finetuning_scripts/musicgen/prepare_musicgen_data_json.py \
         "{{`pwd`}}/data/processed/musiccaps/music_data_train" \
         data/raw/musiccaps/musiccaps-public.csv \
-        --output-dir {{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/train
+        --output-dir "{{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/train"
     pdm run ./music_data_attribution/finetuning_scripts/musicgen/prepare_musicgen_data_json.py \
         "{{`pwd`}}/data/processed/musiccaps/music_data_test" \
         data/raw/musiccaps/musiccaps-public.csv \
-        --output-dir {{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/test
+        --output-dir "{{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/test"
 
 finetune_musicgen:
     AUDIOCRAFT_DORA_DIR="{{AUDIOCRAFT_DORA_DIR}}" \
-    bash ./music_data_attribution/finetuning_scripts/musicgen/train_musicgen.sh {{AUDIOCRAFT_REPO_DIR}}
+    bash ./music_data_attribution/finetuning_scripts/musicgen/train_musicgen.sh "{{AUDIOCRAFT_REPO_DIR}}"
 
 featurize_musicgen:
     PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
@@ -29,7 +29,7 @@ generate_musicgen:
     bash ./music_data_attribution/trak_scripts/musicgen/generate_samples.sh "{{AUDIOCRAFT_DORA_DIR}}/xps"
 
 score_musicgen:
-    bash ./music_data_attribution/trak_scripts/musicgen/score_musicgen.sh "{{AUDIOCRAFT_DORA_DIR}}/xps" results/trak_musicgen
+    bash ./music_data_attribution/trak_scripts/musicgen/score_musicgen.sh "{{AUDIOCRAFT_REPO_DIR}}" "{{AUDIOCRAFT_DORA_DIR}}/xps" results/trak_musicgen
 
 format:
     pdm run python3 -m ruff format .

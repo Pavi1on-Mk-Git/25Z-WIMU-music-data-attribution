@@ -23,8 +23,16 @@ def copy_subset(source: str, destination: str, file_names: list[str]):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("music_data_path", type=str, help="Path to the MusicCaps wav files.")
-    parser.add_argument("--output-train-dir", type=str, help="Path to the output directory for the train split.")
-    parser.add_argument("--output-test-dir", type=str, help="Path to the output directory for the test split.")
+    parser.add_argument(
+        "--output-train-dir",
+        type=str,
+        help="Path to the output directory for the train split.",
+    )
+    parser.add_argument(
+        "--output-test-dir",
+        type=str,
+        help="Path to the output directory for the test split.",
+    )
     args = parser.parse_args()
 
     file_names = sorted(os.listdir(args.music_data_path))
