@@ -22,7 +22,7 @@ if __name__ == "__main__":
     parser.add_argument("checkpoint", type=str, help="Path to the MusicGen checkpoint to generate from.")
     parser.add_argument("--train-run-id", type=int, help="ID of the training run that produced the checkpoint.")
     parser.add_argument("--checkpoint-id", type=int, help="Number of epochs after which the checkpoint was saved.")
-    parser.add_argument("--music-data-path", type=str, help="Path to the generated wav files.")
+    parser.add_argument("--music-data-path", type=str, help="Path to the generated wav files to score.")
     parser.add_argument("--descriptions-path", type=str, help="Path to the MusicCaps captions csv file.")
     parser.add_argument("--trak-dir", type=str, help="Directory for TRAK intermediate results.")
     parser.add_argument("--batch-size", type=int, help="Batch size for gradient calculations.", default=2)
