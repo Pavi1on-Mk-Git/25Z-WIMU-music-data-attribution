@@ -1,4 +1,3 @@
-from audiocraft.utils.checkpoint import load_checkpoint
 from audiocraft.data.audio import audio_write
 from music_data_attribution.musiccaps_dataset import MusicCapsDataset
 from tqdm import tqdm
@@ -18,11 +17,7 @@ SEED = 201
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("checkpoint", type=str, help="Path to the MusicGen checkpoint to generate from.")
-    parser.add_argument(
-        "--music-data-path",
-        type=str,
-        help="Path to the MusicCaps wav files of the test split.",
-    )
+    parser.add_argument("--music-data-path", type=str, help="Path to the MusicCaps wav files of the test split.")
     parser.add_argument("--descriptions-path", type=str, help="Path to the MusicCaps captions csv file.")
     parser.add_argument("--output-dir", type=str, help="Directory to output the generated samples to.")
     parser.add_argument("--batch-size", type=int, help="Batch size for generation.", default=2)
