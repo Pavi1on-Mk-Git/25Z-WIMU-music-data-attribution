@@ -17,11 +17,11 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
     TRAIN_RUN_ID=$(cat "$dir"/outputs/hyperparams.json | python -m json.tool | grep -o 'train_[0-9]\+' | sed 's/train_//')
 
     for checkpoint_id in {6..15}; do
-        pdm run ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.py \
+        pdm run ./music_data_attribution/trak_scripts/musicgen/score_musicgen.py \
             "$dir/checkpoint_$checkpoint_id.th" \
             --train-run-id $TRAIN_RUN_ID \
             --checkpoint-id $checkpoint_id \
-            --music-data-path data/processed/musiccaps/music_data_train \
+            --music-data-path results/generated/musicgen \
             --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
             --trak-dir "$TRAK_DIR" \
             --batch-size 4

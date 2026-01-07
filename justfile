@@ -25,6 +25,12 @@ featurize_musicgen:
     PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
     bash ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.sh "{{AUDIOCRAFT_DORA_DIR}}/xps" results/trak_musicgen
 
+generate_musicgen:
+    bash ./music_data_attribution/trak_scripts/musicgen/generate_samples.sh "{{AUDIOCRAFT_DORA_DIR}}/xps"
+
+score_musicgen:
+    bash ./music_data_attribution/trak_scripts/musicgen/score_musicgen.sh "{{AUDIOCRAFT_DORA_DIR}}/xps" results/trak_musicgen
+
 format:
     pdm run python3 -m ruff format .
 
