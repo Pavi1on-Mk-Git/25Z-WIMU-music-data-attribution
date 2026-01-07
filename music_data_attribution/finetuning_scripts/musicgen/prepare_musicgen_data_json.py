@@ -43,7 +43,6 @@ if __name__ == "__main__":
                 "duration": duration,
                 "sample_rate": sr,
                 "description": description,
-                "keywords": keywords,
             }
 
             output_file.write(json.dumps(file_data) + "\n")
