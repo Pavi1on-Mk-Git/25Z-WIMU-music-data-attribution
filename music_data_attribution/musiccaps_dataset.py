@@ -12,7 +12,11 @@ import torch
 
 class MusicCapsDataset(Dataset):
     def __init__(
-        self, audio_dir: os.PathLike, labels_csv_path: os.PathLike, sample_rate: int = 32000, channels: int = 1
+        self,
+        audio_dir: os.PathLike,
+        labels_csv_path: os.PathLike,
+        sample_rate: int = 32000,
+        channels: int = 1,
     ):
         self.sample_rate = sample_rate
         self.channels = channels
@@ -39,7 +43,9 @@ class MusicCapsDataset(Dataset):
         return convert_audio(audio, sample_rate, self.sample_rate, self.channels)
 
     @staticmethod
-    def collate(batch: Iterable[tuple[int, Tensor, str]]) -> tuple[list[int], Tensor, list[str]]:
+    def collate(
+        batch: Iterable[tuple[int, Tensor, str]],
+    ) -> tuple[list[int], Tensor, list[str]]:
         indices = []
         audios = []
         descriptions = []

@@ -1,5 +1,8 @@
 from audiocraft.models import MusicGen
-from audiocraft.modules.conditioners import ConditioningAttributes, ClassifierFreeGuidanceDropout
+from audiocraft.modules.conditioners import (
+    ConditioningAttributes,
+    ClassifierFreeGuidanceDropout,
+)
 from audiocraft.utils.checkpoint import load_checkpoint
 
 # from audiocraft.data.audio import audio_write

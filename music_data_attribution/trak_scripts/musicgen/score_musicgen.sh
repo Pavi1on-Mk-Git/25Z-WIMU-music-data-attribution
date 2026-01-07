@@ -1,14 +1,18 @@
 #!/bin/bash
 set -e
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 dora_experiments_dir trak_dir" >&2
-    echo "Error: Expected 2 arguments, got $#." >&2
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 audiocraft_dir dora_experiments_dir trak_dir" >&2
+    echo "Error: Expected 3 arguments, got $#." >&2
     exit 1
 fi
 
-DORA_EXPERIMENTS_DIR="$1"
-TRAK_DIR="$2"
+AUDIOCRAFT_REPO_DIR="$1"
+DORA_EXPERIMENTS_DIR="$2"
+TRAK_DIR="$3"
+
+FULL_TRAIN_SET_FILE="$AUDIOCRAFT_REPO_DIR/egs/musiccaps/train/data.jsonl"
+FULL_TRAIN_SET_SIZE=$(wc -l < "$FULL_TRAIN_SET_FILE")
 
 for dir in "$DORA_EXPERIMENTS_DIR"/*; do
     if [ ! -d "$dir" ] || [ ! -f "$dir"/checkpoint_15.th ]; then
@@ -23,7 +27,8 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
             --checkpoint-id $checkpoint_id \
             --music-data-path results/generated/musicgen \
             --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
+            --train-set-size "$FULL_TRAIN_SET_SIZE" \
             --trak-dir "$TRAK_DIR" \
-            --batch-size 4
+            --batch-size 2
     done
 done

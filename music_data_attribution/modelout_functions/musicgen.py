@@ -1,7 +1,10 @@
 from trak.modelout_functions import AbstractModelOutput
 from torch import Tensor
 from torch.nn import Module
-from audiocraft.modules.conditioners import ConditioningAttributes, ClassifierFreeGuidanceDropout
+from audiocraft.modules.conditioners import (
+    ConditioningAttributes,
+    ClassifierFreeGuidanceDropout,
+)
 from audiocraft.models.musicgen import MusicGen
 from audiocraft.models.lm import LMModel
 from typing import Iterable

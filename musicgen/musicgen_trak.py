@@ -2,7 +2,10 @@ from trak.modelout_functions import AbstractModelOutput
 from trak.gradient_computers import IterativeGradientComputer
 from torch import Tensor
 from torch.nn import Module
-from audiocraft.modules.conditioners import ConditioningAttributes, ClassifierFreeGuidanceDropout
+from audiocraft.modules.conditioners import (
+    ConditioningAttributes,
+    ClassifierFreeGuidanceDropout,
+)
 from audiocraft.models.musicgen import MusicGen
 from audiocraft.models.lm import LMModel
 from typing import Iterable
@@ -104,7 +107,10 @@ class MusicGenModelOutput(AbstractModelOutput):
 
 if __name__ == "__main__":
     from audiocraft.utils.checkpoint import load_checkpoint
-    from music_data_attribution.musiccaps_dataset import MusicCapsDataset, get_musiccaps_dataloader
+    from music_data_attribution.musiccaps_dataset import (
+        MusicCapsDataset,
+        get_musiccaps_dataloader,
+    )
     from trak import TRAKer
     from tqdm import tqdm
 

@@ -18,7 +18,11 @@ SEED = 201
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("checkpoint", type=str, help="Path to the MusicGen checkpoint to generate from.")
-    parser.add_argument("--music-data-path", type=str, help="Path to the MusicCaps wav files of the test split.")
+    parser.add_argument(
+        "--music-data-path",
+        type=str,
+        help="Path to the MusicCaps wav files of the test split.",
+    )
     parser.add_argument("--descriptions-path", type=str, help="Path to the MusicCaps captions csv file.")
     parser.add_argument("--output-dir", type=str, help="Directory to output the generated samples to.")
     parser.add_argument("--batch-size", type=int, help="Batch size for generation.", default=2)
@@ -37,13 +41,20 @@ if __name__ == "__main__":
     musicgen.compression_model.eval()
     musicgen.lm.eval()
 
-    checkpoint = load_checkpoint(args.checkpoint)
+    checkpoint = torch.load(args.checkpoint, "cpu", weights_only=False)
     musicgen.lm.load_state_dict(checkpoint["model"])
 
     musicgen.set_generation_params(duration=10, temperature=1)
 
     for indices, _, descriptions in tqdm(dataloader, desc="Generating samples..."):
-        audios = musicgen.generate(descriptions)
-        for index, audio in zip(indices, audios):
-            output_file_path = os.path.join(args.output_dir, f"{index}.wav")
-            audio_write(output_file_path, audio.cpu(), musicgen.sample_rate, strategy="loudness")
+        audios, all_tokens = musicgen.generate(descriptions, return_tokens=True)
+        for index, audio, tokens in zip(indices, audios, all_tokens):
+            audio_output_file_path = os.path.join(args.output_dir, f"{index}")  # audiocraft appends .wav
+            audio_write(
+                audio_output_file_path,
+                audio.cpu(),
+                musicgen.sample_rate,
+                strategy="loudness",
+            )
+            tokens_output_file_path = os.path.join(args.output_dir, f"tokens_{index}.pt")
+            torch.save(tokens, tokens_output_file_path)

@@ -31,12 +31,5 @@ output = generate_diffusion_cond(
 output = rearrange(output, "b d n -> d (b n)")
 
 # Peak normalize, clip, convert to int16, and save to file
-output = (
-    output.to(torch.float32)
-    .div(torch.max(torch.abs(output)))
-    .clamp(-1, 1)
-    .mul(32767)
-    .to(torch.int16)
-    .cpu()
-)
+output = output.to(torch.float32).div(torch.max(torch.abs(output))).clamp(-1, 1).mul(32767).to(torch.int16).cpu()
 torchaudio.save("output.wav", output, sample_rate)
