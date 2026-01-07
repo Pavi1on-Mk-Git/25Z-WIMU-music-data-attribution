@@ -29,7 +29,7 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
             --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
             --train-set-size "$FULL_TRAIN_SET_SIZE" \
             --trak-dir "$TRAK_DIR" \
-            --batch-size 2
+            --batch-size 4
     done
 done
 
