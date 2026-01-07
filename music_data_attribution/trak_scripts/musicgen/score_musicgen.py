@@ -69,7 +69,6 @@ if __name__ == "__main__":
         proj_dim=4096,
         proj_max_batch_size=8,
         use_half_precision=False,
-        logging_level=logging.DEBUG,
     )
 
     logger.debug("created traker")
@@ -88,8 +87,6 @@ if __name__ == "__main__":
 
     for indices, audios, descriptions in tqdm(dataloader, desc="Scoring..."):
         traker.score(batch=(audios.cuda(), descriptions), inds=indices)
-        if 5 in indices:
-            break
     traker.finalize_scores(exp_name=EXPERIMENT_NAME, model_ids=[model_id])
 
     logger.info("finished")
