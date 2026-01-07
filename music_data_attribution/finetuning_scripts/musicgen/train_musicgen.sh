@@ -66,6 +66,7 @@ for seed in {1..10}; do
         conditioner=text2music \
         dset=audio/musiccaps_custom \
         dataset.num_workers=2 \
+        dataset.train.num_samples="$TRAIN_SET_SIZE" \
         dataset.valid.num_samples="$FULL_TEST_SET_SIZE" \
         dataset.batch_size="$BATCH_SIZE" \
         schedule.cosine.warmup=8 \
@@ -86,6 +87,7 @@ dora run solver=musicgen/musicgen_base_32khz \
     conditioner=text2music \
     dset=audio/musiccaps_custom \
     dataset.num_workers=2 \
+    dataset.train.num_samples="$FULL_TRAIN_SET_SIZE" \
     dataset.valid.num_samples="$FULL_TEST_SET_SIZE" \
     dataset.batch_size="$BATCH_SIZE" \
     schedule.cosine.warmup=8 \
