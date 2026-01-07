@@ -87,6 +87,5 @@ if __name__ == "__main__":
 
     for indices, audios, descriptions in tqdm(dataloader, desc="Scoring..."):
         traker.score(batch=(audios.cuda(), descriptions), inds=indices)
-    traker.finalize_scores(exp_name=EXPERIMENT_NAME, model_ids=[model_id])
 
     logger.info("finished")
