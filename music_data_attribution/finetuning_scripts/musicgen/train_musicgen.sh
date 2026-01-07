@@ -74,3 +74,18 @@ for seed in {1..10}; do
         checkpoint.keep_every_states="[model]" \
         datasource.train="$TRAIN_SET_DIR"
 done
+
+dora run solver=musicgen/musicgen_base_32khz \
+    model/lm/model_scale=small \
+    continue_from=//pretrained/facebook/musicgen-small \
+    conditioner=text2music \
+    dset=audio/musiccaps_custom \
+    dataset.num_workers=2 \
+    dataset.valid.num_samples=915 \
+    dataset.batch_size=2 \
+    schedule.cosine.warmup=8 \
+    optim.optimizer=adamw \
+    optim.lr=1e-4 \
+    optim.epochs=15 \
+    optim.updates_per_epoch="$FULL_TRAIN_SET_SIZE" \
+    optim.adam.weight_decay=0.01
