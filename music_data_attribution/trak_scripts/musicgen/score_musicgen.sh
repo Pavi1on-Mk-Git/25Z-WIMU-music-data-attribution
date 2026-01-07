@@ -32,3 +32,8 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
             --batch-size 2
     done
 done
+
+pdm run ./music_data_attribution/trak_scripts/musicgen/finalize_scores.py \
+    --models-count 100 \
+    --train-set-size "$FULL_TRAIN_SET_SIZE" \
+    --trak-dir "$TRAK_DIR"
