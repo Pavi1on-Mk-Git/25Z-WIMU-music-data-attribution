@@ -1,4 +1,4 @@
-from datasets import Dataset, DatasetDict, Audio, Value
+from datasets import Dataset, DatasetDict, Audio, Value, Features
 import pandas as pd
 import os
 
@@ -32,7 +32,7 @@ def prepare_split(audio_dir: str, csv_data: pd.DataFrame) -> Dataset:
         "is_balanced_subset": is_balanced_subset,
         "is_audioset_eval": is_audioset_eval,
     }
-    features = {
+    features = Features({
         "audio": Audio(sampling_rate=None),
         "ytid": Value("string"),
         "start_s": Value("int32"),
@@ -43,7 +43,7 @@ def prepare_split(audio_dir: str, csv_data: pd.DataFrame) -> Dataset:
         "author_id": Value("int32"),
         "is_balanced_subset": Value("bool"),
         "is_audioset_eval": Value("bool"),
-    }
+    })
 
     return Dataset.from_dict(data, features=features)
 
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     test_audio_dir = "data/processed/musiccaps/music_data_test"
     labels_csv_path = "data/raw/musiccaps/musiccaps-public.csv"
 
-    csv_data = pd.read_csv(labels_csv_path)["caption"].tolist()
+    csv_data = pd.read_csv(labels_csv_path)
     train_dataset = prepare_split(train_audio_dir, csv_data)
     test_dataset = prepare_split(test_audio_dir, csv_data)
 
