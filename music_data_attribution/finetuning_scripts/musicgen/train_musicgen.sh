@@ -46,8 +46,8 @@ datasource:
 
   train: egs/musiccaps/train
   valid: egs/musiccaps/test
-  evaluate: egs/musiccaps/test
-  generate: egs/musiccaps/test
+  evaluate: null
+  generate: null
 ' > config/dset/audio/musiccaps_custom.yaml
 
 for seed in {1..10}; do
