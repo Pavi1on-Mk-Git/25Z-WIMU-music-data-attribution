@@ -4,22 +4,30 @@ from audiocraft.modules.conditioners import (
     ClassifierFreeGuidanceDropout,
 )
 from audiocraft.utils.checkpoint import load_checkpoint
-
-# from audiocraft.data.audio import audio_write
+from audiocraft.data.audio import audio_write
 
 import torch
+import sys
+import pandas as pd
 
 torch.manual_seed(201)
 
+checkpoint = sys.argv[1]
+indexes = [int(idx) for idx in sys.argv[2].split(",")]
+prefix = "" if len(sys.argv) < 4 else sys.argv[3]
+
 m = MusicGen.get_pretrained("facebook/musicgen-small")
-checkpoint = load_checkpoint("checkpoint_1.th")
+checkpoint = torch.load(checkpoint, weights_only=False)
+print(list(checkpoint))
 m.lm.load_state_dict(checkpoint["model"])
 
-m.set_generation_params(duration=0.5, temperature=0, two_step_cfg=False)
-audio, tokens = m.generate(["powerful metal song"], return_tokens=True)
-# audio_write("output", audio[0].cpu(), m.sample_rate, strategy="loudness")
-print(f"{audio.shape=}")
-print(f"{tokens.shape=}")
+descriptions = pd.read_csv("data/raw/musiccaps/musiccaps-public.csv")["caption"][indexes]
+
+m.set_generation_params(duration=10, temperature=1)
+audios = m.generate(descriptions)
+
+for idx, audio in zip(indexes, audios):
+    audio_write(f"{prefix}{idx}", audio.cpu(), m.sample_rate, strategy="loudness")
 
 # attributes = [ConditioningAttributes(text={"description": "powerful metal song"})]
 # null_attributes = ClassifierFreeGuidanceDropout(p=1.0)(attributes)
