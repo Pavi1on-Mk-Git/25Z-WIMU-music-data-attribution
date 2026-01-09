@@ -1,3 +1,6 @@
+# This script was run in a separate environment with only one package installed: datasets[audio]
+# This is because of incompatibility of datasets with the version of torch in the main env.
+
 from datasets import Dataset, DatasetDict, Audio, Value, Features
 import pandas as pd
 import os
@@ -32,18 +35,20 @@ def prepare_split(audio_dir: str, csv_data: pd.DataFrame) -> Dataset:
         "is_balanced_subset": is_balanced_subset,
         "is_audioset_eval": is_audioset_eval,
     }
-    features = Features({
-        "audio": Audio(sampling_rate=None),
-        "ytid": Value("string"),
-        "start_s": Value("int32"),
-        "end_s": Value("int32"),
-        "audioset_positive_labels": Value("string"),
-        "aspect_list": Value("string"),
-        "caption": Value("string"),
-        "author_id": Value("int32"),
-        "is_balanced_subset": Value("bool"),
-        "is_audioset_eval": Value("bool"),
-    })
+    features = Features(
+        {
+            "audio": Audio(sampling_rate=None),
+            "ytid": Value("string"),
+            "start_s": Value("int32"),
+            "end_s": Value("int32"),
+            "audioset_positive_labels": Value("string"),
+            "aspect_list": Value("string"),
+            "caption": Value("string"),
+            "author_id": Value("int32"),
+            "is_balanced_subset": Value("bool"),
+            "is_audioset_eval": Value("bool"),
+        }
+    )
 
     return Dataset.from_dict(data, features=features)
 
