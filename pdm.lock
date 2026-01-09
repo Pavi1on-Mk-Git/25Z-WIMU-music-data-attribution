@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:86fd58f483d2027eb19e2ceae9c5e6b3057a66c3f93f0c0ae1164534d46c84d3"
+content_hash = "sha256:4183e147e04de583b7432212377f45b2e5eb6eeeb20b9ac1587dc7b6d0d10f32"
 
 [[metadata.targets]]
 requires_python = "==3.11.*"
@@ -2717,6 +2717,17 @@ files = [
 ]
 
 [[package]]
+name = "python-dotenv"
+version = "1.2.1"
+requires_python = ">=3.9"
+summary = "Read key-value pairs from a .env file and set them as environment variables"
+groups = ["default"]
+files = [
+    {file = "python_dotenv-1.2.1-py3-none-any.whl", hash = "sha256:b81ee9561e9ca4004139c6cbba3a238c32b03e4894671e181b671e8cb8425d61"},
+    {file = "python_dotenv-1.2.1.tar.gz", hash = "sha256:42667e897e16ab0d66954af0e60a9caa94f0fd4ecf3aaf6d2d260eec1aa36ad6"},
+]
+
+[[package]]
 name = "python-multipart"
 version = "0.0.20"
 requires_python = ">=3.8"
@@ -3325,6 +3336,8 @@ files = [
 [[package]]
 name = "stable-audio-tools"
 version = "0.0.19"
+editable = true
+path = "./stable-audio-tools"
 summary = "Training and inference tools for generative audio models from Stability AI"
 groups = ["default", "dev"]
 dependencies = [
@@ -3356,10 +3369,6 @@ dependencies = [
     "vector-quantize-pytorch==1.14.41",
     "wandb==0.15.4",
     "webdataset==0.2.100",
-]
-files = [
-    {file = "stable_audio_tools-0.0.19-py3-none-any.whl", hash = "sha256:c6b6f540d2bdabc4fc092246c77852f9a96a8ee8e430bbc117b174eb206dc6bd"},
-    {file = "stable_audio_tools-0.0.19.tar.gz", hash = "sha256:36e6ebf15b0415c84a9372ccf3c358b1702b3abf8614d397dee3468895e47da5"},
 ]
 
 [[package]]

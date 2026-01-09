@@ -10,3 +10,4 @@ data/
 *.th
 *.egg-info/
 results/
+.cache

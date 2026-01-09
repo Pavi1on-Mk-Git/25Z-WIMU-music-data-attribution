@@ -1,3 +1,7 @@
 [submodule "trak"]
 	path = trak
-	url = git@github.com:JakPro15/trak.git
+	url = https://github.com/JakPro15/trak.git
+
+[submodule "stable-audio-tools"]
+	path = stable-audio-tools
+	url = https://github.com/Pavi1on-Mk-Git/stable-audio-tools.git
