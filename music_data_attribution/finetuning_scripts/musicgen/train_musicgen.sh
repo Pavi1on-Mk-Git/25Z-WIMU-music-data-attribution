@@ -70,14 +70,15 @@ for seed in {1..10}; do
         dataset.valid.num_samples="$FULL_TEST_SET_SIZE" \
         dataset.batch_size="$BATCH_SIZE" \
         schedule.cosine.warmup=8 \
-        optim.optimizer=adamw \
-        optim.lr=1e-4 \
+        optim.optimizer=dadam \
+        optim.lr=1 \
+        optim.max_norm=1e-3 \
         optim.epochs=15 \
         optim.updates_per_epoch="$TRAIN_SET_SIZE_BATCHES" \
         optim.adam.weight_decay=0.01 \
         checkpoint.save_every=1 \
         checkpoint.keep_last=10 \
-        checkpoint.keep_every_states="[model]" \
+        checkpoint.keep_every_states="[model, xp.cfg]" \
         datasource.train="$TRAIN_SET_DIR"
 done
 
@@ -91,8 +92,13 @@ dora run solver=musicgen/musicgen_base_32khz \
     dataset.valid.num_samples="$FULL_TEST_SET_SIZE" \
     dataset.batch_size="$BATCH_SIZE" \
     schedule.cosine.warmup=8 \
-    optim.optimizer=adamw \
-    optim.lr=1e-4 \
+    optim.optimizer=dadam \
+    optim.lr=1 \
+    optim.max_norm=1e-3 \
     optim.epochs=15 \
     optim.updates_per_epoch="$FULL_TRAIN_SET_SIZE_BATCHES" \
-    optim.adam.weight_decay=0.01
+    optim.adam.weight_decay=0.01 \
+    checkpoint.save_every=1 \
+    checkpoint.keep_last=10 \
+    checkpoint.keep_every_states="[model, xp.cfg]"
+
