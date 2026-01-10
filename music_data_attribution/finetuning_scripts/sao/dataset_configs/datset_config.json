@@ -7,5 +7,6 @@
             "custom_metadata_module": "music_data_attribution/finetuning_scripts/sao/dataset_configs/custom_metadata.py"
         }
     ],
-    "random_crop": false
+    "random_crop": false,
+    "drop_last": false
 }
