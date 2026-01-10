@@ -1,5 +1,4 @@
 import pandas as pd
-from typing import Any
 
 DESCRIPTIONS_PATH = "/home/jproboszcz/musiccaps/musiccaps-public.csv"
 DATASET = pd.read_csv(DESCRIPTIONS_PATH).to_dict(orient="records")
