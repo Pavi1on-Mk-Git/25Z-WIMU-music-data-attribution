@@ -1,0 +1,11 @@
+{
+    "dataset_type": "audio_dir",
+    "datasets": [
+        {
+            "id": "musiccaps_train",
+            "path": "/home/jproboszcz/musiccaps/music_data_train",
+            "custom_metadata_module": "music_data_attribution/finetuning_scripts/sao/dataset_configs/custom_metadata.py"
+        }
+    ],
+    "random_crop": false
+}
