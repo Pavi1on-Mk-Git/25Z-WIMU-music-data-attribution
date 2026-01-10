@@ -42,24 +42,24 @@ class SAOSmallModelOutput(AbstractModelOutput):
                 yield _unsqueeze(arg, dim)
 
         audio, conditioning = unsqueeze_all(0, audio, conditioning)
-
-        def repeat_all(num_repeats, *args):
-            def _repeat(obj, num_repeats):
-                if isinstance(obj, Tensor):
-                    return obj.repeat(num_repeats, *[1 for _ in range(obj.ndim - 1)])
-                elif isinstance(obj, list):
-                    return [_repeat(o, num_repeats) for o in obj]
-                elif isinstance(obj, tuple):
-                    return tuple(_repeat(o, num_repeats) for o in obj)
-                elif isinstance(obj, dict):
-                    return {k: _repeat(v, num_repeats) for k, v in obj.items()}
-                else:
-                    return obj
-            
-            for arg in args:
-                yield _repeat(arg, num_repeats)
         
         if self.num_timesteps > 1:
+            def repeat_all(num_repeats, *args):
+                def _repeat(obj, num_repeats):
+                    if isinstance(obj, Tensor):
+                        return obj.repeat(num_repeats, *[1 for _ in range(obj.ndim - 1)])
+                    elif isinstance(obj, list):
+                        return [_repeat(o, num_repeats) for o in obj]
+                    elif isinstance(obj, tuple):
+                        return tuple(_repeat(o, num_repeats) for o in obj)
+                    elif isinstance(obj, dict):
+                        return {k: _repeat(v, num_repeats) for k, v in obj.items()}
+                    else:
+                        return obj
+                
+                for arg in args:
+                    yield _repeat(arg, num_repeats)
+
             audio, conditioning = repeat_all(self.num_timesteps, audio, conditioning)
 
         if audio.ndim == 4 and audio.shape[0] == 1:
