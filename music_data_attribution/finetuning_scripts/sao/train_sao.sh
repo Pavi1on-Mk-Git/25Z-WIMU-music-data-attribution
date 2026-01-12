@@ -17,15 +17,7 @@ pdm run python3 $STABLE_AUDIO_TOOLS_DIR/train.py \
     --accum-batches 2 \
     --num-gpus 1 \
     --precision 16-mixed \
-    --max-epochs 10 \
+    --max-epochs 300 \
+    --checkpoint_every_n_epochs 25 \
     --seed $seed \
     --random-subset-percentage 1.0
-
-ls $CHECKPOINTS_DIR/$seed/epoch=*-*.ckpt | sort -t= -k2,2n | head -n -10 | xargs -r rm --
-
-for checkpoint in $CHECKPOINTS_DIR/$seed/*.ckpt; do
-    pdm run python3 $STABLE_AUDIO_TOOLS_DIR/unwrap_model.py \
-        --model-config music_data_attribution/finetuning_scripts/sao/base_model_config.json \
-        --ckpt-path "$checkpoint" \
-        --name "${checkpoint%.*}"
-done
