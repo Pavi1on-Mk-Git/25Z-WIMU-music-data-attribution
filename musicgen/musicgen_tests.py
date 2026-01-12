@@ -1,14 +1,9 @@
-from audiocraft.models import MusicGen
-from audiocraft.modules.conditioners import (
-    ConditioningAttributes,
-    ClassifierFreeGuidanceDropout,
-)
-from audiocraft.utils.checkpoint import load_checkpoint
-from audiocraft.data.audio import audio_write
-
-import torch
 import sys
+
 import pandas as pd
+import torch
+from audiocraft.data.audio import audio_write
+from audiocraft.models import MusicGen
 
 torch.manual_seed(201)
 
