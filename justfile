@@ -42,10 +42,10 @@ train_test_musicgen:
     bash ./music_data_attribution/finetuning_scripts/musicgen/train_test_checkpoint.sh "{{AUDIOCRAFT_REPO_DIR}}"
 
 run_test_musicgen:
-    AUDIOCRAFT_DORA_DIR="{{AUDIOCRAFT_DORA_DIR}}" \
-    bash ./music_data_attribution/trak_scripts/musicgen/test_musicgen.sh "{{AUDIOCRAFT_DORA_DIR}}/xps" "{{AUDIOCRAFT_REPO_DIR}}"
+    PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True AUDIOCRAFT_DORA_DIR="{{AUDIOCRAFT_DORA_DIR}}" \
+    bash ./music_data_attribution/trak_scripts/musicgen/test_musicgen.sh "{{AUDIOCRAFT_DORA_DIR}}/xps" results/trak_musicgen_test
 
-    pdm run /music_data_attribution/trak_scripts/musicgen/check_test_scores.py
+    pdm run music_data_attribution/trak_scripts/musicgen/check_test_scores.py
 
 format:
     pdm run python3 -m ruff format .

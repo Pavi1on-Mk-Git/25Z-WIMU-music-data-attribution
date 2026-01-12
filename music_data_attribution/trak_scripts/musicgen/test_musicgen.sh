@@ -50,7 +50,7 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/score_musicgen.py \
     --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
     --train-set-size "$DEBUG_SET_SIZE" \
     --trak-dir "$TRAK_DIR" \
-    --batch-size 4 \
+    --batch-size 2 \
     --experiment-name musicgen_test
 
 # Finalize scores
