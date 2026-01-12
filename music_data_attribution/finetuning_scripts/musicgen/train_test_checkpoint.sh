@@ -31,7 +31,7 @@ DEBUG_SET_SIZE=$(wc -l < "$DEBUG_SET_FILE")
 TEST_SET_SIZE=$(wc -l < "$TEST_SET_FILE")
 
 BATCH_SIZE=4
-DEBUG_SET_SIZE_BATCHES=$(python3 -c "import math; print(math.ceil($TRAIN_SET_SIZE / $BATCH_SIZE))")
+DEBUG_SET_SIZE_BATCHES=$(python3 -c "import math; print(math.ceil($DEBUG_SET_SIZE / $BATCH_SIZE))")
 
 cd "$AUDIOCRAFT_REPO_DIR"
 
