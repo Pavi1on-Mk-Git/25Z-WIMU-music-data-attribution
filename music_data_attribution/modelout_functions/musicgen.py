@@ -47,8 +47,8 @@ class MusicGenModelOutput(AbstractModelOutput):
         logits = logits.reshape(B, K * T, -1)
         mask = mask.reshape(B, K * T)
 
-        tokens = tokens[mask]
-        logits = logits[mask]
+        masked_tokens = tokens[mask].view(tokens.size(0), -1)
+        masked_logits = logits[mask].view(logits.size(0), -1, logits.size(2))
 
         # margins = self._get_margins_from_logits(tokens, logits, mask)
         # assert margins.shape == (B, K * T)
@@ -57,7 +57,12 @@ class MusicGenModelOutput(AbstractModelOutput):
         # assert not output.isnan().any()
         # assert not output.isinf().any()
 
-        return torch.nn.functional.cross_entropy(logits, tokens)
+        masked_logits = masked_logits.transpose(1, 2)
+
+        loss_per_token = torch.nn.functional.cross_entropy(masked_logits, masked_tokens, reduction="none")
+        loss_per_sample = loss_per_token.sum(dim=-1, keepdim=True)
+
+        return loss_per_sample
 
     def get_out_to_loss_grad(
         self,
@@ -67,7 +72,7 @@ class MusicGenModelOutput(AbstractModelOutput):
         audios: Tensor,
         descriptions: list[str],
     ) -> Tensor:
-        return torch.ones(audios.shape[0], dtype=torch.float32, device=audios.device)
+        return torch.ones(audios.shape[0], 1, dtype=torch.float32, device=audios.device)
 
         # tokens = self._tokenize(audios)
         # B, K, T = tokens.shape
