@@ -1,4 +1,3 @@
-from audiocraft.utils.checkpoint import load_checkpoint
 from music_data_attribution.musiccaps_dataset import MusicCapsDataset
 from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
 from trak import TRAKer
@@ -73,7 +72,7 @@ if __name__ == "__main__":
 
     logger.debug("created traker")
 
-    checkpoint = load_checkpoint(args.checkpoint)
+    checkpoint = torch.load(args.checkpoint, weights_only=False)
     model_id = (args.train_run_id - 1) * 10 + (args.checkpoint_id - 6)
 
     traker.start_scoring_checkpoint(
