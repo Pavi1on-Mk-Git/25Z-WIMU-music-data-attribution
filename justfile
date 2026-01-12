@@ -36,8 +36,7 @@ train_test_musicgen:
     pdm run ./music_data_attribution/finetuning_scripts/musicgen/prepare_musicgen_data_json.py \
         "{{`pwd`}}/data/processed/musiccaps/music_data_debug" \
         data/raw/musiccaps/musiccaps-public.csv \
-        --output-dir "{{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/train"
-    cp "{{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/train/data.jsonl" "{{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/test/data.jsonl"
+        --output-dir "{{AUDIOCRAFT_REPO_DIR}}/egs/musiccaps/debug"
 
     AUDIOCRAFT_DORA_DIR="{{AUDIOCRAFT_DORA_DIR}}" \
     bash ./music_data_attribution/finetuning_scripts/musicgen/train_test_checkpoint.sh "{{AUDIOCRAFT_REPO_DIR}}"

@@ -19,16 +19,14 @@ fi
 
 AUDIOCRAFT_REPO_DIR="$1"
 MAIN_REPO_DIR=$(pwd)
-DEBUG_SET_FILE="$AUDIOCRAFT_REPO_DIR/egs/musiccaps/train/data.jsonl"
-TEST_SET_FILE="$AUDIOCRAFT_REPO_DIR/egs/musiccaps/test/data.jsonl"
+DEBUG_SET_FILE="$AUDIOCRAFT_REPO_DIR/egs/musiccaps/debug/data.jsonl"
 
-if [ ! -f "$DEBUG_SET_FILE" ] || [ ! -f "$TEST_SET_FILE" ]; then
-    echo "Error: First prepare MusicCaps debug split file in $DEBUG_SET_FILE and in $TEST_SET_FILE" >&2
+if [ ! -f "$DEBUG_SET_FILE" ]; then
+    echo "Error: First prepare MusicCaps debug split file in $DEBUG_SET_FILE" >&2
     exit 1
 fi
 
 DEBUG_SET_SIZE=$(wc -l < "$DEBUG_SET_FILE")
-TEST_SET_SIZE=$(wc -l < "$TEST_SET_FILE")
 
 BATCH_SIZE=4
 DEBUG_SET_SIZE_BATCHES=$(python3 -c "import math; print(math.ceil($DEBUG_SET_SIZE / $BATCH_SIZE))")
@@ -41,10 +39,10 @@ datasource:
   max_sample_rate: 48000
   max_channels: 2
 
-  train: egs/musiccaps/train
-  valid: egs/musiccaps/test
-  evaluate: null
-  generate: null
+  train: egs/musiccaps/debug
+  valid: egs/musiccaps/debug
+  evaluate: egs/musiccaps/debug
+  generate: egs/musiccaps/debug
 ' > config/dset/audio/musiccaps_custom.yaml
 
 dora run solver=musicgen/musicgen_base_32khz \
@@ -54,7 +52,7 @@ dora run solver=musicgen/musicgen_base_32khz \
     dset=audio/musiccaps_custom \
     dataset.num_workers=2 \
     dataset.train.num_samples="$DEBUG_SET_SIZE" \
-    dataset.valid.num_samples="$TEST_SET_SIZE" \
+    dataset.valid.num_samples="$DEBUG_SET_SIZE" \
     dataset.batch_size="$BATCH_SIZE" \
     schedule.cosine.warmup=8 \
     optim.optimizer=adamw \
@@ -63,5 +61,5 @@ dora run solver=musicgen/musicgen_base_32khz \
     optim.epochs=60 \
     optim.updates_per_epoch="$DEBUG_SET_SIZE_BATCHES" \
     optim.adam.weight_decay=0.01 \
-    checkpoint.keep_every_states="[model, xp.cfg]"
-
+    generate.every=null \
+    dataset.generate.num_samples=null
