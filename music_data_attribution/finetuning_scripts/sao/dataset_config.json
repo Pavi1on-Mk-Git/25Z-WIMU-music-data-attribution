@@ -2,8 +2,8 @@
     "dataset_type": "audio_dir",
     "datasets": [
         {
-            "id": "musiccaps_train",
-            "path": "/home/jproboszcz/musiccaps/music_data_train",
+            "id": "musiccaps_debug_generated",
+            "path": "checkpoints/sao_small/9/stable_audio_open_small_finetune/xfqjs690/generations",
             "custom_metadata_module": "music_data_attribution/finetuning_scripts/sao/custom_metadata.py"
         }
     ],
