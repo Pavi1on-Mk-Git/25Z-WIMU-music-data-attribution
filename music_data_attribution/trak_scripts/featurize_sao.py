@@ -122,7 +122,7 @@ def main(args):
     # load checkpoint
     if args.model_ckpt_path is not None:
         checkpoint = load_ckpt_state_dict(args.model_ckpt_path)
-        model_id = args.train_run_id * 100 + args.checkpoint_id
+        model_id = int(f"{args.train_run_id}{args.checkpoint_id}")
         traker.load_checkpoint(checkpoint, model_id=model_id)
         logger.info(
             f"Loaded checkpoint from {args.model_ckpt_path} under model ID {model_id} with TRAKer."

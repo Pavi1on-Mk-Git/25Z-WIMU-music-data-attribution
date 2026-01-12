@@ -3,13 +3,17 @@ set -e
 
 export FLASH_ATTN_DISABLE=1
 
+MODEL_CKPT_PATH="checkpoints/sao_small/9/stable_audio_open_small_finetune/xfqjs690/checkpoints/epoch=299-step=1200.ckpt"
+
+seed=$(echo "$MODEL_CKPT_PATH" | sed -n 's|.*sao_small/\([0-9]\+\)/.*|\1|p')
+epoch=$(echo "$MODEL_CKPT_PATH" | sed -n 's|.*epoch=\([0-9]\+\)-.*|\1|p')
+
 pdm run ./music_data_attribution/trak_scripts/featurize_sao.py \
     --dataset-config music_data_attribution/finetuning_scripts/sao/dataset_config.json \
     --batch-size 2 \
-    --random-subset-percentage 0.1 \
-    --model-ckpt-path checkpoints/sao_small/0/epoch=9-step=4570.ckpt \
-    --train-run-id 0 \
-    --checkpoint-id 9 \
+    --model-ckpt-path  $MODEL_CKPT_PATH \
+    --train-run-id $seed \
+    --checkpoint-id $epoch \
     --proj-dim 4096 \
     --num-timesteps 6 \
     --trak-dir ./results/trak_sao
