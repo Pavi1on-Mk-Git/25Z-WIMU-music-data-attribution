@@ -33,7 +33,7 @@ generate_musicgen:
 score_musicgen:
     bash ./music_data_attribution/trak_scripts/musicgen/score_musicgen.sh "{{AUDIOCRAFT_REPO_DIR}}" "{{AUDIOCRAFT_DORA_DIR}}/xps" results/trak_musicgen
 
-test_musicgen:
+train_test_musicgen:
     bash ./music_data_attribution/finetuning_scripts/select_random_musiccaps_subset.sh
     pdm run ./music_data_attribution/finetuning_scripts/musicgen/prepare_musicgen_data_json.py \
         "{{`pwd`}}/data/processed/musiccaps/music_data_debug" \
@@ -44,6 +44,7 @@ test_musicgen:
     AUDIOCRAFT_DORA_DIR="{{AUDIOCRAFT_DORA_DIR}}" \
     bash ./music_data_attribution/finetuning_scripts/musicgen/train_test_checkpoint.sh "{{AUDIOCRAFT_REPO_DIR}}"
 
+run_test_musicgen:
     AUDIOCRAFT_DORA_DIR="{{AUDIOCRAFT_DORA_DIR}}" \
     bash ./music_data_attribution/trak_scripts/musicgen/test_musicgen.sh "{{AUDIOCRAFT_DORA_DIR}}/xps" "{{AUDIOCRAFT_REPO_DIR}}"
 
