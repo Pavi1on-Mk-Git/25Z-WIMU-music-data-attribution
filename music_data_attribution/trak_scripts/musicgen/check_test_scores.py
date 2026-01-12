@@ -1,6 +1,6 @@
 from numpy.lib.format import open_memmap
 
-scores = open_memmap("results/trak_musicgen/scores/musicgen_test.mmap")
+scores = open_memmap("results/trak_musicgen_test/scores/musicgen_test.mmap")
 
 top_1_acc = 0
 top_5_acc = 0
