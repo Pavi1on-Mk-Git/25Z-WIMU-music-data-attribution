@@ -81,7 +81,7 @@ for seed in {1..10}; do
         checkpoint.keep_every_states="[model, xp.cfg]" \
         datasource.train="$TRAIN_SET_DIR" \
         generate.every=null \
-        dataset.generate.num_samples=null
+        dataset.generate.num_samples=0
 done
 
 dora run solver=musicgen/musicgen_base_32khz \
@@ -104,5 +104,4 @@ dora run solver=musicgen/musicgen_base_32khz \
     checkpoint.keep_last=10 \
     checkpoint.keep_every_states="[model, xp.cfg]"
     generate.every=null \
-    dataset.generate.num_samples=null
-
+    dataset.generate.num_samples=0

@@ -62,4 +62,4 @@ dora run solver=musicgen/musicgen_base_32khz \
     optim.updates_per_epoch="$DEBUG_SET_SIZE_BATCHES" \
     optim.adam.weight_decay=0.01 \
     generate.every=null \
-    dataset.generate.num_samples=null
+    dataset.generate.num_samples=0
