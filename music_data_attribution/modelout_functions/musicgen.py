@@ -1,15 +1,15 @@
-from trak.modelout_functions import AbstractModelOutput
-from torch import Tensor
-from torch.nn import Module
-from audiocraft.modules.conditioners import (
-    ConditioningAttributes,
-    ClassifierFreeGuidanceDropout,
-)
-from audiocraft.models.musicgen import MusicGen
-from audiocraft.models.lm import LMModel
 from typing import Iterable
 
 import torch
+from audiocraft.models.lm import LMModel
+from audiocraft.models.musicgen import MusicGen
+from audiocraft.modules.conditioners import (
+    ClassifierFreeGuidanceDropout,
+    ConditioningAttributes,
+)
+from torch import Tensor
+from torch.nn import Module
+from trak.modelout_functions import AbstractModelOutput
 
 
 class MusicGenModelOutput(AbstractModelOutput):
@@ -43,14 +43,20 @@ class MusicGenModelOutput(AbstractModelOutput):
         assert logits.shape == (B, K, T, self.musicgen.lm.card)
         assert mask.shape == (B, K, T)
 
-        margins = self._get_margins_from_logits(tokens, logits, mask)
-        assert margins.shape == (B, K * T)
+        logits = logits.reshape(B, K * T, -1)
+        mask = mask.reshape(B, K * T)
 
-        output = torch.sum(margins, dim=-1)
-        assert not output.isnan().any()
-        assert not output.isinf().any()
+        tokens = tokens[mask]
+        logits = logits[mask]
 
-        return output
+        # margins = self._get_margins_from_logits(tokens, logits, mask)
+        # assert margins.shape == (B, K * T)
+
+        # output = torch.sum(margins, dim=-1)
+        # assert not output.isnan().any()
+        # assert not output.isinf().any()
+
+        return torch.nn.functional.cross_entropy(logits, tokens)
 
     def get_out_to_loss_grad(
         self,
@@ -60,27 +66,29 @@ class MusicGenModelOutput(AbstractModelOutput):
         audios: Tensor,
         descriptions: list[str],
     ) -> Tensor:
-        tokens = self._tokenize(audios)
-        B, K, T = tokens.shape
+        return torch.ones(audios.shape[0], dtype=torch.float32, device=audios.device)
 
-        logits, mask = self._compute_cfg_logits(lm_model, tokens, descriptions)
-        assert logits.shape == (B, K, T, self.musicgen.lm.card)
-        assert mask.shape == (B, K, T)
+        # tokens = self._tokenize(audios)
+        # B, K, T = tokens.shape
 
-        ps = torch.softmax(logits / self.temperature, dim=-1)
-        ps = torch.gather(ps, -1, tokens.unsqueeze(-1)).squeeze(-1)
-        ps = torch.masked_fill(ps, ~mask, 0)
-        ps = ps.reshape(B, K * T)
+        # logits, mask = self._compute_cfg_logits(lm_model, tokens, descriptions)
+        # assert logits.shape == (B, K, T, self.musicgen.lm.card)
+        # assert mask.shape == (B, K, T)
 
-        base_grads = 1 - ps
-        margins = self._get_margins_from_logits(tokens, logits, mask)
-        assert margins.shape == (B, K * T)
+        # ps = torch.softmax(logits / self.temperature, dim=-1)
+        # ps = torch.gather(ps, -1, tokens.unsqueeze(-1)).squeeze(-1)
+        # ps = torch.masked_fill(ps, ~mask, 0)
+        # ps = ps.reshape(B, K * T)
 
-        out_to_loss_grad = (torch.sum(base_grads * margins, dim=-1) / torch.sum(margins, dim=-1)).unsqueeze(-1)
-        assert not out_to_loss_grad.isnan().any()
-        assert not out_to_loss_grad.isinf().any()
+        # base_grads = 1 - ps
+        # margins = self._get_margins_from_logits(tokens, logits, mask)
+        # assert margins.shape == (B, K * T)
 
-        return out_to_loss_grad
+        # out_to_loss_grad = (torch.sum(base_grads * margins, dim=-1) / torch.sum(margins, dim=-1)).unsqueeze(-1)
+        # assert not out_to_loss_grad.isnan().any()
+        # assert not out_to_loss_grad.isinf().any()
+
+        # return out_to_loss_grad
 
     def _get_margins_from_logits(self, tokens: Tensor, logits: Tensor, mask: Tensor) -> Tensor:
         tokens = tokens.unsqueeze(-1)
@@ -89,8 +97,8 @@ class MusicGenModelOutput(AbstractModelOutput):
 
         # this is passed to torch.logsumexp, so -inf after exp becomes 0
         logits_incorrect = logits.clone()
-        logits_incorrect = logits_incorrect.scatter(
-            -1, tokens, torch.full_like(logits_correct, -torch.inf).unsqueeze(-1)
+        logits_incorrect = torch.scatter(
+            logits_incorrect, -1, tokens, torch.full_like(logits_correct, -torch.inf).unsqueeze(-1)
         )
         logits_incorrect = torch.masked_fill(logits_incorrect, ~mask.unsqueeze(-1), -torch.inf)
 
