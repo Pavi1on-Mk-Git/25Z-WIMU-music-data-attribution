@@ -43,6 +43,7 @@ class MusicGenModelOutput(AbstractModelOutput):
         assert logits.shape == (B, K, T, self.musicgen.lm.card)
         assert mask.shape == (B, K, T)
 
+        tokens = tokens.reshape(B, K * T)
         logits = logits.reshape(B, K * T, -1)
         mask = mask.reshape(B, K * T)
 
