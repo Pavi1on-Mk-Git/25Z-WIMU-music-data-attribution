@@ -1,8 +1,6 @@
 AUDIOCRAFT_REPO_DIR := "/home/jproboszcz/audiocraft"
 AUDIOCRAFT_DORA_DIR := "/data/jproboszcz/musicgen"
 
-TEST_MUSICGEN_CHECKPOINT := "/data/jproboszcz/musicgen/xps/7a0dfca3/checkpoint_50.th"
-
 split_musiccaps:
     pdm run ./music_data_attribution/finetuning_scripts/split_musiccaps.py \
         data/raw/musiccaps/music_data \
