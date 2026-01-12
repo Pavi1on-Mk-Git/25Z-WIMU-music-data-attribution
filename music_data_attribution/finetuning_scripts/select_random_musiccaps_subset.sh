@@ -1,0 +1,1 @@
+ls -1 data/processed/music_data_train/ | shuf -n 64 | xargs -I {} cp "data/processed/music_data_train/{}" "data/processed/music_data_debug/"

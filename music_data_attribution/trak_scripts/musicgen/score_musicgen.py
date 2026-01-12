@@ -1,19 +1,19 @@
-from music_data_attribution.musiccaps_dataset import MusicCapsDataset
-from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
-from trak import TRAKer
-from tqdm import tqdm
-from torch.utils.data import DataLoader
-from trak.gradient_computers import IterativeGradientComputer
-from audiocraft.models.musicgen import MusicGen
-
-import torch
-import logging
-import numpy as np
-import sys
 import argparse
+import logging
+import sys
+
+import numpy as np
+import torch
+from audiocraft.models.musicgen import MusicGen
+from torch.utils.data import DataLoader
+from tqdm import tqdm
+from trak.gradient_computers import IterativeGradientComputer
+
+from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
+from music_data_attribution.musiccaps_dataset import MusicCapsDataset
+from trak import TRAKer
 
 SEED = 201
-EXPERIMENT_NAME = "musicgen_trak"
 
 
 if __name__ == "__main__":
@@ -26,6 +26,7 @@ if __name__ == "__main__":
     parser.add_argument("--train-set-size", type=int, help="Size of the training set used for featurizing.")
     parser.add_argument("--trak-dir", type=str, help="Directory for TRAK intermediate results.")
     parser.add_argument("--batch-size", type=int, help="Batch size for gradient calculations.", default=2)
+    parser.add_argument("--experiment-name", type=str, help="TRAK experiment name.")
     args = parser.parse_args()
 
     np.random.seed(SEED)
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     model_id = (args.train_run_id - 1) * 10 + (args.checkpoint_id - 6)
 
     traker.start_scoring_checkpoint(
-        exp_name=EXPERIMENT_NAME,
+        exp_name=args.experiment_name,
         checkpoint=checkpoint["model"],
         model_id=model_id,
         num_targets=len(dataloader.dataset),

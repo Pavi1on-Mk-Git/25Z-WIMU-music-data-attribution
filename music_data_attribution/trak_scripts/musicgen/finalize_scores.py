@@ -1,14 +1,14 @@
+import argparse
+import logging
+import sys
+
+import numpy as np
+import torch
+from audiocraft.models.musicgen import MusicGen
+from trak.gradient_computers import IterativeGradientComputer
+
 from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
 from trak import TRAKer
-from trak.gradient_computers import IterativeGradientComputer
-from audiocraft.models.musicgen import MusicGen
-from music_data_attribution.trak_scripts.musicgen.score_musicgen import EXPERIMENT_NAME
-
-import torch
-import logging
-import numpy as np
-import sys
-import argparse
 
 SEED = 201
 
@@ -18,6 +18,7 @@ if __name__ == "__main__":
     parser.add_argument("--models-count", type=int, help="Count of different model checkpoints used.")
     parser.add_argument("--train-set-size", type=int, help="Size of the training set used for featurizing.")
     parser.add_argument("--trak-dir", type=str, help="Directory for TRAK intermediate results.")
+    parser.add_argument("--experiment-name", type=str, help="TRAK experiment name.")
     args = parser.parse_args()
 
     np.random.seed(SEED)
@@ -49,6 +50,6 @@ if __name__ == "__main__":
 
     logger.debug("created traker")
 
-    traker.finalize_scores(exp_name=EXPERIMENT_NAME, model_ids=list(range(args.models_count)))
+    traker.finalize_scores(exp_name=args.experiment_name, model_ids=list(range(args.models_count)))
 
     logger.info("finished")

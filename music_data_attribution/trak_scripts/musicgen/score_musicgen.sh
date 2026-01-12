@@ -7,6 +7,7 @@ if [ "$#" -ne 3 ]; then
     exit 1
 fi
 
+# TODO: remove AUDIOCRAFT_REPO_DIR argument, get FULL_TRAIN_SET_SIZE via ls
 AUDIOCRAFT_REPO_DIR="$1"
 DORA_EXPERIMENTS_DIR="$2"
 TRAK_DIR="$3"
@@ -33,11 +34,13 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
             --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
             --train-set-size "$FULL_TRAIN_SET_SIZE" \
             --trak-dir "$TRAK_DIR" \
-            --batch-size 4
+            --batch-size 4 \
+            --experiment-name musicgen_trak
     done
 done
 
 pdm run ./music_data_attribution/trak_scripts/musicgen/finalize_scores.py \
     --models-count 100 \
     --train-set-size "$FULL_TRAIN_SET_SIZE" \
-    --trak-dir "$TRAK_DIR"
+    --trak-dir "$TRAK_DIR" \
+    --experiment-name musicgen_trak
