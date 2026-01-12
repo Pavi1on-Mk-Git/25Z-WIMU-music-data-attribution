@@ -11,3 +11,5 @@ data/
 *.egg-info/
 results/
 .cache
+wandb/
+checkpoints/
