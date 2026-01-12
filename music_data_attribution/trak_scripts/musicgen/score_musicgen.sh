@@ -18,7 +18,11 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
     if [ ! -d "$dir" ] || [ ! -f "$dir"/checkpoint_15.th ]; then
         continue
     fi
+
     TRAIN_RUN_ID=$(cat "$dir"/outputs/hyperparams.json | python -m json.tool | grep -o 'train_[0-9]\+' | sed 's/train_//')
+    if [ -z "$TRAIN_RUN_ID" ]; then
+        continue
+    fi
 
     for checkpoint_id in {6..15}; do
         pdm run ./music_data_attribution/trak_scripts/musicgen/score_musicgen.py \

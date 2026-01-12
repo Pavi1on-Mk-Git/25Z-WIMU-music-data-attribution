@@ -1,4 +1,3 @@
-from audiocraft.utils.checkpoint import load_checkpoint
 from music_data_attribution.musiccaps_dataset import MusicCapsDataset
 from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
 from trak import TRAKer
