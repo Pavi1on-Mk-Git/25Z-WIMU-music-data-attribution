@@ -1,14 +1,16 @@
 #!/bin/bash
 set -e
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 dora_experiments_dir trak_dir" >&2
-    echo "Error: Expected 2 arguments, got $#." >&2
+if [ "$#" -ne 4 ]; then
+    echo "Usage: $0 dora_experiments_dir trak_dir model_output use_cfg" >&2
+    echo "Error: Expected 4 arguments, got $#." >&2
     exit 1
 fi
 
 DORA_EXPERIMENTS_DIR="$1"
 TRAK_DIR="$2"
+MODEL_OUTPUT="$3"
+USE_CFG="$4"
 
 DEBUG_SET_SIZE=$(ls data/processed/musiccaps/music_data_debug | wc -l)
 
@@ -22,7 +24,6 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
 done
 
 CHECKPOINT_PATH="$(realpath $dir)/checkpoint.th"
-MODEL_OUTPUT="--model-output loss --use-cfg true"
 
 # Featurize
 pdm run ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.py \
@@ -33,7 +34,8 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.py \
     --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
     --trak-dir "$TRAK_DIR" \
     --batch-size 4 \
-    $MODEL_OUTPUT
+    --model-output "$MODEL_OUTPUT" \
+    --use-cfg "$USE_CFG"
 
 # Generate samples
 pdm run ./music_data_attribution/trak_scripts/musicgen/generate_samples.py \
@@ -55,7 +57,8 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/score_musicgen.py \
     --trak-dir "$TRAK_DIR" \
     --batch-size 2 \
     --experiment-name musicgen_test \
-    $MODEL_OUTPUT
+    --model-output "$MODEL_OUTPUT" \
+    --use-cfg "$USE_CFG"
 
 # Finalize scores
 pdm run ./music_data_attribution/trak_scripts/musicgen/finalize_scores.py \
@@ -63,4 +66,5 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/finalize_scores.py \
     --train-set-size "$DEBUG_SET_SIZE" \
     --trak-dir "$TRAK_DIR" \
     --experiment-name musicgen_test \
-    $MODEL_OUTPUT
+    --model-output "$MODEL_OUTPUT" \
+    --use-cfg "$USE_CFG"
