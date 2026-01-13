@@ -13,7 +13,7 @@ from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutp
 from music_data_attribution.musiccaps_dataset import MusicCapsDataset
 from trak import TRAKer
 
-SEED = 201
+SEED = 1401
 
 
 def prepare_generated_dataset(args: argparse.Namespace) -> MusicCapsDataset:
@@ -52,8 +52,10 @@ if __name__ == "__main__":
     parser.add_argument("--experiment-name", type=str, help="TRAK experiment name.")
     args = parser.parse_args()
 
-    np.random.seed(SEED)
-    torch.manual_seed(SEED)
+    model_id = (args.train_run_id - 1) * 10 + (args.checkpoint_id - 6)
+
+    np.random.seed(SEED + model_id)
+    torch.manual_seed(SEED + model_id)
     logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
     logger = logging.getLogger("score_musicgen")
@@ -91,7 +93,6 @@ if __name__ == "__main__":
     logger.debug("created traker")
 
     checkpoint = torch.load(args.checkpoint, weights_only=False)
-    model_id = (args.train_run_id - 1) * 10 + (args.checkpoint_id - 6)
 
     traker.start_scoring_checkpoint(
         exp_name=args.experiment_name,
