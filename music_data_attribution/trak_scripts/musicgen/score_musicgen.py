@@ -16,12 +16,35 @@ from trak import TRAKer
 SEED = 201
 
 
+def prepare_generated_dataset(args: argparse.Namespace) -> MusicCapsDataset:
+    valid_dataset = MusicCapsDataset(
+        audio_dir=args.music_data_path,
+        labels_csv_path=args.descriptions_path,
+        # sample rate and channels as expected by MusicGen
+        sample_rate=32000,
+        channels=1,
+    )
+    generated_dataset = MusicCapsDataset(
+        audio_dir=args.generated_path,
+        labels_csv_path=args.descriptions_path,
+        # sample rate and channels as expected by MusicGen
+        sample_rate=32000,
+        channels=1,
+    )
+    generated_dataset.descriptions = valid_dataset.descriptions
+
+    return generated_dataset
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("checkpoint", type=str, help="Path to the MusicGen checkpoint to generate from.")
     parser.add_argument("--train-run-id", type=int, help="ID of the training run that produced the checkpoint.")
     parser.add_argument("--checkpoint-id", type=int, help="Number of epochs after which the checkpoint was saved.")
-    parser.add_argument("--music-data-path", type=str, help="Path to the generated wav files to score.")
+    parser.add_argument("--generated-path", type=str, help="Path to the generated wav files to score.")
+    parser.add_argument(
+        "--music-data-path", type=str, help="Path to the original test set wav files (for retrieving descriptions)."
+    )
     parser.add_argument("--descriptions-path", type=str, help="Path to the MusicCaps captions csv file.")
     parser.add_argument("--train-set-size", type=int, help="Size of the training set used for featurizing.")
     parser.add_argument("--trak-dir", type=str, help="Directory for TRAK intermediate results.")
@@ -35,13 +58,7 @@ if __name__ == "__main__":
 
     logger = logging.getLogger("score_musicgen")
 
-    dataset = MusicCapsDataset(
-        audio_dir=args.music_data_path,
-        labels_csv_path=args.descriptions_path,
-        # sample rate and channels as expected by MusicGen
-        sample_rate=32000,
-        channels=1,
-    )
+    dataset = prepare_generated_dataset(args)
     dataloader = DataLoader(
         dataset,
         batch_size=args.batch_size,
