@@ -19,7 +19,9 @@ if __name__ == "__main__":
     parser.add_argument("--train-set-size", type=int, help="Size of the training set used for featurizing.")
     parser.add_argument("--trak-dir", type=str, help="Directory for TRAK intermediate results.")
     parser.add_argument("--experiment-name", type=str, help="TRAK experiment name.")
-    parser.add_argument("--model-output", choices=["loss", "binary"], help="Model output function version to use.")
+    parser.add_argument(
+        "--model-output", choices=["loss", "binary", "summed"], help="Model output function version to use."
+    )
     parser.add_argument("--use-cfg", type=bool, help="Whether to use CFG for logit calculation.")
     args = parser.parse_args()
 
