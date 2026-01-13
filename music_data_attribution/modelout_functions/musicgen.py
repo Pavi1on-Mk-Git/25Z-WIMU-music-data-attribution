@@ -29,9 +29,10 @@ class MusicGenWrapper:
             tokens = torch.cat([tokens, tokens], dim=0)
 
         tokenized_attributes = self.musicgen.lm.condition_provider.tokenize(conditions)
-        condition_tensors = self.musicgen.lm.condition_provider(tokenized_attributes)
 
         with self.musicgen.autocast:
+            condition_tensors = self.musicgen.lm.condition_provider(tokenized_attributes)
+
             out = lm_model.compute_predictions(tokens, [], condition_tensors)
             logits, mask = out.logits, out.mask
 

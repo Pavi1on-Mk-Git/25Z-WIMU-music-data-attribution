@@ -53,7 +53,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model-output", choices=["loss", "binary", "summed"], help="Model output function version to use."
     )
-    parser.add_argument("--use-cfg", type=bool, help="Whether to use CFG for logit calculation.")
+    parser.add_argument("--use-cfg", choices=["true", "false"], help="Whether to use CFG for logit calculation.")
     args = parser.parse_args()
 
     model_id = (args.train_run_id - 1) * 10 + (args.checkpoint_id - 6)
@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
     logger.debug("loaded pretrained musicgen")
 
-    task = get_model_output_function(args.model_output, model, args.use_cfg)
+    task = get_model_output_function(args.model_output, model, args.use_cfg == "true")
 
     traker = TRAKer(
         model=model.lm,
