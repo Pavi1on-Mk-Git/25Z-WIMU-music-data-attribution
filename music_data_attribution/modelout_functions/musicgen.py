@@ -161,13 +161,75 @@ class MusicGenBinaryModelOutput(AbstractModelOutput):
         return (1 - ps).clone().detach().unsqueeze(-1)
 
 
+class MusicGenSummedModelOutput(AbstractModelOutput):
+    def __init__(self, musicgen: MusicGen, use_cfg: bool, temperature: float = 1.0):
+        self.musicgen = MusicGenWrapper(musicgen, use_cfg)
+        self.temperature = temperature
+        self.softmax = torch.nn.Softmax(-1)
+
+    def get_output(
+        self,
+        lm_model: Module,
+        weights: Iterable[Tensor] | None,
+        buffers: Iterable[Tensor] | None,
+        audios: Tensor,
+        descriptions: list[str],
+    ) -> Tensor:
+        """
+        Calculated model output function analogously to the text classification case,
+        summing the results over codebooks and tokens.
+        """
+        tokens = self.musicgen.tokenize(audios)
+        B, K, T = tokens.shape
+
+        logits, mask = self.musicgen.compute_logits(lm_model, tokens, descriptions)
+        assert logits.shape == (B, K, T, self.musicgen.musicgen.lm.card)
+        assert mask.shape == (B, K, T)
+
+        logits_correct = torch.gather(logits, -1, tokens.unsqueeze(-1)).squeeze(-1)
+        logits_correct[~mask] = 0
+        assert logits_correct.shape == (B, K, T)
+
+        logits_incorrect = torch.scatter(
+            logits, -1, tokens.unsqueeze(-1), torch.full_like(logits_correct, -torch.inf).unsqueeze(-1)
+        )
+        logits_incorrect = torch.masked_fill(logits_incorrect, ~mask.unsqueeze(-1), -torch.inf)
+        assert logits_incorrect.shape == (B, K, T, self.musicgen.musicgen.lm.card)
+
+        margins = logits_correct - logits_incorrect.logsumexp(dim=-1)
+        return margins.reshape(tokens.shape[0], -1).sum(dim=-1)
+
+    def get_out_to_loss_grad(
+        self,
+        lm_model: LMModel,
+        weights: Iterable[Tensor] | None,
+        buffers: Iterable[Tensor] | None,
+        audios: Tensor,
+        descriptions: list[str],
+    ) -> Tensor:
+        tokens = self.musicgen.tokenize(audios)
+        B, K, T = tokens.shape
+
+        logits, mask = self.musicgen.compute_logits(lm_model, tokens, descriptions)
+        assert logits.shape == (B, K, T, self.musicgen.musicgen.lm.card)
+        assert mask.shape == (B, K, T)
+
+        ps = self.softmax(logits / self.temperature)
+        ps_correct = torch.gather(ps, -1, tokens.unsqueeze(-1)).squeeze(-1)
+        ps_correct[~mask] = 1
+        assert ps_correct.shape == (B, K, T)
+
+        return (1 - ps_correct.reshape(B, K * T)).sum(dim=-1, keepdim=True)
+
+
 MODEL_OUTPUT_FUNCTIONS = {
     "loss": MusicGenLossModelOutput,
     "binary": MusicGenBinaryModelOutput,
+    "summed": MusicGenSummedModelOutput,
 }
 
 
 def get_model_output_function(
-    version: Literal["loss", "binary"], model: MusicGen, use_cfg: bool
-) -> MusicGenLossModelOutput | MusicGenBinaryModelOutput:
+    version: Literal["loss", "binary", "summed"], model: MusicGen, use_cfg: bool
+) -> MusicGenLossModelOutput | MusicGenBinaryModelOutput | MusicGenSummedModelOutput:
     return MODEL_OUTPUT_FUNCTIONS[version](model, use_cfg)
