@@ -9,7 +9,8 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from trak.gradient_computers import IterativeGradientComputer
 
-from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
+# from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
+from music_data_attribution.modelout_functions.musicgen_binary import MusicGenBinaryModelOutput
 from music_data_attribution.musiccaps_dataset import MusicCapsDataset
 from trak import TRAKer
 
@@ -75,7 +76,7 @@ if __name__ == "__main__":
 
     logger.debug("loaded pretrained musicgen")
 
-    task = MusicGenModelOutput(m)
+    task = MusicGenBinaryModelOutput(m)
 
     traker = TRAKer(
         model=m.lm,
