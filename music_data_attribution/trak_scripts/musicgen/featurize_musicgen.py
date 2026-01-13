@@ -9,8 +9,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from trak.gradient_computers import IterativeGradientComputer
 
-# from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
-from music_data_attribution.modelout_functions.musicgen_binary import MusicGenBinaryModelOutput
+from music_data_attribution.modelout_functions.musicgen import get_model_output_function
 from music_data_attribution.musiccaps_dataset import MusicCapsDataset
 from trak import TRAKer
 
@@ -26,6 +25,8 @@ if __name__ == "__main__":
     parser.add_argument("--descriptions-path", type=str, help="Path to the MusicCaps captions csv file.")
     parser.add_argument("--trak-dir", type=str, help="Directory for TRAK intermediate results.")
     parser.add_argument("--batch-size", type=int, help="Batch size for gradient calculations.", default=2)
+    parser.add_argument("--model-output", choices=["loss", "binary"], help="Model output function version to use.")
+    parser.add_argument("--use-cfg", type=bool, help="Whether to use CFG for logit calculation.")
     args = parser.parse_args()
 
     model_id = (args.train_run_id - 1) * 10 + (args.checkpoint_id - 6)
@@ -51,16 +52,16 @@ if __name__ == "__main__":
 
     logger.debug("created dataloader")
 
-    m = MusicGen.get_pretrained("facebook/musicgen-small")
-    m.compression_model.eval()
-    m.lm.eval()
+    model = MusicGen.get_pretrained("facebook/musicgen-small")
+    model.compression_model.eval()
+    model.lm.eval()
 
     logger.debug("loaded pretrained musicgen")
 
-    task = MusicGenBinaryModelOutput(m)
+    task = get_model_output_function(args.model_output, model, args.use_cfg)
 
     traker = TRAKer(
-        model=m.lm,
+        model=model.lm,
         task=task,
         save_dir=args.trak_dir,
         load_from_save_dir=True,

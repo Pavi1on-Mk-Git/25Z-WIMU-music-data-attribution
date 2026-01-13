@@ -28,6 +28,8 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
             --music-data-path data/processed/musiccaps/music_data_train \
             --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
             --trak-dir "$TRAK_DIR" \
-            --batch-size 4
+            --batch-size 4 \
+            --model-output loss \
+            --use-cfg true
     done
 done

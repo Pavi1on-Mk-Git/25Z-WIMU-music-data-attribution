@@ -7,7 +7,7 @@ import torch
 from audiocraft.models.musicgen import MusicGen
 from trak.gradient_computers import IterativeGradientComputer
 
-from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
+from music_data_attribution.modelout_functions.musicgen import get_model_output_function
 from trak import TRAKer
 
 SEED = 201
@@ -19,6 +19,8 @@ if __name__ == "__main__":
     parser.add_argument("--train-set-size", type=int, help="Size of the training set used for featurizing.")
     parser.add_argument("--trak-dir", type=str, help="Directory for TRAK intermediate results.")
     parser.add_argument("--experiment-name", type=str, help="TRAK experiment name.")
+    parser.add_argument("--model-output", choices=["loss", "binary"], help="Model output function version to use.")
+    parser.add_argument("--use-cfg", type=bool, help="Whether to use CFG for logit calculation.")
     args = parser.parse_args()
 
     np.random.seed(SEED)
@@ -27,16 +29,16 @@ if __name__ == "__main__":
 
     logger = logging.getLogger("finalize_scores")
 
-    m = MusicGen.get_pretrained("facebook/musicgen-small")
-    m.compression_model.eval()
-    m.lm.eval()
+    model = MusicGen.get_pretrained("facebook/musicgen-small")
+    model.compression_model.eval()
+    model.lm.eval()
 
     logger.debug("loaded pretrained musicgen")
 
-    task = MusicGenModelOutput(m)
+    task = get_model_output_function(args.model_output, model, args.use_cfg)
 
     traker = TRAKer(
-        model=m.lm,
+        model=model.lm,
         task=task,
         save_dir=args.trak_dir,
         load_from_save_dir=True,

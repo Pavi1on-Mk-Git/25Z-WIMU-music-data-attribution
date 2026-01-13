@@ -15,6 +15,8 @@ TRAK_DIR="$3"
 FULL_TRAIN_SET_FILE="$AUDIOCRAFT_REPO_DIR/egs/musiccaps/train/data.jsonl"
 FULL_TRAIN_SET_SIZE=$(wc -l < "$FULL_TRAIN_SET_FILE")
 
+MODEL_OUTPUT="--model-output loss --use-cfg true"
+
 for dir in "$DORA_EXPERIMENTS_DIR"/*; do
     if [ ! -d "$dir" ] || [ ! -f "$dir"/checkpoint_15.th ]; then
         continue
@@ -35,7 +37,8 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
             --train-set-size "$FULL_TRAIN_SET_SIZE" \
             --trak-dir "$TRAK_DIR" \
             --batch-size 4 \
-            --experiment-name musicgen_trak
+            --experiment-name musicgen_trak\
+            $MODEL_OUTPUT
     done
 done
 
@@ -43,4 +46,5 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/finalize_scores.py \
     --models-count 100 \
     --train-set-size "$FULL_TRAIN_SET_SIZE" \
     --trak-dir "$TRAK_DIR" \
-    --experiment-name musicgen_trak
+    --experiment-name musicgen_trak \
+    $MODEL_OUTPUT
