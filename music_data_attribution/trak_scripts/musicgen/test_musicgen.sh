@@ -37,13 +37,15 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.py \
     --model-output "$MODEL_OUTPUT" \
     --use-cfg "$USE_CFG"
 
-# Generate samples
-pdm run ./music_data_attribution/trak_scripts/musicgen/generate_samples.py \
-    "$CHECKPOINT_PATH" \
-    --music-data-path data/processed/musiccaps/music_data_debug \
-    --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
-    --output-dir results/generated/musicgen_debug \
-    --batch-size 16
+# Generate samples if not generated yet
+if [ ! -d "results/generated/musicgen_debug" ]; then
+    pdm run ./music_data_attribution/trak_scripts/musicgen/generate_samples.py \
+        "$CHECKPOINT_PATH" \
+        --music-data-path data/processed/musiccaps/music_data_debug \
+        --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
+        --output-dir results/generated/musicgen_debug \
+        --batch-size 16
+fi
 
 # Score
 pdm run ./music_data_attribution/trak_scripts/musicgen/score_musicgen.py \

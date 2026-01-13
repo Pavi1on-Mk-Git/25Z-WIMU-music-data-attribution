@@ -40,17 +40,12 @@ if __name__ == "__main__":
     checkpoint = torch.load(args.checkpoint, "cpu", weights_only=False)
     musicgen.lm.load_state_dict(checkpoint["model"])
 
-    musicgen.set_generation_params(duration=10, temperature=0)
+    musicgen.set_generation_params(duration=10, temperature=1)
 
     for indices, _, descriptions in tqdm(dataloader, desc="Generating samples..."):
         audios, all_tokens = musicgen.generate(descriptions, return_tokens=True)
         for index, audio, tokens in zip(indices, audios, all_tokens):
             audio_output_file_path = os.path.join(args.output_dir, f"{index}")  # audiocraft appends .wav
-            audio_write(
-                audio_output_file_path,
-                audio.cpu(),
-                musicgen.sample_rate,
-                strategy="loudness",
-            )
+            audio_write(audio_output_file_path, audio.cpu(), musicgen.sample_rate, strategy="loudness")
             tokens_output_file_path = os.path.join(args.output_dir, f"tokens_{index}.pt")
             torch.save(tokens, tokens_output_file_path)

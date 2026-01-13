@@ -10,9 +10,10 @@ from trak.modelout_functions import AbstractModelOutput
 
 
 class MusicGenWrapper:
-    def __init__(self, musicgen: MusicGen, use_cfg: bool):
+    def __init__(self, musicgen: MusicGen, use_cfg: bool, cfg_coef: float = 3.0):
         self.musicgen = musicgen
         self.use_cfg = use_cfg
+        self.cfg_coef = cfg_coef
 
     def tokenize(self, audios: Tensor) -> Tensor:
         tokens, _ = self.musicgen.compression_model.encode(audios)
@@ -36,7 +37,7 @@ class MusicGenWrapper:
 
         if self.use_cfg:
             logits_cond, logits_uncond = torch.split(logits, batch_size, dim=0)
-            logits = logits_uncond + (logits_cond - logits_uncond) * self.musicgen.lm.cfg_coef
+            logits = logits_uncond + (logits_cond - logits_uncond) * self.cfg_coef
             mask = mask[:batch_size, :, :]
 
         return logits, mask
@@ -152,7 +153,7 @@ class MusicGenBinaryModelOutput(AbstractModelOutput):
 
         logits = logits[:, 0, 0, :]
         label = tokens[:, 0, 0]
-        assert logits.shape == (B, self.musicgen.lm.card)
+        assert logits.shape == (B, self.musicgen.musicgen.lm.card)
         assert label.shape == (B,)
 
         ps = self.softmax(logits / self.temperature)[torch.arange(logits.size(0)), label]
