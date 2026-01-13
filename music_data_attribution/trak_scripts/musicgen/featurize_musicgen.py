@@ -1,16 +1,17 @@
-from music_data_attribution.musiccaps_dataset import MusicCapsDataset
-from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
-from trak import TRAKer
-from tqdm import tqdm
-from torch.utils.data import DataLoader
-from trak.gradient_computers import IterativeGradientComputer
-from audiocraft.models.musicgen import MusicGen
-
-import torch
-import logging
-import numpy as np
-import sys
 import argparse
+import logging
+import sys
+
+import numpy as np
+import torch
+from audiocraft.models.musicgen import MusicGen
+from torch.utils.data import DataLoader
+from tqdm import tqdm
+from trak.gradient_computers import IterativeGradientComputer
+
+from music_data_attribution.modelout_functions.musicgen import MusicGenModelOutput
+from music_data_attribution.musiccaps_dataset import MusicCapsDataset
+from trak import TRAKer
 
 SEED = 201
 
@@ -26,8 +27,10 @@ if __name__ == "__main__":
     parser.add_argument("--batch-size", type=int, help="Batch size for gradient calculations.", default=2)
     args = parser.parse_args()
 
-    np.random.seed(SEED)
-    torch.manual_seed(SEED)
+    model_id = (args.train_run_id - 1) * 10 + (args.checkpoint_id - 6)
+
+    np.random.seed(SEED + model_id)
+    torch.manual_seed(SEED + model_id)
     logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
     logger = logging.getLogger("featurize_musicgen")
@@ -71,7 +74,6 @@ if __name__ == "__main__":
     logger.debug("created traker")
 
     checkpoint = torch.load(args.checkpoint, weights_only=False)
-    model_id = (args.train_run_id - 1) * 10 + (args.checkpoint_id - 6)
     traker.load_checkpoint(checkpoint["model"], model_id=model_id)
 
     logger.debug("loaded checkpoint with traker")

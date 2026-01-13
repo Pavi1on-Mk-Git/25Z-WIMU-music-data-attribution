@@ -1,15 +1,16 @@
-from audiocraft.data.audio import audio_write
-from music_data_attribution.musiccaps_dataset import MusicCapsDataset
-from tqdm import tqdm
-from torch.utils.data import DataLoader
-from audiocraft.models.musicgen import MusicGen
-
-import torch
-import logging
-import numpy as np
-import sys
 import argparse
+import logging
 import os
+import sys
+
+import numpy as np
+import torch
+from audiocraft.data.audio import audio_write
+from audiocraft.models.musicgen import MusicGen
+from torch.utils.data import DataLoader
+from tqdm import tqdm
+
+from music_data_attribution.musiccaps_dataset import MusicCapsDataset
 
 SEED = 201
 
@@ -39,7 +40,7 @@ if __name__ == "__main__":
     checkpoint = torch.load(args.checkpoint, "cpu", weights_only=False)
     musicgen.lm.load_state_dict(checkpoint["model"])
 
-    musicgen.set_generation_params(duration=10, temperature=1)
+    musicgen.set_generation_params(duration=10, temperature=0)
 
     for indices, _, descriptions in tqdm(dataloader, desc="Generating samples..."):
         audios, all_tokens = musicgen.generate(descriptions, return_tokens=True)
