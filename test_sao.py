@@ -1,19 +1,17 @@
-import os
-import json
 import argparse
+import json
+import logging
+import os
 
-from tqdm import tqdm
-from loguru import logger
 import torch
 import torchaudio
 from einops import rearrange
-from dotenv import load_dotenv
 from pytorch_lightning import seed_everything
-
-from stable_audio_tools.inference.generation import generate_diffusion_cond
-from stable_audio_tools.models.utils import copy_state_dict, load_ckpt_state_dict
 from stable_audio_tools.data.dataset import create_dataloader_from_config
+from stable_audio_tools.inference.generation import generate_diffusion_cond
 from stable_audio_tools.models.factory import create_model_from_config
+from stable_audio_tools.models.utils import copy_state_dict, load_ckpt_state_dict
+from tqdm import tqdm
 
 
 def parse_args():
@@ -33,11 +31,7 @@ def parse_args():
         type=str,
         required=True,
     )
-    parser.add_argument(
-        "--output-dir",
-        type=str,
-        required=True
-    )
+    parser.add_argument("--output-dir", type=str, required=True)
     parser.add_argument(
         "--diffusion-steps",
         type=int,
@@ -55,8 +49,8 @@ def parse_args():
     )
     return parser.parse_args()
 
+
 def main(args):
-    load_dotenv()
     device = "cuda" if torch.cuda.is_available() else "cpu"
     seed_everything(args.seed, workers=True)
 
@@ -70,7 +64,7 @@ def main(args):
     model = model.to(device)
     model.eval()
 
-    logger.info(f"Loaded pretrained model from {args.model_ckpt_path}.")
+    logging.info(f"Loaded pretrained model from {args.model_ckpt_path}.")
 
     # prepare dataset and dataloader
     with open(args.dataset_config) as f:
@@ -84,13 +78,13 @@ def main(args):
         audio_channels=model_config.get("audio_channels", 2),
         shuffle=False,
     )
-    logger.info("Test dataloader created.")
+    logging.info("Test dataloader created.")
 
-    logger.info(f"Using {args.diffusion_steps} diffusion steps with CFG scale {args.cfg_scale}")
+    logging.info(f"Using {args.diffusion_steps} diffusion steps with CFG scale {args.cfg_scale}")
     for batch in tqdm(dataloader, desc="Generating..."):
         _, metadata = batch
-        conditioning = [{k: v for k, v in metadata[0].items() if k in ['prompt', 'seconds_total']}]
-    
+        conditioning = [{k: v for k, v in metadata[0].items() if k in ["prompt", "seconds_total"]}]
+
         # Generate stereo audio
         output = generate_diffusion_cond(
             model,
@@ -107,21 +101,17 @@ def main(args):
 
         # Peak normalize, clip, convert to int16, and save to file
         output = (
-            output.to(torch.float32)
-            .div(torch.max(torch.abs(output)))
-            .clamp(-1, 1)
-            .mul(32767)
-            .to(torch.int16)
-            .cpu()
+            output.to(torch.float32).div(torch.max(torch.abs(output))).clamp(-1, 1).mul(32767).to(torch.int16).cpu()
         )
-        
-        output_path = os.path.join(args.output_dir, metadata[0]['relpath'])
+
+        output_path = os.path.join(args.output_dir, metadata[0]["relpath"])
         torchaudio.save(output_path, output, model_config["sample_rate"])
 
-        with open(output_path + ".txt", 'w') as f:
-            f.write(conditioning[0]['prompt'])
+        with open(output_path + ".txt", "w") as f:
+            f.write(conditioning[0]["prompt"])
 
-    logger.info("Done.")
+    logging.info("Done.")
+
 
 if __name__ == "__main__":
     main(parse_args())

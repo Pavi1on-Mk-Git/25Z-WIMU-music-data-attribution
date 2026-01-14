@@ -1,16 +1,16 @@
 import argparse
 import json
+import logging
 
-from loguru import logger
-from tqdm import tqdm
 import torch
 from pytorch_lightning import seed_everything
-from music_data_attribution.modelout_functions.sao import SAOSmallModelOutput
-from trak import TRAKer
-
-from stable_audio_tools.models.utils import load_ckpt_state_dict
 from stable_audio_tools import get_pretrained_model
 from stable_audio_tools.data.dataset import create_dataloader_from_config
+from stable_audio_tools.models.utils import load_ckpt_state_dict
+from tqdm import tqdm
+
+from music_data_attribution.modelout_functions.sao import SAOSmallModelOutput
+from trak import TRAKer
 
 
 def parse_args():
@@ -80,13 +80,11 @@ def main(args):
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     # load model
-    model, model_config = get_pretrained_model(
-        "stabilityai/stable-audio-open-small", checkpoint_name="base_model"
-    )
+    model, model_config = get_pretrained_model("stabilityai/stable-audio-open-small", checkpoint_name="base_model")
     model = model.to(device)
     model.eval()
 
-    logger.info("Loaded pretrained model 'stabilityai/stable-audio-open-small' from checkpoint 'base_model'.")
+    logging.info("Loaded pretrained model 'stabilityai/stable-audio-open-small' from checkpoint 'base_model'.")
 
     # prepare dataset and dataloader
     with open(args.dataset_config) as f:
@@ -102,7 +100,7 @@ def main(args):
         random_subset_percentage=args.random_subset_percentage,
         return_dataset_size=True,
     )
-    logger.info("Dataloader created.")
+    logging.info("Dataloader created.")
 
     # create TRAK
     task = SAOSmallModelOutput(num_timesteps=args.num_timesteps)
@@ -117,17 +115,15 @@ def main(args):
         device=device,
         proj_dim=args.proj_dim,
     )
-    logger.info("Created TRAKer.")
+    logging.info("Created TRAKer.")
 
     # load checkpoint
     if args.model_ckpt_path is not None:
         checkpoint = load_ckpt_state_dict(args.model_ckpt_path)
         model_id = int(f"{args.train_run_id}{args.checkpoint_id}")
         traker.load_checkpoint(checkpoint, model_id=model_id)
-        logger.info(
-            f"Loaded checkpoint from {args.model_ckpt_path} under model ID {model_id} with TRAKer."
-        )
-    
+        logging.info(f"Loaded checkpoint from {args.model_ckpt_path} under model ID {model_id} with TRAKer.")
+
     for batch in tqdm(dataloader, desc="Computing TRAK embeddings..."):
         reals, metadata = batch
         with torch.no_grad():
@@ -137,7 +133,8 @@ def main(args):
         torch.cuda.empty_cache()
 
     traker.finalize_features(model_ids=[model_id])
-    logger.info("Finished.")
+    logging.info("Finished.")
+
 
 if __name__ == "__main__":
     main(parse_args())

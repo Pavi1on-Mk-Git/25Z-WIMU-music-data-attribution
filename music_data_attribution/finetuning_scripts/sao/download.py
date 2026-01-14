@@ -1,11 +1,7 @@
-from dotenv import load_dotenv
 from huggingface_hub import hf_hub_download
 
-load_dotenv()
 
-def download_pretrained_model(
-    name: str, output_dir: str, checkpoint_name: str = "model"
-):
+def download_pretrained_model(name: str, output_dir: str, checkpoint_name: str = "model"):
     model_config_path = hf_hub_download(
         name,
         filename=f"{checkpoint_name}_config.json",
