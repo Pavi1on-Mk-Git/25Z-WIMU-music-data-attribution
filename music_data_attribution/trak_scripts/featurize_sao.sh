@@ -12,8 +12,8 @@ pdm run ./music_data_attribution/trak_scripts/featurize_sao.py \
     --dataset-config music_data_attribution/finetuning_scripts/sao/dataset_config.json \
     --batch-size 2 \
     --model-ckpt-path  $MODEL_CKPT_PATH \
-    --train-run-id $seed \
-    --checkpoint-id $epoch \
+    --train-run-id "$seed" \
+    --checkpoint-id "$epoch" \
     --proj-dim 4096 \
     --num-timesteps 6 \
     --trak-dir ./results/trak_sao

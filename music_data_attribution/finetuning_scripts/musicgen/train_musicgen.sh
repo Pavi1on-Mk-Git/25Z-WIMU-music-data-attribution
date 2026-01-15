@@ -102,6 +102,6 @@ dora run solver=musicgen/musicgen_base_32khz \
     optim.adam.weight_decay=0.01 \
     checkpoint.save_every=1 \
     checkpoint.keep_last=10 \
-    checkpoint.keep_every_states="[model, xp.cfg]"
+    checkpoint.keep_every_states="[model, xp.cfg]" \
     generate.every=null \
     dataset.generate.num_samples=0

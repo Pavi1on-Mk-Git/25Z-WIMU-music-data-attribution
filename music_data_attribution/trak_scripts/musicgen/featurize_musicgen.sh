@@ -23,8 +23,8 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
     for checkpoint_id in {6..15}; do
         pdm run ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.py \
             "$dir/checkpoint_$checkpoint_id.th" \
-            --train-run-id $TRAIN_RUN_ID \
-            --checkpoint-id $checkpoint_id \
+            --train-run-id "$TRAIN_RUN_ID" \
+            --checkpoint-id "$checkpoint_id" \
             --music-data-path data/processed/musiccaps/music_data_train \
             --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
             --trak-dir "$TRAK_DIR" \

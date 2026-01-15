@@ -5,15 +5,16 @@ Usage: python generate_musicgen.py "your prompt here"
 """
 
 import sys
+
+import scipy.io.wavfile as wavfile
 import torch
 from transformers import AutoProcessor, MusicgenForConditionalGeneration
-import scipy.io.wavfile as wavfile
 
 
 def generate_music(prompt: str, duration: float = 10.0, output_path: str = "output.wav"):
     """Generate music from a text prompt using finetuned MusicGen model."""
 
-    print(f"Loading model from HuggingFace...")
+    print("Loading model from HuggingFace...")
     # Load the finetuned model and processor
     model = MusicgenForConditionalGeneration.from_pretrained("danhtran2mind/MusicGen-Small-MusicCaps-finetuning")
     processor = AutoProcessor.from_pretrained("danhtran2mind/MusicGen-Small-MusicCaps-finetuning")

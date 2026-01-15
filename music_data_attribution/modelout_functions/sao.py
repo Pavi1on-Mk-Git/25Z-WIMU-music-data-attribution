@@ -1,12 +1,10 @@
-import torch
-import torch.nn as nn
-from torch import Tensor
 from typing import Iterable
 
-
+import torch
+import torch.nn as nn
 import torch.nn.functional as F
-
 from stable_audio_tools.inference.sampling import truncated_logistic_normal_rescaled
+from torch import Tensor
 from trak.modelout_functions import AbstractModelOutput
 
 
@@ -37,13 +35,14 @@ class SAOSmallModelOutput(AbstractModelOutput):
                     return {k: _unsqueeze(v, dim) for k, v in obj.items()}
                 else:
                     return obj
-            
+
             for arg in args:
                 yield _unsqueeze(arg, dim)
 
         audio, conditioning = unsqueeze_all(0, audio, conditioning)
-        
+
         if self.num_timesteps > 1:
+
             def repeat_all(num_repeats, *args):
                 def _repeat(obj, num_repeats):
                     if isinstance(obj, Tensor):
@@ -56,7 +55,7 @@ class SAOSmallModelOutput(AbstractModelOutput):
                         return {k: _repeat(v, num_repeats) for k, v in obj.items()}
                     else:
                         return obj
-                
+
                 for arg in args:
                     yield _repeat(arg, num_repeats)
 
@@ -68,9 +67,7 @@ class SAOSmallModelOutput(AbstractModelOutput):
         diffusion_input = audio
 
         if model.pretransform is not None:
-            with torch.amp.autocast(device.type) and torch.set_grad_enabled(
-                model.pretransform.enable_grad
-            ):
+            with torch.amp.autocast(device.type) and torch.set_grad_enabled(model.pretransform.enable_grad):
                 model.pretransform.train(model.pretransform.enable_grad)
                 diffusion_input = model.pretransform.encode(diffusion_input)
 

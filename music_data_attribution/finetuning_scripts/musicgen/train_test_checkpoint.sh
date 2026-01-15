@@ -18,7 +18,6 @@ if [ -z "$AUDIOCRAFT_DORA_DIR" ]; then
 fi
 
 AUDIOCRAFT_REPO_DIR="$1"
-MAIN_REPO_DIR=$(pwd)
 DEBUG_SET_FILE="$AUDIOCRAFT_REPO_DIR/egs/musiccaps/debug/data.jsonl"
 
 if [ ! -f "$DEBUG_SET_FILE" ]; then

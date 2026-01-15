@@ -18,7 +18,7 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
     cat "$dir"/outputs/hyperparams.json | python -m json.tool | grep 'egs/musiccaps/train"' > /dev/null && break
 done
 
-CHECKPOINT_PATH="$(realpath $dir)/checkpoint.th"
+CHECKPOINT_PATH="$(realpath "$dir")/checkpoint.th"
 
 pdm run ./music_data_attribution/trak_scripts/musicgen/generate_samples.py \
     "$CHECKPOINT_PATH" \

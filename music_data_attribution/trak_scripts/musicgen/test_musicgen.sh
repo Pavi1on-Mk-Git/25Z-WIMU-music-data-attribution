@@ -12,7 +12,7 @@ TRAK_DIR="$2"
 MODEL_OUTPUT="$3"
 USE_CFG="$4"
 
-DEBUG_SET_SIZE=$(ls data/processed/musiccaps/music_data_debug | wc -l)
+DEBUG_SET_SIZE=$(find data/processed/musiccaps/music_data_debug/* -prune | wc -l)
 
 # Find the test checkpoint
 for dir in "$DORA_EXPERIMENTS_DIR"/*; do
@@ -23,7 +23,7 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
     cat "$dir"/outputs/hyperparams.json | python -m json.tool | grep '"optim.epochs": 60' > /dev/null && break
 done
 
-CHECKPOINT_PATH="$(realpath $dir)/checkpoint.th"
+CHECKPOINT_PATH="$(realpath "$dir")/checkpoint.th"
 
 # Featurize
 pdm run ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.py \
