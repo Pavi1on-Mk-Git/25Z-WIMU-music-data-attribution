@@ -8,6 +8,7 @@ authors = [
     {name = "Mikołaj Piórczyński", email = "mikolaj.piorczynski.stud@pw.edu.pl"}
 ]
 dependencies = ["einops>=0.8.1", "torch>=2.6.0", "torchaudio>=2.6.0", "torchcodec>=0.8.1", "audiocraft>=1.2.0", "ipykernel>=7.1.0"]
+
 requires-python = "==3.11.*"
 readme = "README.md"
 license = {text = "MIT"}
@@ -42,4 +43,3 @@ packages = ["music_data_attribution"]
 
 [tool.ruff]
 line-length = 120
-
