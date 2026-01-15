@@ -1,6 +1,6 @@
 import pandas as pd
 
-DESCRIPTIONS_PATH = "/home/jproboszcz/musiccaps/musiccaps-public.csv"
+DESCRIPTIONS_PATH = "data/raw/musiccaps/musiccaps-public.csv"
 DATASET = pd.read_csv(DESCRIPTIONS_PATH).to_dict(orient="records")
 
 

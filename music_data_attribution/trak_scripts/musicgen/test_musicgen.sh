@@ -33,7 +33,7 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.py \
     --music-data-path data/processed/musiccaps/music_data_debug \
     --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
     --trak-dir "$TRAK_DIR" \
-    --batch-size 4 \
+    --batch-size 2 \
     --model-output "$MODEL_OUTPUT" \
     --use-cfg "$USE_CFG"
 

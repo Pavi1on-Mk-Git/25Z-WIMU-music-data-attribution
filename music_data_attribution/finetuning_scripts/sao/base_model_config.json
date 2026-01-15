@@ -125,7 +125,7 @@
                 "optimizer": {
                     "type": "AdamW",
                     "config": {
-                        "lr": 1e-4,
+                        "lr": 1e-6,
                         "betas": [
                             0.9,
                             0.95
@@ -136,38 +136,6 @@
                     }
                 }
             }
-        },
-        "demo": {
-            "demo_every": 100,
-            "demo_steps": 50,
-            "num_demos": 5,
-            "demo_cond": [
-                {
-                    "prompt": "Lead clarinetist playing a melody with an eastern scale accompanied by wind ensemble, cymbals and drums.",
-                    "seconds_total": 10
-                },
-                {
-                    "prompt": "A solo timpani performance played with mallets featuring rolls and complex rhythms on two drums. The music feels serious, even militant.",
-                    "seconds_total": 10
-                },
-                {
-                    "prompt": "This audio features a drum practice pad being played. A shuffle beat is played on the practice pad. There are no other instruments in this song. A male voice narrates instructions. This song can be played in an instructional video on the shuffle beat.",
-                    "seconds_total": 10
-                },
-                {
-                    "prompt": "This music is instrumental. The tempo is fast with a spirited cello and harpsichord accompaniment. The music is lively, intense, rich, complex , exquisite and engaging. This music a Western Classical.",
-                    "seconds_total": 10
-                },
-                {
-                    "prompt": "Here we have a pop R&B song with a piano arpeggio and guitar strumming as the lead melodic components in the instrumental. A rapper then utters a few words in his raspy and strong voice. We then hear subtle soulful backing vocals. The song is emotional.",
-                    "seconds_total": 10
-                }
-            ],
-            "demo_cfg_scales": [
-                1,
-                4,
-                7
-            ]
         }
     }
 }

@@ -1,34 +1,9 @@
 from huggingface_hub import hf_hub_download
 
-
-def download_pretrained_model(name: str, output_dir: str, checkpoint_name: str = "model"):
-    hf_hub_download(
-        name,
-        filename=f"{checkpoint_name}_config.json",
-        repo_type="model",
-        local_dir=output_dir,
-    )
-
-    # Try to download the model.safetensors file first, if it doesn't exist, download the model.ckpt file
-    try:
-        hf_hub_download(
-            name,
-            filename=f"{checkpoint_name}.safetensors",
-            repo_type="model",
-            local_dir=output_dir,
-        )
-    except Exception:
-        hf_hub_download(
-            name,
-            filename=f"{checkpoint_name}.ckpt",
-            repo_type="model",
-            local_dir=output_dir,
-        )
-
-
 if __name__ == "__main__":
-    download_pretrained_model(
+    hf_hub_download(
         "stabilityai/stable-audio-open-small",
-        output_dir="./checkpoints/sao_small",
-        checkpoint_name="base_model",
+        filename="base_model.ckpt",
+        repo_type="model",
+        local_dir="results/checkpoints",
     )
