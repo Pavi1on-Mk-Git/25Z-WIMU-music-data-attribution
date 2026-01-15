@@ -58,7 +58,7 @@ run_test_sao:
     pdm run music_data_attribution/trak_scripts/sao/check_test_scores.py
 
 format:
-    pdm run python3 -m ruff format .
+    pdm run python3 -m ruff format music_data_attribution
 
 lint:
-    pdm run python3 -m ruff check .
+    pdm run python3 -m ruff check music_data_attribution
