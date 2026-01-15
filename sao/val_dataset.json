@@ -3,7 +3,7 @@
     "datasets": [
         {
             "id": "musiccaps_train",
-            "path": "../musiccaps/music_data_train/",
+            "path": "../musiccaps/music_data_test/",
             "custom_metadata_module": "./sao/dataset.py"
         }
     ],

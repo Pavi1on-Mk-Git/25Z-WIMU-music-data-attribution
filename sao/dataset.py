@@ -1,7 +1,8 @@
-import polars
 from typing import Any
 
-DATASET = polars.read_csv("../musiccaps/musiccaps-public.csv").rows(named=True)
+import pandas
+
+DATASET = pandas.read_csv("../musiccaps/musiccaps-public.csv").to_dict(orient="records")
 
 
 def get_custom_metadata(info: dict[str, Any], _):
