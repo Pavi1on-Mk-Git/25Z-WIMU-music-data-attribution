@@ -48,6 +48,15 @@ run_test_musicgen:
 
     pdm run music_data_attribution/trak_scripts/musicgen/check_test_scores.py
 
+train_test_sao:
+    bash ./music_data_attribution/finetuning_scripts/select_random_musiccaps_subset.sh
+    bash ./music_data_attribution/finetuning_scripts/sao/train_test_checkpoint.sh
+
+run_test_sao:
+    bash ./music_data_attribution/trak_scripts/sao/test_sao.sh \
+        results/trak_sao_test
+    pdm run music_data_attribution/trak_scripts/sao/check_test_scores.py
+
 format:
     pdm run python3 -m ruff format .
 

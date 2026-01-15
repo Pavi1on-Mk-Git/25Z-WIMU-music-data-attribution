@@ -36,7 +36,7 @@ def parse_args():
     parser.add_argument(
         "--model-ckpt-path",
         type=str,
-        help="Path to the MusicGen checkpoint to featurize.",
+        help="Path to the Sao checkpoint to featurize.",
         default=None,
     )
     parser.add_argument(
