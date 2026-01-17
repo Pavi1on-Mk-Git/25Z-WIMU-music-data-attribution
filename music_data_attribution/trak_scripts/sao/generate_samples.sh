@@ -1,14 +1,20 @@
 #!/bin/bash
 set -e
 
-MODEL_DIR="checkpoints/sao_small/9/stable_audio_open_small_finetune/xfqjs690/"
-CHECKPOINT_NAME="epoch=299-step=1200"
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 checkpoint_dir" >&2
+    echo "Error: Expected 1 argument, got $#." >&2
+    exit 1
+fi
 
+CHECKPOINT_DIR=$1
 
-pdm run ./music_data_attribution/trak_scripts/sao/generate_samples.py \
-    --model-config music_data_attribution/finetuning_scripts/sao/base_model_config.json \
-    --model-ckpt-path  "${MODEL_DIR}/checkpoints/${CHECKPOINT_NAME}.ckpt" \
-    --dataset-config music_data_attribution/finetuning_scripts/sao/dataset_config.json \
-    --diffusion-steps 50 \
-    --cfg-scale 7.0 \
-    --output-dir $MODEL_DIR/generations
+for checkpoint in "$CHECKPOINT_DIR"/*.ckpt; do
+    pdm run ./music_data_attribution/trak_scripts/sao/generate_samples.py \
+        --model-config music_data_attribution/finetuning_scripts/sao/base_model_config.json \
+        --model-ckpt-path "$checkpoint" \
+        --dataset-config music_data_attribution/finetuning_scripts/sao/dataset_config.json \
+        --diffusion-steps 50 \
+        --cfg-scale 7.0 \
+        --output-dir "results/generated/sao"
+done
