@@ -35,7 +35,7 @@ fi
 
 # Score
 pdm run ./music_data_attribution/trak_scripts/sao/score_sao.py \
-    --dataset-config music_data_attribution/trak_scripts/sao/generated_config.json \
+    --dataset-config music_data_attribution/trak_scripts/sao/generated_debug_config.json \
     --batch-size 2 \
     --model-ckpt-path "$CHECKPOINT_PATH" \
     --train-run-id 0 \

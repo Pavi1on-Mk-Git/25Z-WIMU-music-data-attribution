@@ -2,7 +2,7 @@
     "dataset_type": "audio_dir",
     "datasets": [
         {
-            "id": "musiccaps_train",
+            "id": "musiccaps_test",
             "path": "data/processed/musiccaps/music_data_test",
             "custom_metadata_module": "music_data_attribution/finetuning_scripts/sao/custom_metadata.py"
         }
