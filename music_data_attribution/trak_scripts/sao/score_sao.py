@@ -113,6 +113,7 @@ def main(args):
         train_set_size=dataset_size,
         device=device,
         proj_dim=args.proj_dim,
+        lambda_reg=1e-6,
     )
     logging.info("Created TRAKer.")
 
