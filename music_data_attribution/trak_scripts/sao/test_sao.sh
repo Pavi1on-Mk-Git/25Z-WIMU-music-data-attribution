@@ -17,7 +17,7 @@ pdm run ./music_data_attribution/trak_scripts/sao/featurize_sao.py \
     --batch-size 2 \
     --model-ckpt-path "$CHECKPOINT_PATH" \
     --train-run-id 0 \
-    --checkpoint-id 0 \
+    --checkpoint-id 4 \
     --proj-dim 4096 \
     --num-timesteps 6 \
     --trak-dir "$TRAK_DIR"
@@ -39,7 +39,7 @@ pdm run ./music_data_attribution/trak_scripts/sao/score_sao.py \
     --batch-size 2 \
     --model-ckpt-path "$CHECKPOINT_PATH" \
     --train-run-id 0 \
-    --checkpoint-id 0 \
+    --checkpoint-id 4 \
     --proj-dim 4096 \
     --num-timesteps 6 \
     --trak-dir "$TRAK_DIR"

@@ -73,9 +73,12 @@ def parse_args():
     return parser.parse_args()
 
 
+SEED = 201
+
+
 def main(args):
-    seed = 123
-    seed_everything(seed, workers=True)
+    model_id = args.train_run_id * 10 + args.checkpoint_id - 4
+    seed_everything(SEED + model_id, workers=True)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -121,7 +124,6 @@ def main(args):
     # load checkpoint
     if args.model_ckpt_path is not None:
         checkpoint = load_ckpt_state_dict(args.model_ckpt_path)
-        model_id = int(f"{args.train_run_id}{args.checkpoint_id}")
         traker.load_checkpoint(checkpoint, model_id=model_id)
         logging.info(f"Loaded checkpoint from {args.model_ckpt_path} under model ID {model_id} with TRAKer.")
 

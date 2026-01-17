@@ -1,19 +1,39 @@
 #!/bin/bash
 set -e
 
-export FLASH_ATTN_DISABLE=1
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 checkpoint_dir trak_dir" >&2
+    echo "Error: Expected 2 arguments, got $#." >&2
+    exit 1
+fi
 
-MODEL_CKPT_PATH="checkpoints/sao_small/9/stable_audio_open_small_finetune/xfqjs690/checkpoints/epoch=299-step=1200.ckpt"
+CHECKPOINT_DIR=$1
+TRAK_DIR=$2
 
-seed=$(echo "$MODEL_CKPT_PATH" | sed -n 's|.*sao_small/\([0-9]\+\)/.*|\1|p')
-epoch=$(echo "$MODEL_CKPT_PATH" | sed -n 's|.*epoch=\([0-9]\+\)-.*|\1|p')
+for dir in "$CHECKPOINT_DIR"/*; do
+    if [ ! -d "$dir" ] || [ "$dir" = "lightning_logs" ]; then
+        continue
+    fi
 
-pdm run ./music_data_attribution/trak_scripts/featurize_sao.py \
-    --dataset-config music_data_attribution/finetuning_scripts/sao/dataset_config.json \
-    --batch-size 2 \
-    --model-ckpt-path  $MODEL_CKPT_PATH \
-    --train-run-id "$seed" \
-    --checkpoint-id "$epoch" \
-    --proj-dim 4096 \
-    --num-timesteps 6 \
-    --trak-dir ./results/trak_sao
+    TRAIN_RUN_ID=$(basename "$dir")
+
+    for checkpoint in "$dir"/*.ckpt; do
+
+        echo "Featurizing seed: $TRAIN_RUN_ID, checkpoint: $checkpoint"
+
+        file=$(basename "$checkpoint")
+        epoch_suffix="${file#epoch=}"
+        CHECKPOINT_ID="${epoch_suffix%%-*}"
+
+        pdm run ./music_data_attribution/trak_scripts/sao/featurize_sao.py \
+            --dataset-config music_data_attribution/finetuning_scripts/sao/dataset_config.json \
+            --batch-size 2 \
+            --model-ckpt-path "$checkpoint" \
+            --train-run-id "$TRAIN_RUN_ID" \
+            --checkpoint-id "$CHECKPOINT_ID" \
+            --proj-dim 4096 \
+            --num-timesteps 6 \
+            --trak-dir "$TRAK_DIR"
+
+    done
+done
