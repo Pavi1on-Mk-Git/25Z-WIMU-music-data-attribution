@@ -24,6 +24,7 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
 done
 
 CHECKPOINT_PATH="$(realpath "$dir")/checkpoint.th"
+PROJ_DIM=$((4096 * 2))
 
 # Featurize
 pdm run ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.py \
@@ -34,6 +35,7 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.py \
     --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
     --trak-dir "$TRAK_DIR" \
     --batch-size 2 \
+    --proj-dim $PROJ_DIM \
     --model-output "$MODEL_OUTPUT" \
     --use-cfg "$USE_CFG"
 
@@ -58,6 +60,7 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/score_musicgen.py \
     --train-set-size "$DEBUG_SET_SIZE" \
     --trak-dir "$TRAK_DIR" \
     --batch-size 2 \
+    --proj-dim $PROJ_DIM \
     --experiment-name musicgen_test \
     --model-output "$MODEL_OUTPUT" \
     --use-cfg "$USE_CFG"
@@ -67,6 +70,7 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/finalize_scores.py \
     --models-count 1 \
     --train-set-size "$DEBUG_SET_SIZE" \
     --trak-dir "$TRAK_DIR" \
+    --proj-dim $PROJ_DIM \
     --experiment-name musicgen_test \
     --model-output "$MODEL_OUTPUT" \
     --use-cfg "$USE_CFG"

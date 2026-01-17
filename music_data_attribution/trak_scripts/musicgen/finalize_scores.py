@@ -23,6 +23,7 @@ if __name__ == "__main__":
         "--model-output", choices=["loss", "binary", "summed"], help="Model output function version to use."
     )
     parser.add_argument("--use-cfg", choices=["true", "false"], help="Whether to use CFG for logit calculation.")
+    parser.add_argument("--proj-dim", type=int, help="TRAK projection dimension.")
     args = parser.parse_args()
 
     np.random.seed(SEED)
@@ -47,7 +48,7 @@ if __name__ == "__main__":
         train_set_size=args.train_set_size,
         device="cuda",
         gradient_computer=IterativeGradientComputer,
-        proj_dim=4096,
+        proj_dim=args.proj_dim,
         proj_max_batch_size=8,
         use_half_precision=False,
     )
