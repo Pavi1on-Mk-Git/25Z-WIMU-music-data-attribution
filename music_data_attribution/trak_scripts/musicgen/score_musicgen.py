@@ -13,7 +13,7 @@ from music_data_attribution.modelout_functions.musicgen import get_model_output_
 from music_data_attribution.musiccaps_dataset import MusicCapsDataset
 from trak import TRAKer
 
-SEED = 1401
+SEED = 201
 
 
 def prepare_generated_dataset(args: argparse.Namespace) -> MusicCapsDataset:
@@ -60,6 +60,7 @@ if __name__ == "__main__":
 
     np.random.seed(SEED + model_id)
     torch.manual_seed(SEED + model_id)
+    torch.backends.cudnn.deterministic = True
     logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
     logger = logging.getLogger("score_musicgen")

@@ -129,13 +129,13 @@ class MusicGenBinaryModelOutput(AbstractModelOutput):
         logits = logits[:, 0, 0, :]
         label = tokens[:, 0, 0]
 
-        logits_correct = logits[:, label.unsqueeze(0)]
+        logits_correct = logits[torch.arange(B), label]
 
         cloned_logits = logits.clone()
-        cloned_logits[:, label.unsqueeze(0)] = torch.tensor(-torch.inf, device=logits.device, dtype=logits.dtype)
+        cloned_logits[torch.arange(B), label] = torch.tensor(-torch.inf, device=logits.device, dtype=logits.dtype)
 
         margins = logits_correct - cloned_logits.logsumexp(dim=-1)
-        return margins.sum(dim=-1)
+        return margins
 
     def get_out_to_loss_grad(
         self,

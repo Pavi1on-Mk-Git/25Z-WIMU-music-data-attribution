@@ -35,6 +35,7 @@ if __name__ == "__main__":
 
     np.random.seed(SEED + model_id)
     torch.manual_seed(SEED + model_id)
+    torch.backends.cudnn.deterministic = True
     logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
     logger = logging.getLogger("featurize_musicgen")
