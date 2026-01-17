@@ -13,7 +13,7 @@ from music_data_attribution.modelout_functions.musicgen import get_model_output_
 from music_data_attribution.musiccaps_dataset import MusicCapsDataset
 from trak import TRAKer
 
-SEED = 201
+SEED = 1401
 
 
 def prepare_generated_dataset(args: argparse.Namespace) -> MusicCapsDataset:
