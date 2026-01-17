@@ -53,6 +53,7 @@ if __name__ == "__main__":
         sample_size=model_config["sample_size"],
         audio_channels=model_config.get("audio_channels", 2),
         shuffle=False,
+        return_dataset_size=True,
     )
     logging.info("Train dataloader created.")
 

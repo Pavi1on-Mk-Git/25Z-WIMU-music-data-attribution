@@ -42,17 +42,15 @@ def parse_args():
         type=float,
         default=1.0,
     )
-    parser.add_argument(
-        "--seed",
-        type=int,
-        default=123,
-    )
     return parser.parse_args()
+
+
+SEED = 201
 
 
 def main(args):
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    seed_everything(args.seed, workers=True)
+    seed_everything(SEED, workers=True)
 
     os.makedirs(args.output_dir, exist_ok=True)
 

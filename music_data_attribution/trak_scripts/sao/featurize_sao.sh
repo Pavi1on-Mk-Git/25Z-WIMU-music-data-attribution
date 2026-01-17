@@ -11,11 +11,15 @@ CHECKPOINT_DIR=$1
 TRAK_DIR=$2
 
 for dir in "$CHECKPOINT_DIR"/*; do
-    if [ ! -d "$dir" ] || [ "$dir" = "lightning_logs" ]; then
+    if [ ! -d "$dir" ]; then
         continue
     fi
 
     TRAIN_RUN_ID=$(basename "$dir")
+
+    if [ "$TRAIN_RUN_ID" = "lightning_logs" ]; then
+        continue
+    fi
 
     for checkpoint in "$dir"/*.ckpt; do
 

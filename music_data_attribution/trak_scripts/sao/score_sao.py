@@ -83,7 +83,7 @@ SEED = 201
 
 
 def main(args):
-    model_id = args.train_run_id * 10 + args.checkpoint_id - 4
+    model_id = args.train_run_id * 10 + args.checkpoint_id - 5
     seed_everything(SEED + model_id, workers=True)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -106,6 +106,7 @@ def main(args):
         sample_size=model_config["sample_size"],
         audio_channels=model_config.get("audio_channels", 2),
         shuffle=False,
+        return_dataset_size=True,
     )
     logging.info("Dataloader created.")
 
@@ -120,6 +121,7 @@ def main(args):
         sample_size=model_config["sample_size"],
         audio_channels=model_config.get("audio_channels", 2),
         shuffle=False,
+        return_dataset_size=True,
     )
     logging.info("Train dataloader created.")
 

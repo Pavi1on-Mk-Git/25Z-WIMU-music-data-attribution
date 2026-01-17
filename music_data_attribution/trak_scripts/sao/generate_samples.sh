@@ -13,7 +13,7 @@ for checkpoint in "$CHECKPOINT_DIR"/*.ckpt; do
     pdm run ./music_data_attribution/trak_scripts/sao/generate_samples.py \
         --model-config music_data_attribution/finetuning_scripts/sao/base_model_config.json \
         --model-ckpt-path "$checkpoint" \
-        --dataset-config music_data_attribution/finetuning_scripts/sao/dataset_config.json \
+        --dataset-config music_data_attribution/finetuning_scripts/sao/val_dataset_config.json \
         --diffusion-steps 50 \
         --cfg-scale 7.0 \
         --output-dir "results/generated/sao"

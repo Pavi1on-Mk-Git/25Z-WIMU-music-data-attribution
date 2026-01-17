@@ -11,22 +11,26 @@ CHECKPOINT_DIR=$1
 TRAK_DIR=$2
 
 for dir in "$CHECKPOINT_DIR"/*; do
-    if [ ! -d "$dir" ] || [ "$dir" = "lightning_logs" ]; then
+    if [ ! -d "$dir" ]; then
         continue
     fi
 
     TRAIN_RUN_ID=$(basename "$dir")
 
+    if [ "$TRAIN_RUN_ID" = "lightning_logs" ]; then
+        continue
+    fi
+
     for checkpoint in "$dir"/*.ckpt; do
 
-        echo "Featurizing seed: $TRAIN_RUN_ID, checkpoint: $checkpoint"
+        echo "Scoring seed: $TRAIN_RUN_ID, checkpoint: $checkpoint"
 
         file=$(basename "$checkpoint")
         epoch_suffix="${file#epoch=}"
         CHECKPOINT_ID="${epoch_suffix%%-*}"
 
-        pdm run ./music_data_attribution/trak_scripts/score_sao.py \
-            --dataset-config music_data_attribution/trak_scripts/generated_config.json \
+        pdm run ./music_data_attribution/trak_scripts/sao/score_sao.py \
+            --dataset-config music_data_attribution/trak_scripts/sao/generated_config.json \
             --train-dataset-config music_data_attribution/finetuning_scripts/sao/dataset_config.json \
             --batch-size 2 \
             --model-ckpt-path "$checkpoint" \
@@ -34,7 +38,7 @@ for dir in "$CHECKPOINT_DIR"/*; do
             --checkpoint-id "$CHECKPOINT_ID" \
             --proj-dim 4096 \
             --num-timesteps 6 \
-            --trak-dir "$TRAK_DIR" \
+            --trak-dir "$TRAK_DIR"
 
     done
 done
