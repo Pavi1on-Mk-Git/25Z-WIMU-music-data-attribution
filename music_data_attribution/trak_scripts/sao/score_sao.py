@@ -22,6 +22,12 @@ def parse_args():
         required=True,
     )
     parser.add_argument(
+        "--train-dataset-config",
+        type=str,
+        help="Path to the train dataset config JSON file.",
+        required=True,
+    )
+    parser.add_argument(
         "--batch-size",
         type=int,
         help="Batch size for gradient calculations.",
@@ -73,9 +79,12 @@ def parse_args():
     return parser.parse_args()
 
 
+SEED = 201
+
+
 def main(args):
-    seed = 123
-    seed_everything(seed, workers=True)
+    model_id = args.train_run_id * 10 + args.checkpoint_id - 4
+    seed_everything(SEED + model_id, workers=True)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -97,9 +106,22 @@ def main(args):
         sample_size=model_config["sample_size"],
         audio_channels=model_config.get("audio_channels", 2),
         shuffle=False,
-        return_dataset_size=True,
     )
     logging.info("Dataloader created.")
+
+    # prepare train dataset and dataloader
+    with open(args.train_dataset_config) as f:
+        train_dataset_config = json.load(f)
+
+    _, train_dataset_size = create_dataloader_from_config(
+        train_dataset_config,
+        batch_size=args.batch_size,
+        sample_rate=model_config["sample_rate"],
+        sample_size=model_config["sample_size"],
+        audio_channels=model_config.get("audio_channels", 2),
+        shuffle=False,
+    )
+    logging.info("Train dataloader created.")
 
     # create TRAK
     task = SAOSmallModelOutput(num_timesteps=args.num_timesteps)
@@ -110,7 +132,7 @@ def main(args):
         save_dir=args.trak_dir,
         load_from_save_dir=True,
         proj_max_batch_size=8,
-        train_set_size=dataset_size,
+        train_set_size=train_dataset_size,
         device=device,
         proj_dim=args.proj_dim,
         lambda_reg=1e-6,
@@ -119,7 +141,6 @@ def main(args):
 
     # load checkpoint
     checkpoint = load_ckpt_state_dict(args.model_ckpt_path)
-    model_id = int(f"{args.train_run_id}{args.checkpoint_id}")
     traker.load_checkpoint(checkpoint, model_id=model_id)
     logging.info(f"Loaded checkpoint from {args.model_ckpt_path} under model ID {model_id} with TRAKer.")
 
@@ -138,7 +159,6 @@ def main(args):
         traker.score(batch=(reals.to(device), conditioning), num_samples=reals.shape[0])
         torch.cuda.empty_cache()
 
-    traker.finalize_scores(exp_name="sao_small_finetune")
     logging.info("Finished.")
 
 
