@@ -14,6 +14,8 @@ Install PDM, instructions: https://pdm-project.org/en/latest/, then install need
 pdm install
 ```
 
+Install Just, instructions: https://github.com/casey/just.
+
 ## Dataset preparation
 
 Download MusicCaps CSV file into data/raw/musiccaps/musiccaps-public.csv. Download the audio files, called `{index}.wav` where index is their row in the CSV file, into data/raw/musiccaps/music_data.
@@ -59,7 +61,6 @@ music_data_attribution/finetuning_scripts/sao/train_sao.sh
 
 Training the single overfit test model is done by running the training command:
 ```bash
-# no just prepare_musiccaps, the single task does everything
 just train_test_sao
 ```
 
