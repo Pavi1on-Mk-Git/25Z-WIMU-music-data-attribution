@@ -92,7 +92,7 @@ class MusicGenLossModelOutput(AbstractModelOutput):
         return torch.ones(audios.shape[0], 1, dtype=torch.float32, device=audios.device)
 
 
-class MusicGenBinaryModelOutput(AbstractModelOutput):
+class MusicGenSingleModelOutput(AbstractModelOutput):
     def __init__(self, musicgen: MusicGen, use_cfg: bool, temperature: float = 1.0):
         self.musicgen = MusicGenWrapper(musicgen, use_cfg)
         self.temperature = temperature
@@ -226,12 +226,12 @@ class MusicGenSummedModelOutput(AbstractModelOutput):
 
 MODEL_OUTPUT_FUNCTIONS = {
     "loss": MusicGenLossModelOutput,
-    "binary": MusicGenBinaryModelOutput,
+    "single": MusicGenSingleModelOutput,
     "summed": MusicGenSummedModelOutput,
 }
 
 
 def get_model_output_function(
-    version: Literal["loss", "binary", "summed"], model: MusicGen, use_cfg: bool
-) -> MusicGenLossModelOutput | MusicGenBinaryModelOutput | MusicGenSummedModelOutput:
+    version: Literal["loss", "single", "summed"], model: MusicGen, use_cfg: bool
+) -> MusicGenLossModelOutput | MusicGenSingleModelOutput | MusicGenSummedModelOutput:
     return MODEL_OUTPUT_FUNCTIONS[version](model, use_cfg)

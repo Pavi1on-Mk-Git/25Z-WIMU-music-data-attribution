@@ -51,7 +51,7 @@ if __name__ == "__main__":
     parser.add_argument("--batch-size", type=int, help="Batch size for gradient calculations.", default=2)
     parser.add_argument("--experiment-name", type=str, help="TRAK experiment name.")
     parser.add_argument(
-        "--model-output", choices=["loss", "binary", "summed"], help="Model output function version to use."
+        "--model-output", choices=["loss", "single", "summed"], help="Model output function version to use."
     )
     parser.add_argument("--use-cfg", choices=["true", "false"], help="Whether to use CFG for logit calculation.")
     parser.add_argument("--proj-dim", type=int, help="TRAK projection dimension.")
