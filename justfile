@@ -44,7 +44,7 @@ train_test_musicgen:
 run_test_musicgen:
     PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True AUDIOCRAFT_DORA_DIR="{{AUDIOCRAFT_DORA_DIR}}" \
     bash ./music_data_attribution/trak_scripts/musicgen/test_musicgen.sh \
-        "{{AUDIOCRAFT_DORA_DIR}}/xps" results/trak_musicgen_test loss true
+        "{{AUDIOCRAFT_DORA_DIR}}/xps" results/trak_musicgen_test summed false
 
     pdm run music_data_attribution/trak_scripts/musicgen/check_test_scores.py
 

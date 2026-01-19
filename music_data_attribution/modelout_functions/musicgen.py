@@ -198,6 +198,7 @@ class MusicGenSummedModelOutput(AbstractModelOutput):
         assert logits_incorrect.shape == (B, K, T, self.musicgen.musicgen.lm.card)
 
         margins = logits_correct - logits_incorrect.logsumexp(dim=-1)
+        margins[torch.isposinf(margins)] = 0  # handle masked tokens
         return margins.reshape(tokens.shape[0], -1).sum(dim=-1)
 
     def get_out_to_loss_grad(

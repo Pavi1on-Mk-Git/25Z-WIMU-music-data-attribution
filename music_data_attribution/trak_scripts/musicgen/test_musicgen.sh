@@ -24,7 +24,7 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
 done
 
 CHECKPOINT_PATH="$(realpath "$dir")/checkpoint.th"
-PROJ_DIM=$((4096 * 2))
+PROJ_DIM=4096
 
 # Featurize
 pdm run ./music_data_attribution/trak_scripts/musicgen/featurize_musicgen.py \
