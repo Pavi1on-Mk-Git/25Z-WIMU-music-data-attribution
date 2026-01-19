@@ -1,31 +1,60 @@
 # 25Z-WIMU-music-data-attribution
 
 ## Install dependencies:
+Install needed system packages (this may not be an exhaustive list):
 ```bash
 sudo apt install libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libavfilter-dev libswscale-dev libswresample-dev
+# or use conda:
+conda create -n ffmpeg python=3.11 ffmpeg -c conda-forge
+conda activate ffmpeg
+```
+
+Install PDM, instructions: https://pdm-project.org/en/latest/, then install needed Python packages:
+```bash
 pdm install
+```
+
+## Dataset preparation
+
+Download MusicCaps CSV file into data/raw/musiccaps/musiccaps-public.csv. Download the audio files, called `{index}.wav` where index is their row in the CSV file, into data/raw/musiccaps/music_data.
+
+Then, split the dataset into train and test:
+```bash
+just split_musiccaps
+```
+
+## Finetuning models
+
+For MusicGen:
+- clone the audiocraft repository https://github.com/facebookresearch/audiocraft
+- adjust AUDIOCRAFT_REPO_DIR and AUDIOCRAFT_DORA_DIR variables in justfile
+- install audiocraft's dependencies based on the requirements.txt in the cloned repository:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+- with audiocraft's venv active, `cd` to this repository and run:
+```bash
+just prepare_musiccaps_for_musicgen
+just finetune_musicgen
+```
+The training artifacts will be located in AUDIOCRAFT_DORA_DIR.
+
+Training the single overfit test model is done analogously, except the training command is:
+```bash
+# no just prepare_musiccaps, the single task does everything
+just train_test_musicgen
 ```
 
 ## Running TRAK
 
-Compute TRAK features:
-```bash
-pdm run run_trak.py
-```
-
-Visualize attribution results using visualize.ipynb notebook.
-
-## Running MusicGen and Stable Audio Open
-
-Run the respective scripts:
-```bash
-pdm run run_musicgen.py
-```
-
-and
+For MusicGen, in the current directory, run:
 
 ```bash
-pdm run run_sao.py
+just featurize_musicgen
+just generate_musicgen
+just score_musicgen
 ```
 
-Both produce a file called output.wav, containing the generated audio.
+The resulting scores will be in `results/trak_musicgen/scores/musicgen_trak.mmap`. They can be read and visualized via `display_audio_trak.ipynb` notebook.
