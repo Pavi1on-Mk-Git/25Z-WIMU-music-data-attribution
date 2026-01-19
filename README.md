@@ -47,6 +47,22 @@ Training the single overfit test model is done analogously, except the training 
 just train_test_musicgen
 ```
 
+For SAO:
+- download the initial model checkpoint:
+```bash
+pdm run music_data_attribution/finetuning_scripts/sao/download.py
+```
+- run the training script:
+```bash
+music_data_attribution/finetuning_scripts/sao/train_sao.sh
+```
+
+Training the single overfit test model is done by running the training command:
+```bash
+# no just prepare_musiccaps, the single task does everything
+just train_test_sao
+```
+
 ## Running TRAK
 
 For MusicGen, in the current directory, run:
