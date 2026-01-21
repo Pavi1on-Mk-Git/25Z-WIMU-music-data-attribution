@@ -1,13 +1,13 @@
-from torch.utils.data import Dataset, DataLoader
+import os
+import os.path
+from typing import Iterable
+
+import pandas as pd
+import torch
 from audiocraft.data.audio import audio_read
 from audiocraft.data.audio_utils import convert_audio
 from torch import Tensor
-from typing import Iterable
-
-import os
-import os.path
-import pandas as pd
-import torch
+from torch.utils.data import DataLoader, Dataset
 
 
 class MusicCapsDataset(Dataset):
@@ -31,32 +31,32 @@ class MusicCapsDataset(Dataset):
     def __len__(self) -> int:
         return len(self.filenames)
 
-    def __getitem__(self, idx: int) -> tuple[int, Tensor, str]:
+    def __getitem__(self, idx: int) -> tuple[int, int, Tensor, str]:
         filename = self.filenames[idx]
         caption_idx = int(filename[:-4].split("/")[-1])
         caption = self.descriptions[caption_idx]
 
-        return idx, self._read_audio(filename), caption
+        return idx, caption_idx, self._read_audio(filename), caption
 
     def _read_audio(self, filename: os.PathLike) -> Tensor:
         audio, sample_rate = audio_read(filename)
         return convert_audio(audio, sample_rate, self.sample_rate, self.channels)
 
     @staticmethod
-    def collate(
-        batch: Iterable[tuple[int, Tensor, str]],
-    ) -> tuple[list[int], Tensor, list[str]]:
+    def collate(batch: Iterable[tuple[int, Tensor, str]]) -> tuple[Tensor, Tensor, Tensor, list[str]]:
         indices = []
+        caption_indices = []
         audios = []
         descriptions = []
 
-        for index, audio, description in batch:
+        for index, caption_index, audio, description in batch:
             indices.append(index)
+            caption_indices.append(caption_index)
             audios.append(audio)
             descriptions.append(description)
 
         # all audios should have the same length, so no need for padding collated audios
-        return torch.tensor(indices), torch.stack(audios), descriptions
+        return torch.tensor(indices), torch.tensor(caption_indices), torch.stack(audios), descriptions
 
 
 if __name__ == "__main__":
@@ -68,5 +68,5 @@ if __name__ == "__main__":
 
     from tqdm import tqdm
 
-    for audio, descriptions in tqdm(dataloader):
+    for indices, caption_indices, audio, descriptions in tqdm(dataloader):
         print(audio.shape)

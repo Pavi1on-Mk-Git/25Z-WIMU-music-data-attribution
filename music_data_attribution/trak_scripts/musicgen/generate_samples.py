@@ -42,10 +42,10 @@ if __name__ == "__main__":
 
     musicgen.set_generation_params(duration=10, temperature=1)
 
-    for indices, _, descriptions in tqdm(dataloader, desc="Generating samples..."):
+    for indices, caption_indices, _, descriptions in tqdm(dataloader, desc="Generating samples..."):
         audios, all_tokens = musicgen.generate(descriptions, return_tokens=True)
-        for index, audio, tokens in zip(indices, audios, all_tokens):
-            audio_output_file_path = os.path.join(args.output_dir, f"{index}")  # audiocraft appends .wav
+        for index, caption_index, audio, tokens in zip(indices, caption_indices, audios, all_tokens):
+            audio_output_file_path = os.path.join(args.output_dir, f"{caption_index}")  # audiocraft appends .wav
             audio_write(audio_output_file_path, audio.cpu(), musicgen.sample_rate, strategy="loudness")
             tokens_output_file_path = os.path.join(args.output_dir, f"tokens_{index}.pt")
             torch.save(tokens, tokens_output_file_path)

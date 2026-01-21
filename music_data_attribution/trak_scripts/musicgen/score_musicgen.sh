@@ -30,7 +30,7 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
             "$dir/checkpoint_$checkpoint_id.th" \
             --train-run-id "$TRAIN_RUN_ID" \
             --checkpoint-id "$checkpoint_id" \
-            --music-data-path results/generated/musicgen \
+            --generated-path results/generated/musicgen \
             --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
             --train-set-size "$FULL_TRAIN_SET_SIZE" \
             --trak-dir "$TRAK_DIR" \
