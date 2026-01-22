@@ -5,7 +5,6 @@ from audiocraft.models.lm import LMModel
 from audiocraft.models.musicgen import MusicGen
 from audiocraft.modules.conditioners import ClassifierFreeGuidanceDropout, ConditioningAttributes
 from torch import Tensor
-from torch.nn import Module
 from trak.modelout_functions import AbstractModelOutput
 
 
@@ -50,7 +49,7 @@ class MusicGenLossModelOutput(AbstractModelOutput):
 
     def get_output(
         self,
-        lm_model: Module,
+        lm_model: LMModel,
         weights: Iterable[Tensor] | None,
         buffers: Iterable[Tensor] | None,
         audios: Tensor,
@@ -100,7 +99,7 @@ class MusicGenSingleModelOutput(AbstractModelOutput):
 
     def get_output(
         self,
-        lm_model: Module,
+        lm_model: LMModel,
         weights: Iterable[Tensor] | None,
         buffers: Iterable[Tensor] | None,
         audios: Tensor,
@@ -170,7 +169,7 @@ class MusicGenSummedModelOutput(AbstractModelOutput):
 
     def get_output(
         self,
-        lm_model: Module,
+        lm_model: LMModel,
         weights: Iterable[Tensor] | None,
         buffers: Iterable[Tensor] | None,
         audios: Tensor,

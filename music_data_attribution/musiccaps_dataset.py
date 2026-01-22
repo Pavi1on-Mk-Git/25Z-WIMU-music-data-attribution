@@ -1,5 +1,6 @@
 import os
 import os.path
+from pathlib import Path
 from typing import Iterable
 
 import pandas as pd
@@ -7,7 +8,7 @@ import torch
 from audiocraft.data.audio import audio_read
 from audiocraft.data.audio_utils import convert_audio
 from torch import Tensor
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import Dataset
 
 
 class MusicCapsDataset(Dataset):
@@ -39,11 +40,11 @@ class MusicCapsDataset(Dataset):
         return idx, caption_idx, self._read_audio(filename), caption
 
     def _read_audio(self, filename: os.PathLike) -> Tensor:
-        audio, sample_rate = audio_read(filename)
+        audio, sample_rate = audio_read(Path(filename))
         return convert_audio(audio, sample_rate, self.sample_rate, self.channels)
 
     @staticmethod
-    def collate(batch: Iterable[tuple[int, Tensor, str]]) -> tuple[Tensor, Tensor, Tensor, list[str]]:
+    def collate(batch: Iterable[tuple[int, int, Tensor, str]]) -> tuple[Tensor, Tensor, Tensor, list[str]]:
         indices = []
         caption_indices = []
         audios = []
@@ -57,16 +58,3 @@ class MusicCapsDataset(Dataset):
 
         # all audios should have the same length, so no need for padding collated audios
         return torch.tensor(indices), torch.tensor(caption_indices), torch.stack(audios), descriptions
-
-
-if __name__ == "__main__":
-    dataset = MusicCapsDataset(
-        audio_dir="data/musiccaps/music_data_train",
-        labels_csv_path="data/musiccaps/musiccaps-public.csv",
-    )
-    dataloader = DataLoader(dataset, batch_size=2, collate_fn=dataset.collate)
-
-    from tqdm import tqdm
-
-    for indices, caption_indices, audio, descriptions in tqdm(dataloader):
-        print(audio.shape)
