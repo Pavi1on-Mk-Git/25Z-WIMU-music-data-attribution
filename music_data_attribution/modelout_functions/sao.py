@@ -1,9 +1,7 @@
-from typing import Iterable
-
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
 from stable_audio_tools.inference.sampling import truncated_logistic_normal_rescaled
+from stable_audio_tools.models.diffusion import ConditionedDiffusionModelWrapper
 from torch import Tensor
 from trak.modelout_functions import AbstractModelOutput
 
@@ -15,9 +13,9 @@ class SAOSmallModelOutput(AbstractModelOutput):
 
     def get_output(
         self,
-        model: nn.Module,
-        weights: Iterable[Tensor] | None,
-        buffers: Iterable[Tensor] | None,
+        model: ConditionedDiffusionModelWrapper,
+        weights: dict[str, Tensor],
+        buffers: dict[str, Tensor],
         audio: Tensor,
         conditioning: dict,
     ) -> Tensor:
