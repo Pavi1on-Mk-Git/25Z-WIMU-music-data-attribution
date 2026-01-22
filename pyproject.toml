@@ -43,3 +43,15 @@ packages = ["music_data_attribution"]
 
 [tool.ruff]
 line-length = 120
+
+[tool.mypy]
+explicit_package_bases = true
+ignore_missing_imports = true
+exclude = "trak|stable-audio-tools"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "pandas-stubs>=2.3.3.260113",
+    "types-tqdm>=4.67.0.20250809",
+]

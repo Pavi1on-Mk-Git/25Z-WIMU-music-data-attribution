@@ -75,3 +75,6 @@ format:
 
 lint:
     pdm run python3 -m ruff check music_data_attribution
+
+check_typing:
+    pdm run python3 -m mypy .
