@@ -4,7 +4,9 @@
 Install needed system packages (this may not be an exhaustive list):
 ```bash
 sudo apt install libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libavfilter-dev libswscale-dev libswresample-dev
-# or use conda:
+```
+or use conda:
+```bash
 conda create -n ffmpeg python=3.11 ffmpeg -c conda-forge
 conda activate ffmpeg
 ```
@@ -22,7 +24,7 @@ For shell linting also install shellcheck, instructions: https://github.com/koal
 
 ## Dataset preparation
 
-Download MusicCaps CSV file into data/raw/musiccaps/musiccaps-public.csv. Download the audio files, called `{index}.wav` where index is their row in the CSV file, into data/raw/musiccaps/music_data.
+Download MusicCaps CSV file into data/raw/musiccaps/musiccaps-public.csv. Download the audio files, called `{index}.wav` where {index} is their index in the CSV file, into data/raw/musiccaps/music_data.
 
 Then, split the dataset into train and test:
 ```bash
@@ -49,11 +51,11 @@ The training artifacts will be located in AUDIOCRAFT_DORA_DIR.
 
 Training the single overfit test model is done analogously, except the training command is:
 ```bash
-# no just prepare_musiccaps, the single task does everything
 just train_test_musicgen
 ```
 
 For SAO:
+- adjust SAO_CHECKPOINT_DIR variable in justfile
 - download the initial model checkpoint:
 ```bash
 pdm run music_data_attribution/finetuning_scripts/sao/download.py
