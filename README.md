@@ -1,4 +1,4 @@
-# 25Z-WIMU-music-data-attribution
+# 25Z-WIMU-music-data-attribution - Instructions
 
 ## Install dependencies:
 Install needed system packages (this may not be an exhaustive list):
@@ -9,9 +9,11 @@ conda create -n ffmpeg python=3.11 ffmpeg -c conda-forge
 conda activate ffmpeg
 ```
 
-Install PDM, instructions: https://pdm-project.org/en/latest/, then install needed Python packages:
+Install PDM, instructions: https://pdm-project.org/en/latest/, then pull submodules and install Python dependencies:
 ```bash
-pdm install
+git submodule init
+git submodule update
+pdm install --dev --no-isolation
 ```
 
 Install Just, instructions: https://github.com/casey/just.
