@@ -47,4 +47,5 @@ pdm run ./music_data_attribution/trak_scripts/sao/finalize_scores.py \
     --train-dataset-config music_data_attribution/finetuning_scripts/sao/dataset_config.json \
     --num-timesteps 6 \
     --models-count 100 \
+    --proj-dim 4096 \
     --trak-dir "$TRAK_DIR"

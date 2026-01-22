@@ -29,6 +29,12 @@ if __name__ == "__main__":
     parser.add_argument("--models-count", type=int, help="Count of different model checkpoints used.")
     parser.add_argument("--trak-dir", type=str, help="Directory for TRAK intermediate results.")
     parser.add_argument("--train-set-size", type=int, help="Size of the training set used for featurizing.")
+    parser.add_argument(
+        "--proj-dim",
+        type=int,
+        help="Projection dimension for TRAK.",
+        default=4096,
+    )
     args = parser.parse_args()
 
     seed_everything(SEED, workers=True)
@@ -48,7 +54,7 @@ if __name__ == "__main__":
 
     _, train_dataset_size = create_dataloader_from_config(
         train_dataset_config,
-        batch_size=args.batch_size,
+        batch_size=1,
         sample_rate=model_config["sample_rate"],
         sample_size=model_config["sample_size"],
         audio_channels=model_config.get("audio_channels", 2),
