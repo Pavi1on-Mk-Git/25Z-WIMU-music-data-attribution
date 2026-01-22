@@ -1,7 +1,14 @@
 #!/bin/bash
 set -e
 
-CHECKPOINT_DIR="/data/jproboszcz/sao/checkpoints"
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 checkpoint_dir" >&2
+    echo "Error: Expected 1 argument, got $#." >&2
+    exit 1
+fi
+
+CHECKPOINT_DIR=$1
+
 SAO_FINETUNING_DIR="music_data_attribution/finetuning_scripts/sao"
 
 for seed_id in {0..9}; do

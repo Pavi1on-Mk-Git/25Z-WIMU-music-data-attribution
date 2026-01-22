@@ -1,5 +1,6 @@
 AUDIOCRAFT_REPO_DIR := "/home/jproboszcz/audiocraft"
 AUDIOCRAFT_DORA_DIR := "/data/jproboszcz/musicgen"
+SAO_CHECKPOINT_DIR := "/data/jproboszcz/sao/checkpoints"
 
 split_musiccaps:
     pdm run ./music_data_attribution/finetuning_scripts/split_musiccaps.py \
@@ -47,6 +48,18 @@ run_test_musicgen:
         "{{AUDIOCRAFT_DORA_DIR}}/xps" results/trak_musicgen_test summed false
 
     pdm run music_data_attribution/trak_scripts/musicgen/check_test_scores.py
+
+finetune_sao:
+    bash ./music_data_attribution/finetuning_scripts/sao/train_sao.sh "{{SAO_CHECKPOINT_DIR}}"
+
+featurize_sao:
+    bash ./music_data_attribution/trak_scripts/sao/featurize_sao.sh "{{SAO_CHECKPOINT_DIR}}" results/trak_sao
+
+generate_sao:
+    bash ./music_data_attribution/trak_scripts/sao/generate_samples.sh "{{SAO_CHECKPOINT_DIR}}"
+
+score_sao:
+    bash ./music_data_attribution/trak_scripts/sao/score_sao.sh "{{SAO_CHECKPOINT_DIR}}" results/trak_sao
 
 train_test_sao:
     bash ./music_data_attribution/finetuning_scripts/select_random_musiccaps_subset.sh
