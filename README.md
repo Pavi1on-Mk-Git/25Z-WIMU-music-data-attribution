@@ -18,6 +18,8 @@ pdm install --dev --no-isolation
 
 Install Just, instructions: https://github.com/casey/just.
 
+For shell linting also install shellcheck, instructions: https://github.com/koalaman/shellcheck?tab=readme-ov-file#installing.
+
 ## Dataset preparation
 
 Download MusicCaps CSV file into data/raw/musiccaps/musiccaps-public.csv. Download the audio files, called `{index}.wav` where index is their row in the CSV file, into data/raw/musiccaps/music_data.

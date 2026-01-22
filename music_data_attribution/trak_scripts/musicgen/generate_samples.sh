@@ -15,7 +15,7 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
         continue
     fi
 
-    cat "$dir"/outputs/hyperparams.json | python -m json.tool | grep 'egs/musiccaps/train"' > /dev/null && break
+    python -m json.tool < "$dir"/outputs/hyperparams.json | grep 'egs/musiccaps/train"' > /dev/null && break
 done
 
 CHECKPOINT_PATH="$(realpath "$dir")/checkpoint.th"

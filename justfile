@@ -76,5 +76,8 @@ format:
 lint:
     pdm run python3 -m ruff check music_data_attribution
 
-check_typing:
+mypy:
     pdm run python3 -m mypy .
+
+shellcheck:
+    find music_data_attribution/ -type f -name '*.sh' | xargs shellcheck

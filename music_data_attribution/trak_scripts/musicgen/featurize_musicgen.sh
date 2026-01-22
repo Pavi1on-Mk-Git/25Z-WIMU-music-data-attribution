@@ -15,7 +15,7 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
         continue
     fi
 
-    TRAIN_RUN_ID=$(cat "$dir"/outputs/hyperparams.json | python -m json.tool | grep -o 'train_[0-9]\+' | sed 's/train_//')
+    TRAIN_RUN_ID=$(python -m json.tool < "$dir"/outputs/hyperparams.json | grep -o 'train_[0-9]\+' | sed 's/train_//')
     if [ -z "$TRAIN_RUN_ID" ]; then
         continue
     fi

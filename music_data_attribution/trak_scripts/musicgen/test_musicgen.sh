@@ -20,7 +20,7 @@ for dir in "$DORA_EXPERIMENTS_DIR"/*; do
         continue
     fi
 
-    cat "$dir"/outputs/hyperparams.json | python -m json.tool | grep '"optim.epochs": 60' > /dev/null && break
+    python -m json.tool < "$dir"/outputs/hyperparams.json | grep '"optim.epochs": 60' > /dev/null && break
 done
 
 CHECKPOINT_PATH="$(realpath "$dir")/checkpoint.th"
