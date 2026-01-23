@@ -7,7 +7,6 @@ if [ "$#" -ne 3 ]; then
     exit 1
 fi
 
-# TODO: remove AUDIOCRAFT_REPO_DIR argument, get FULL_TRAIN_SET_SIZE via ls
 AUDIOCRAFT_REPO_DIR="$1"
 DORA_EXPERIMENTS_DIR="$2"
 TRAK_DIR="$3"
