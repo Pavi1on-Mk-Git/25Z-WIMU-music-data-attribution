@@ -17,7 +17,7 @@ pdm run ./music_data_attribution/trak_scripts/sao/featurize_sao.py \
     --batch-size 2 \
     --model-ckpt-path "$CHECKPOINT_PATH" \
     --train-run-id 0 \
-    --checkpoint-id 4 \
+    --checkpoint-id 5 \
     --proj-dim 4096 \
     --num-timesteps 6 \
     --trak-dir "$TRAK_DIR"
@@ -36,10 +36,19 @@ fi
 # Score
 pdm run ./music_data_attribution/trak_scripts/sao/score_sao.py \
     --dataset-config music_data_attribution/trak_scripts/sao/generated_debug_config.json \
+    --train-dataset-config music_data_attribution/finetuning_scripts/sao/debug_dataset_config.json \
     --batch-size 2 \
     --model-ckpt-path "$CHECKPOINT_PATH" \
     --train-run-id 0 \
-    --checkpoint-id 4 \
+    --checkpoint-id 5 \
     --proj-dim 4096 \
     --num-timesteps 6 \
+    --trak-dir "$TRAK_DIR"
+
+# Finalize scores
+pdm run ./music_data_attribution/trak_scripts/sao/finalize_scores.py \
+    --train-dataset-config music_data_attribution/finetuning_scripts/sao/debug_dataset_config.json \
+    --num-timesteps 6 \
+    --models-count 1 \
+    --proj-dim 4096 \
     --trak-dir "$TRAK_DIR"
