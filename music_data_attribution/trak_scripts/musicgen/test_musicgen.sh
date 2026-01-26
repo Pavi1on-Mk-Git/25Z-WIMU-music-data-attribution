@@ -54,7 +54,7 @@ pdm run ./music_data_attribution/trak_scripts/musicgen/score_musicgen.py \
     "$CHECKPOINT_PATH" \
     --train-run-id 1 \
     --checkpoint-id 6 \
-    --generated-path data/processed/musiccaps/music_data_debug \
+    --generated-path results/generated/musicgen_debug \
     --descriptions-path data/raw/musiccaps/musiccaps-public.csv \
     --train-set-size "$DEBUG_SET_SIZE" \
     --trak-dir "$TRAK_DIR" \
